@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Портал Водія — DriveMe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#17130F;
+  --col:#1F1A15;
+  --item:#26211B;
+  --item-h:#2E2820;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.10);
+  --text:#EDE8E0;
+  --t2:#9C9485;
+  --t3:#5C5548;
+  --accent:#E8732A;
+  --accent-l:#F5894A;
+  --accent-bg:rgba(232,115,42,0.12);
+  --accent-border:rgba(232,115,42,0.25);
+  --green:#2CC88A;
+  --blue:#5B9FE8;
+  --purple:#9B78E0;
+  --yellow:#F5C030;
+  --red:#E85050;
+  --grid-line:rgba(255,255,255,0.07);
+  --shadow:rgba(0,0,0,0.3);
+}
+[data-theme="light"]{
+  --bg:#FFFFFF;
+  --col:#FFFFFF;
+  --item:#FFFFFF;
+  --item-h:#FFF6F0;
+  --border:rgba(0,0,0,0.10);
+  --border2:rgba(0,0,0,0.16);
+  --text:#1A1208;
+  --t2:#6B5040;
+  --t3:#B09080;
+  --accent:#E8732A;
+  --accent-l:#F5894A;
+  --accent-bg:rgba(232,115,42,0.07);
+  --accent-border:rgba(232,115,42,0.35);
+  --green:#1A9E68;
+  --blue:#2F7DC8;
+  --purple:#7050C0;
+  --yellow:#D4A000;
+  --red:#C03030;
+  --grid-line:rgba(0,0,0,0.06);
+  --shadow:rgba(232,115,42,0.12);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  line-height:1.5;
+  transition:background .25s,color .25s;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--item-h);border-radius:4px}
+
+/* ── LAYOUT ── */
+.page{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px}
+
+/* ── HEADER ── */
+.header{padding:28px 0 0}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-ico{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-l));
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:0 6px 20px rgba(232,115,42,.35);
+}
+.logo-name{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.logo-sub{font-size:12px;color:var(--t3);margin-top:2px}
+.header-nav{display:flex;align-items:center;gap:6px}
+.nav-btn{
+  padding:8px 16px;border-radius:10px;font-size:13px;font-weight:500;
+  color:var(--t2);background:none;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:all .14s;
+}
+.nav-btn:hover{background:var(--item);color:var(--text)}
+.nav-btn.on{background:var(--item);color:var(--text);font-weight:600}
+.theme-btn{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--item);border:1px solid var(--border2);
+  color:var(--t2);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .14s;flex-shrink:0;
+}
+.theme-btn:hover{background:var(--item-h);color:var(--text)}
+.city-chip{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 14px;border-radius:10px;
+  background:var(--item);border:1px solid var(--accent-border);
+  color:var(--accent);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .14s;
+}
+.city-chip:hover{background:var(--item-h);border-color:var(--accent)}
+.header-sub{font-size:13px;color:var(--t3);padding-bottom:24px}
+.header-sub span{color:var(--t2)}
+
+/* ── SEARCH ROW ── */
+.search-row{display:flex;align-items:center;gap:10px;padding-bottom:28px;flex-wrap:wrap}
+.search-wrap{flex:1;position:relative;max-width:480px}
+.search-wrap input{
+  width:100%;
+  background:var(--col);
+  border:1px solid rgba(232,115,42,0.35);
+  border-radius:12px;
+  padding:11px 16px 11px 42px;
+  color:var(--text);font-size:13.5px;
+  outline:none;transition:all .22s;
+  font-family:'Inter',sans-serif;
+  box-shadow:0 0 16px rgba(232,115,42,.18),0 0 32px rgba(232,115,42,.08);
+}
+.search-wrap input::placeholder{color:var(--t3)}
+.search-wrap input:focus{
+  border-color:rgba(232,115,42,.7);
+  background:var(--item);
+  box-shadow:0 0 22px rgba(232,115,42,.30),0 0 48px rgba(232,115,42,.14);
+}
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:15px;pointer-events:none}
+.cats{display:flex;gap:6px;flex-wrap:wrap}
+.cat{
+  padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:500;
+  background:var(--col);border:1px solid var(--border);color:var(--t2);
+  cursor:pointer;transition:all .14s;font-family:'Inter',sans-serif;
+}
+.cat:hover{background:var(--item);color:var(--text)}
+.cat.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+
+/* ── COLUMNS ── */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:48px;align-items:start}
+.cols4{grid-template-columns:repeat(4,1fr)}
+.col{background:var(--col);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.col-head{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.col-head-left{display:flex;align-items:center;gap:12px}
+.col-head-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.col-head-name{font-size:15px;font-weight:800;letter-spacing:-.2px}
+.col-head-sub{font-size:12px;color:var(--t3);margin-top:2px}
+.col-count{background:var(--item);border:1px solid var(--border);color:var(--t3);font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.col-body{padding:6px 8px}
+
+/* ── ITEM ── */
+.bi{border-radius:10px;padding:13px 12px;cursor:pointer;transition:background .13s;border:1px solid transparent;position:relative}
+.bi:hover{background:var(--item-h)}
+.bi+.bi{margin-top:2px}
+.bi-title{font-size:13.5px;font-weight:700;letter-spacing:-.1px;margin-bottom:3px;padding-right:56px;line-height:1.3}
+.bi-meta{font-size:11.5px;color:var(--accent);font-weight:500;margin-bottom:6px}
+.bi-desc{font-size:12px;color:var(--t2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bi-tag{position:absolute;top:13px;right:12px;font-size:10.5px;font-weight:600;color:var(--t3);background:var(--item-h);border:1px solid var(--border);padding:4px 10px;border-radius:7px;white-space:nowrap}
+.bi-chips{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap}
+.chip{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:5px}
+.c-new{background:rgba(44,200,138,.1);color:var(--green);border:1px solid rgba(44,200,138,.2)}
+.c-hot{background:rgba(232,115,42,.1);color:var(--accent);border:1px solid rgba(232,115,42,.2)}
+.c-imp{background:rgba(229,80,80,.1);color:var(--red);border:1px solid rgba(229,80,80,.2)}
+.c-warn{background:rgba(245,192,48,.1);color:var(--yellow);border:1px solid rgba(245,192,48,.2)}
+.sep{height:1px;background:var(--border);margin:4px 0}
+
+/* ── OVERLAYS ── */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .18s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--col);border:1px solid var(--border2);border-radius:22px;padding:36px;max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto;transform:translateY(10px);transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.overlay.open .modal{transform:none}
+.modal-x{position:absolute;top:14px;right:14px;width:30px;height:30px;background:var(--item);border:none;border-radius:8px;cursor:pointer;font-size:15px;color:var(--t2);display:flex;align-items:center;justify-content:center;transition:.13s}
+.modal-x:hover{background:var(--item-h);color:var(--text)}
+
+/* City picker */
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.city-btn{background:var(--item);border:1px solid var(--border);border-radius:11px;padding:14px 16px;cursor:pointer;transition:.14s;font-size:14px;font-weight:600;color:var(--text);text-align:left;font-family:'Inter',sans-serif}
+.city-btn:hover{background:var(--item-h);border-color:var(--accent-border)}
+.city-btn.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
+
+/* Detail modal */
+.dm-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px}
+.dm-ico{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.dm-title{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
+.dm-sub{font-size:13px;color:var(--accent);font-weight:500}
+.dm-body{font-size:14px;color:var(--t2);line-height:1.8}
+.dm-body h3{font-size:14px;font-weight:700;color:var(--text);margin:16px 0 8px}
+.dm-body ul{padding-left:16px}
+.dm-body ul li{margin-bottom:5px}
+.dm-body strong{color:var(--text)}
+.dm-steps{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.dm-step{display:flex;gap:12px;align-items:flex-start}
+.dm-step-n{width:26px;height:26px;min-width:26px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-l));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff}
+.dm-step-t{font-size:13.5px;color:var(--t2);line-height:1.6;padding-top:3px}
+.dm-step-t strong{color:var(--text)}
+.btn-primary{padding:10px 22px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent-l));color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 14px rgba(232,115,42,.3);transition:.13s}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,115,42,.4)}
+.btn-sec{padding:10px 18px;border-radius:11px;background:var(--item);border:1px solid var(--border2);color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:.13s}
+.btn-sec:hover{background:var(--item-h);color:var(--text)}
+.modal-btns{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+
+/* ── FEATURED ── */
+.shelf-tabs-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.shelf-tabs{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+.shelf-tab{padding:8px 18px;border-radius:10px;font-size:13px;font-weight:600;border:1px solid var(--border2);background:var(--col);color:var(--t2);cursor:pointer;font-family:'Inter',sans-serif;transition:all .14s}
+.shelf-tab:hover{color:var(--text)}
+.shelf-tab.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.shelf-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.sc{background:var(--item);border:1px solid var(--border);border-radius:16px;padding:16px 16px 14px;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .18s}
+.sc:hover{background:var(--item-h);border-color:var(--accent-border);transform:translateY(-3px);box-shadow:0 10px 28px var(--shadow)}
+.sc:hover::after{opacity:1}
+.sc-t{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc-a{font-size:11px;color:var(--t2)}
+.sc-cat{margin-top:auto;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;display:inline-block;width:fit-content;letter-spacing:.2px}
+.sc-cat.rules{background:rgba(232,115,42,.18);color:var(--accent)}
+.sc-cat.finance{background:rgba(44,200,138,.18);color:var(--green)}
+.sc-cat.safety{background:rgba(229,80,80,.18);color:var(--red)}
+.sc-cat.tips{background:rgba(91,159,232,.18);color:var(--blue)}
+.sc-cat.onboard{background:rgba(245,192,48,.15);color:var(--yellow)}
+
+/* ── SEC HEADING ── */
+.sec-h{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+.sec-sub{font-size:13px;color:var(--t2);margin-bottom:24px}
+
+/* ── CALC PAGE ── */
+.calc-page{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-bottom:48px;align-items:start}
+.calc-box{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:24px 28px}
+.calc-label{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.calc-label span{color:var(--accent);font-size:13px;font-weight:700;text-transform:none;letter-spacing:0}
+.calc-row{margin-bottom:20px}
+input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:3px;background:var(--item-h);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 6px rgba(232,115,42,.5)}
+.calc-select{width:100%;background:var(--item);border:1px solid var(--border2);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13.5px;font-family:'Inter',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.result-box{background:var(--item);border:1px solid var(--accent-border);border-radius:14px;padding:22px 24px;margin-top:4px}
+.result-amount{font-size:40px;font-weight:900;letter-spacing:-1px;background:linear-gradient(90deg,var(--accent),var(--accent-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.result-label{font-size:12px;color:var(--t3);margin-bottom:16px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.rg-item{background:var(--col);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.rg-val{font-size:17px;font-weight:800;color:var(--text)}
+.rg-lbl{font-size:11px;color:var(--t3);margin-top:2px}
+.week-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.week-row-lbl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px}
+.week-row-lbl span:first-child{color:var(--t2)}
+.week-row-lbl span:last-child{font-weight:700;color:var(--accent)}
+.week-bar{height:5px;background:var(--border2);border-radius:5px;overflow:hidden}
+.week-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-l));border-radius:5px;transition:.3s}
+.tip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.tip-card{background:var(--col);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.tip-card-ico{font-size:22px;margin-bottom:8px}
+.tip-card-t{font-size:13px;font-weight:700;margin-bottom:4px}
+.tip-card-d{font-size:12px;color:var(--t2);line-height:1.55}
+
+/* ── CONTACT PAGE ── */
+.contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
+.contact-card{background:var(--col);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;transition:.14s}
+.contact-card:hover{background:var(--item);border-color:var(--border2)}
+.cc-ava{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-l));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.cc-name{font-size:14px;font-weight:700;margin-bottom:3px}
+.cc-role{font-size:11.5px;color:var(--accent);font-weight:600;margin-bottom:5px}
+.cc-phone{font-size:13.5px;color:var(--t2)}
+.cc-phone a{color:var(--t2);text-decoration:none;transition:.13s}
+.cc-phone a:hover{color:var(--accent)}
+.emergency-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.em-card{background:var(--col);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;transition:.14s}
+.em-card:hover{background:var(--item)}
+.em-ico{font-size:26px;margin-bottom:8px}
+.em-num{font-size:28px;font-weight:900;margin-bottom:4px;letter-spacing:-1px}
+.em-lbl{font-size:12px;color:var(--t2)}
+
+/* ── TIPS PAGE ── */
+.tips-list{display:flex;flex-direction:column;gap:8px;padding-bottom:48px}
+.tip-item{background:var(--col);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:.13s}
+.tip-item:hover{background:var(--item)}
+.tip-badge{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0;min-width:76px;text-align:center;margin-top:1px}
+.tb-rating{background:rgba(44,200,138,.1);color:var(--green);border:1px solid rgba(44,200,138,.2)}
+.tb-earn{background:rgba(232,115,42,.1);color:var(--accent);border:1px solid rgba(232,115,42,.2)}
+.tb-safety{background:rgba(229,80,80,.1);color:var(--red);border:1px solid rgba(229,80,80,.2)}
+.tb-client{background:rgba(245,192,48,.1);color:var(--yellow);border:1px solid rgba(245,192,48,.2)}
+.tip-text{font-size:13.5px;color:var(--t2);line-height:1.7}
+.tip-text strong{color:var(--text)}
+
+/* ── MOBILE NAV ── */
+.mob-nav{display:none;position:fixed;top:0;left:0;right:0;z-index:300;background:var(--col);border-bottom:1px solid var(--border2);padding:6px 4px;grid-template-columns:repeat(6,1fr);gap:2px}
+.mob-nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 4px;border-radius:10px;font-family:'Inter',sans-serif;transition:.13s;color:var(--t3)}
+.mob-nav-btn .mn-ico{font-size:18px;line-height:1}
+.mob-nav-btn .mn-lbl{font-size:8.5px;font-weight:600;letter-spacing:.1px}
+.mob-nav-btn.on{color:var(--accent)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;right:22px;z-index:400;background:var(--col);border:1px solid var(--border2);border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.5);transform:translateY(60px);opacity:0;transition:all .28s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:none;opacity:1}
+
+/* ── PAGE ── */
+.p{display:none}.p.on{display:block}
+.p-pad{padding-top:6px;padding-bottom:48px}
+
+@media(max-width:1100px){.cols{grid-template-columns:repeat(2,1fr)}.cols4{grid-template-columns:repeat(2,1fr)}.shelf-row{grid-template-columns:repeat(4,1fr)}.calc-page{grid-template-columns:1fr}.tip-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.cols,.cols4{grid-template-columns:1fr}.shelf-row{grid-template-columns:repeat(2,1fr)}.emergency-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+  .page{padding:0 14px}
+  .p{padding-top:52px}
+  .header{padding:60px 0 0}
+  .header-nav{display:none}
+  .header-sub{display:none}
+  .logo-sub{display:none}
+  .logo-ico{width:36px;height:36px;font-size:18px}
+  .logo-name{font-size:16px}
+  .mob-nav{display:grid}
+  .shelf-row{grid-template-columns:repeat(2,1fr)}
+  .tip-row{grid-template-columns:1fr 1fr}
+  .emergency-grid{grid-template-columns:1fr 1fr}
+  .calc-page{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .contacts-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mobNav">
+  <button class="mob-nav-btn on" onclick="showPage('home',this)"><span class="mn-ico">🏠</span><span class="mn-lbl">Головна</span></button>
+  <button class="mob-nav-btn" onclick="showPage('rules',this)"><span class="mn-ico">📋</span><span class="mn-lbl">Правила</span></button>
+  <button class="mob-nav-btn" onclick="showPage('sit',this)"><span class="mn-ico">🆘</span><span class="mn-lbl">Ситуації</span></button>
+  <button class="mob-nav-btn" onclick="showPage('calc',this)"><span class="mn-ico">💰</span><span class="mn-lbl">Калькулятор</span></button>
+  <button class="mob-nav-btn" onclick="showPage('tips',this)"><span class="mn-ico">💡</span><span class="mn-lbl">Поради</span></button>
+  <button class="mob-nav-btn" onclick="showPage('contacts',this)"><span class="mn-ico">📞</span><span class="mn-lbl">Контакти</span></button>
+</nav>
+
+<!-- CITY OVERLAY -->
+<div class="overlay" id="cityOverlay">
+  <div class="modal" style="max-width:400px">
+    <button class="modal-x" onclick="closeOverlay('cityOverlay')">✕</button>
+    <div style="font-size:18px;font-weight:800;margin-bottom:4px">🏙️ Оберіть місто</div>
+    <div style="font-size:13px;color:var(--t2);margin-bottom:4px">Контакти та деталі будуть для вашої філії</div>
+    <div class="city-grid" id="cityGrid"></div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="overlay" id="detailOverlay">
+  <div class="modal" id="detailModal">
+    <button class="modal-x" onclick="closeOverlay('detailOverlay')">✕</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header-top">
+      <div class="logo" onclick="showPage('home', document.querySelector('.nav-btn'))">
+        <div class="logo-ico">🚗</div>
+        <div>
+          <div class="logo-name">DriveMe</div>
+          <div class="logo-sub">Портал Водія</div>
+        </div>
+      </div>
+      <div class="header-nav">
+        <button class="nav-btn on" onclick="showPage('home',this)">🏠 Головна</button>
+        <button class="nav-btn" onclick="showPage('rules',this)">📋 Правила</button>
+        <button class="nav-btn" onclick="showPage('sit',this)">🆘 Ситуації</button>
+        <button class="nav-btn" onclick="showPage('calc',this)">💰 Калькулятор</button>
+        <button class="nav-btn" onclick="showPage('tips',this)">💡 Поради</button>
+        <button class="nav-btn" onclick="showPage('contacts',this)">📞 Контакти</button>
+        <div style="width:1px;height:20px;background:var(--border2);margin:0 4px"></div>
+        <div class="city-chip" onclick="openOverlay('cityOverlay')">📍 <span id="cityLabel">Львів</span> ▾</div>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      </div>
+    </div>
+    <div class="header-sub">Все що потрібно для успішної роботи — в одному місці · <span id="hCity">Львів</span></div>
+  </header>
+
+  <!-- ════ HOME PAGE ════ -->
+  <div class="p on" id="p-home">
+
+    <!-- SEARCH -->
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-ico">🔍</span>
+        <input type="text" id="searchInput" placeholder="Пошук по порталу..." oninput="handleSearch(this.value)">
+      </div>
+      <div class="cats">
+        <button class="cat on" onclick="filterCat('all',this)">Все</button>
+        <button class="cat" onclick="filterCat('rules',this)">Правила</button>
+        <button class="cat" onclick="filterCat('situations',this)">Ситуації</button>
+        <button class="cat" onclick="filterCat('finance',this)">Фінанси</button>
+        <button class="cat" onclick="filterCat('tech',this)">Техніка</button>
+      </div>
+    </div>
+
+    <!-- FEATURED SHELF -->
+    <div style="padding-bottom:28px">
+      <div class="shelf-tabs-row">
+        <div class="shelf-tabs">
+          <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
+          <button class="shelf-tab" onclick="filterShelf('new',this)">⭐ Нові</button>
+          <button class="shelf-tab" onclick="filterShelf('imp',this)">🔴 Важливі</button>
+        </div>
+      </div>
+      <div class="shelf-row" id="shelfRow"></div>
+    </div>
+
+    <!-- KANBAN -->
+    <div class="sec-h">База знань водія</div>
+    <div class="sec-sub">Натисни на будь-який пункт щоб відкрити детальну інформацію</div>
+
+    <div class="cols" id="kanban"></div>
+
+  </div>
+
+  <!-- ════ RULES PAGE ════ -->
+  <div class="p" id="p-rules">
+    <div style="padding:6px 0 28px">
+      <div class="sec-h">📋 Правила та протоколи</div>
+      <div class="sec-sub">Внутрішні стандарти DriveMe — обов'язково знати кожному водію</div>
+      <div class="cols" id="rulesKanban"></div>
+    </div>
+  </div>
+
+  <!-- ════ SITUATIONS PAGE ════ -->
+  <div class="p" id="p-sit">
+    <div style="padding:6px 0 28px">
+      <div class="sec-h">🆘 Дії в нестандартних ситуаціях</div>
+      <div class="sec-sub">Покрокові інструкції — читай заздалегідь, а не під час інциденту</div>
+      <div class="cols cols4" id="sitKanban"></div>
+    </div>
+  </div>
+
+  <!-- ════ CALC PAGE ════ -->
+  <div class="p p-pad" id="p-calc">
+    <div class="sec-h">💰 Калькулятор заробітку</div>
+    <div class="sec-sub">Розрахуй свій дохід і знайди способи заробляти більше</div>
+    <div class="calc-page">
+      <div class="calc-box">
+        <div class="calc-row">
+          <div class="calc-label">Місто <span id="calcCityLbl">Львів</span></div>
+          <select class="calc-select" id="calcCity" onchange="updateCalc()">
+            <option value="lviv">Львів</option>
+            <option value="kharkiv">Харків</option>
+            <option value="zaporizhzhia">Запоріжжя</option>
+            <option value="dnipro">Дніпро</option>
+            <option value="vinnytsia">Вінниця</option>
+            <option value="kropyvnytskyi">Кропивницький</option>
+            <option value="mykolaiv">Миколаїв</option>
+          </select>
+        </div>
+        <div class="calc-row">
+          <div class="calc-label">Тариф <span id="calcTariffLbl">Стандарт</span></div>
+          <select class="calc-select" id="calcTariff" onchange="updateCalc()">
+            <option value="1.0">Стандарт</option>
+            <option value="1.35">Комфорт (+35%)</option>
+            <option value="1.7">Бізнес (+70%)</option>
+          </select>
+        </div>
+        <div class="calc-row">
+          <div class="calc-label">Поїздок на день <span id="tripsLbl">12</span></div>
+          <input type="range" min="1" max="30" value="12" id="calcTrips" oninput="document.getElementById('tripsLbl').textContent=this.value;updateCalc()">
+        </div>
+        <div class="calc-row">
+          <div class="calc-label">Робочих днів на місяць <span id="daysLbl">22</span></div>
+          <input type="range" min="10" max="30" value="22" id="calcDays" oninput="document.getElementById('daysLbl').textContent=this.value;updateCalc()">
+        </div>
+        <div class="calc-row">
+          <div class="calc-label">Середній чек (грн) <span id="checkLbl">110</span></div>
+          <input type="range" min="60" max="300" value="110" step="5" id="calcCheck" oninput="document.getElementById('checkLbl').textContent=this.value;updateCalc()">
+        </div>
+      </div>
+      <div>
+        <div class="result-box">
+          <div class="result-label">💵 Твій заробіток на місяць</div>
+          <div class="result-amount" id="resMonth">0 грн</div>
+          <div class="result-grid">
+            <div class="rg-item"><div class="rg-val" id="resDay">0</div><div class="rg-lbl">грн / день</div></div>
+            <div class="rg-item"><div class="rg-val" id="resGross">0</div><div class="rg-lbl">вал (100%)</div></div>
+            <div class="rg-item"><div class="rg-val" id="resShare">62%</div><div class="rg-lbl">твоя частка</div></div>
+          </div>
+          <div class="week-list" id="weekList"></div>
+        </div>
+        <div style="margin-top:16px">
+          <div class="sec-h" style="font-size:15px;margin-bottom:12px">📈 Як заробляти більше</div>
+          <div class="tip-row" id="calcTips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ TIPS PAGE ════ -->
+  <div class="p p-pad" id="p-tips">
+    <div class="sec-h">💡 Поради та лайфхаки</div>
+    <div class="sec-sub">Практичні рекомендації від досвідчених водіїв DriveMe</div>
+    <div class="tips-list" id="tipsList"></div>
+  </div>
+
+  <!-- ════ CONTACTS PAGE ════ -->
+  <div class="p p-pad" id="p-contacts">
+    <div class="sec-h">📞 Контакти <span id="contactCityLbl" style="color:var(--accent)">Львів</span></div>
+    <div class="sec-sub">Хто відповідає за що у твоїй філії</div>
+    <div class="contacts-grid" id="contactsGrid"></div>
+    <div class="sec-h" style="font-size:16px;margin-bottom:16px">🚨 Екстрені номери</div>
+    <div class="emergency-grid">
+      <div class="em-card"><div class="em-ico">🚑</div><div class="em-num" style="color:var(--red)">103</div><div class="em-lbl">Швидка допомога</div></div>
+      <div class="em-card"><div class="em-ico">🚔</div><div class="em-num" style="color:var(--blue)">102</div><div class="em-lbl">Поліція</div></div>
+      <div class="em-card"><div class="em-ico">🚒</div><div class="em-num" style="color:var(--accent)">101</div><div class="em-lbl">Пожежна</div></div>
+      <div class="em-card"><div class="em-ico">📞</div><div class="em-num" style="color:var(--green)">112</div><div class="em-lbl">Єдиний екстрений</div></div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ──────────────────────────────────────────
+// DATA
+// ──────────────────────────────────────────
+const CITIES = {
+  lviv:         {name:'Львів',   share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  kharkiv:      {name:'Харків',  share:.63, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  zaporizhzhia: {name:'Запоріжжя',share:.63,contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  dnipro:       {name:'Дніпро',  share:.63, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  vinnytsia:    {name:'Вінниця', share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  kropyvnytskyi:{name:'Кропивницький',share:.63,contacts:[{n:'Керівник філії',r:'Управляючий',p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік',r:'Технічний відділ',p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',r:'Набір водіїв',p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',r:'Підтримка 24/7',p:'+380 XX XXX XXXX',i:'Д'}]},
+  mykolaiv:     {name:'Миколаїв',share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+};
+
+const SHELF_ITEMS = [
+  {id:'rules_car',    cat:'rules',   new:true,  imp:false, emoji:'🚗', title:'Утримання авто',      author:'Технічний відділ'},
+  {id:'rules_svc',    cat:'rules',   new:false, imp:true,  emoji:'⏰', title:'Графік та зміни',     author:'HR DriveMe'},
+  {id:'rules_pass',   cat:'rules',   new:false, imp:false, emoji:'🤝', title:'Стандарт сервісу',    author:'Operations'},
+  {id:'sit_dtp',      cat:'safety',  new:false, imp:true,  emoji:'🚨', title:'ДТП: покрокова дія',  author:'Служба безпеки'},
+  {id:'sit_break',    cat:'safety',  new:false, imp:false, emoji:'🔧', title:'Поломка авто',        author:'Технічний відділ'},
+  {id:'calc_hint',    cat:'finance', new:true,  imp:false, emoji:'💰', title:'Як рахується зарплата',author:'Фінансовий відділ'},
+  {id:'tips_rating',  cat:'tips',    new:false, imp:false, emoji:'⭐', title:'Як підняти рейтинг',  author:'Зіночка, DriveMe'},
+  {id:'onboard_start',cat:'onboard', new:true,  imp:false, emoji:'🎯', title:'Перший тиждень',      author:'HR DriveMe'},
+  {id:'tips_earn',    cat:'tips',    new:true,  imp:false, emoji:'📈', title:'Заробляй більше',     author:'Кращі водії'},
+  {id:'rules_ban',    cat:'safety',  new:false, imp:true,  emoji:'⛔', title:'Нульова толерантність',author:'Директор DriveMe'},
+];
+
+const KANBAN_COLS = [
+  {
+    id:'onboarding', ico:'🎯', icos:'background:linear-gradient(135deg,#F5C030,#F09820)',
+    name:'Початок роботи', sub:'Новачку обов\'язково', tag:'5 тем',
+    items:[
+      {id:'onboard_start', title:'Перший тиждень роботи', meta:'HR DriveMe', desc:'Що відбувається в дні 1–7, кого питати і як не помилитись', chips:['c-new'], tag:'Новачок'},
+      {id:'onboard_apps',  title:'Необхідні додатки',     meta:'IT відділ',  desc:'Uklon, Bolt, Telegram — як налаштувати і активувати', chips:[], tag:'Додатки'},
+      {id:'onboard_docs',  title:'Документи водія',       meta:'Юридичний',  desc:'Які документи мають бути при тобі кожну зміну',          chips:[], tag:'Документи'},
+      {id:'onboard_car',   title:'Прийом авто від механіка', meta:'Технічний відділ', desc:'Чеклист перевірки авто при отриманні', chips:['c-new'], tag:'Техніка'},
+      {id:'onboard_salary',title:'Як рахується заробіток',meta:'Фінансовий', desc:'Формула розрахунку: вал × частка водія',               chips:[], tag:'Гроші'},
+    ]
+  },
+  {
+    id:'rules', ico:'📋', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    name:'Правила роботи', sub:'Стандарти DriveMe', tag:'6 правил',
+    items:[
+      {id:'rules_car',  title:'Утримання автомобіля', meta:'Технічний відділ', desc:'Чистота, пальне, тиск шин, заборони', chips:[], tag:'Авто'},
+      {id:'rules_svc',  title:'Стандарт сервісу',     meta:'Operations',       desc:'Привітання, поведінка, що заборонено говорити', chips:['c-hot'], tag:'Сервіс'},
+      {id:'rules_time', title:'Графік і зміни',        meta:'HR DriveMe',       desc:'Правила виходу, відмови, максимальний час за кермом', chips:[], tag:'Час'},
+      {id:'rules_fin',  title:'Фінансова дисципліна',  meta:'Фінансовий відділ',desc:'Готівка, здача, строки, штрафи', chips:[], tag:'Гроші'},
+      {id:'rules_ban',  title:'Нульова толерантність', meta:'Директор DriveMe', desc:'5 порушень що ведуть до негайного звільнення', chips:['c-imp'], tag:'Критично'},
+      {id:'rules_tech', title:'Технічне обслуговування',meta:'Механік',         desc:'ТО тільки через компанію, як подати заявку', chips:[], tag:'Техніка'},
+    ]
+  },
+  {
+    id:'situations', ico:'🆘', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
+    name:'Нестандартні ситуації', sub:'Покрокові інструкції', tag:'6 сценаріїв',
+    items:[
+      {id:'sit_dtp',      title:'ДТП',                    meta:'Служба безпеки', desc:'7 кроків від зупинки до отримання протоколу', chips:['c-imp'], tag:'Аварія'},
+      {id:'sit_break',    title:'Поломка авто',           meta:'Технічний відділ',desc:'Що робити якщо авто не їде або щось пішло не так', chips:[], tag:'Техніка'},
+      {id:'sit_conflict', title:'Конфліктний пасажир',    meta:'Operations',     desc:'Агресія, неадекватна поведінка — алгоритм дій', chips:[], tag:'Сервіс'},
+      {id:'sit_sick',     title:'Пасажиру погано',        meta:'Медична служба', desc:'Нудота, непритомність, медична надзвичайна ситуація', chips:[], tag:'Медицина'},
+      {id:'sit_police',   title:'Зупинка поліцією',       meta:'Юридичний відділ',desc:'Як поводитись, які документи, що після штрафу', chips:[], tag:'Поліція'},
+      {id:'sit_app',      title:'Проблема з додатком',    meta:'IT підтримка',   desc:'Uklon не працює, замовлення не приходять', chips:[], tag:'IT'},
+    ]
+  },
+];
+
+const RULES_KANBAN = [
+  {
+    id:'r_car', ico:'🚗', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    name:'Автомобіль', sub:'Утримання та використання', tag:'6 пунктів',
+    items:[
+      {id:'rules_car_clean',title:'Чистота авто',         meta:'Обов\'язково', desc:'Зовні та всередині — миття перед кожним виїздом', chips:[], tag:'Щодня'},
+      {id:'rules_car_fuel', title:'Паливо',               meta:'Мінімум 1/4 бака', desc:'Контролюй рівень, заправляй своєчасно', chips:[], tag:'Щодня'},
+      {id:'rules_car_tires',title:'Тиск у шинах',         meta:'Щотижня',      desc:'Перевіряй тиск — норма зазначена на стійці дверей', chips:[], tag:'Щотижня'},
+      {id:'rules_car_dmg',  title:'Пошкодження',          meta:'Одразу повідомляй', desc:'Будь-який скол, подряпина — повідом механіку в день виявлення', chips:['c-hot'], tag:'Важливо'},
+      {id:'rules_car_nosmoke',title:'Заборони в авто',    meta:'Суворо',       desc:'Не курити, не їсти, не передавати стороннім', chips:['c-imp'], tag:'Заборона'},
+      {id:'rules_car_to',   title:'ТО за графіком',       meta:'Технічний відділ', desc:'Технічне обслуговування тільки через механіка компанії', chips:[], tag:'Техніка'},
+    ]
+  },
+  {
+    id:'r_svc', ico:'🤝', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
+    name:'Сервіс', sub:'Стандарти обслуговування', tag:'5 пунктів',
+    items:[
+      {id:'rules_svc_greet',title:'Вітання',              meta:'Обов\'язково', desc:'Усмішка + привітання при посадці пасажира', chips:['c-hot'], tag:'Завжди'},
+      {id:'rules_svc_phone',title:'Телефон за кермом',    meta:'Заборонено',   desc:'Тільки з гарнітурою, не тримати в руках', chips:['c-imp'], tag:'ПДР'},
+      {id:'rules_svc_topic',title:'Теми розмов',          meta:'Обережно',     desc:'Не обговорювати особисте, не критикувати пасажира', chips:[], tag:'Такт'},
+      {id:'rules_svc_rate', title:'Рейтинг 4.6+',         meta:'Мінімум',      desc:'Нижче — розмова з керівником. Нижче 4.5 — ризик відключення', chips:['c-warn'], tag:'KPI'},
+      {id:'rules_svc_cancel',title:'Скасування поїздок',  meta:'Мінімум',      desc:'Безпричинне скасування штрафує рейтинг і пріоритет', chips:[], tag:'Рейтинг'},
+    ]
+  },
+  {
+    id:'r_fin', ico:'💰', icos:'background:linear-gradient(135deg,#2CC88A,#1A9E68)',
+    name:'Фінанси', sub:'Гроші та звітність', tag:'4 пункти',
+    items:[
+      {id:'rules_fin_cash', title:'Готівка від пасажирів',meta:'Через касу',   desc:'Гроші фіксуються в агрегаторі, а не в кишеню', chips:['c-imp'], tag:'Критично'},
+      {id:'rules_fin_debt', title:'Здача компанії',        meta:'В строки',     desc:'За договором, затримка — штрафні санкції', chips:[], tag:'Договір'},
+      {id:'rules_fin_dmg',  title:'Штраф за пошкодження', meta:'З твого заробітку', desc:'Пошкодження з твоєї вини = відшкодування', chips:['c-warn'], tag:'Важливо'},
+      {id:'rules_fin_debt2',title:'Борг перед компанією',  meta:'30 днів',      desc:'Максимальний строк повернення боргу — 30 днів', chips:[], tag:'Строк'},
+    ]
+  },
+];
+
+const SIT_KANBAN = [
+  {
+    id:'s_dtp', ico:'🚨', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
+    name:'ДТП', sub:'7 кроків', tag:'Терміново',
+    items:[
+      {id:'sit_dtp_1', title:'1. Зупинись, аварійка',    meta:'Перша дія',    desc:'Не рухай авто. Увімкни аварійку одразу.',          chips:['c-imp'], tag:'Крок 1'},
+      {id:'sit_dtp_2', title:'2. Перевір постраждалих',  meta:'103 якщо є',   desc:'Якщо є постраждалі — відразу телефонуй 103.',       chips:['c-imp'], tag:'Крок 2'},
+      {id:'sit_dtp_3', title:'3. Зателефонуй керівнику', meta:'До поліції',   desc:'Спочатку керівник філії — він допоможе з діями.',   chips:['c-hot'], tag:'Крок 3'},
+      {id:'sit_dtp_4', title:'4. Виклич поліцію 102',    meta:'Не домовляйся', desc:'Ніколи не погоджуйся "вирішити без протоколу".',   chips:[], tag:'Крок 4'},
+      {id:'sit_dtp_5', title:'5. Фотографуй все',        meta:'З усіх ракурсів',desc:'Місце, авто, номери, пошкодження — якомога більше.', chips:[], tag:'Крок 5'},
+      {id:'sit_dtp_6', title:'6. Дані страховки',        meta:'Від учасника', desc:'Страховка, телефон, ПІБ іншого учасника.',          chips:[], tag:'Крок 6'},
+      {id:'sit_dtp_7', title:'7. Нічого не підписуй',    meta:'Без дозволу',  desc:'Будь-які документи — тільки з керівником.',        chips:['c-warn'], tag:'Крок 7'},
+    ]
+  },
+  {
+    id:'s_break', ico:'🔧', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    name:'Поломка авто', sub:'5 кроків', tag:'Техніка',
+    items:[
+      {id:'sit_br_1', title:'Узбіччя + аварійка',       meta:'Безпека перш за все', desc:'Якщо можливо — з\'їдь з проїжджої частини.',  chips:[], tag:'Крок 1'},
+      {id:'sit_br_2', title:'Телефонуй механіку',       meta:'Одразу',        desc:'Опиши симптоми: звук, запах, індикатори на панелі.', chips:['c-hot'], tag:'Крок 2'},
+      {id:'sit_br_3', title:'Поясни пасажиру',          meta:'Якщо є',        desc:'Вибачся, допоможи замовити інше авто.',             chips:[], tag:'Крок 3'},
+      {id:'sit_br_4', title:'Не ремонтуй сам',          meta:'Без дозволу',   desc:'Зроблені самотужки ремонти = за твій рахунок.',     chips:['c-imp'], tag:'Заборона'},
+      {id:'sit_br_5', title:'Фото панелі приладів',     meta:'Як доказ',      desc:'Сфотографуй помилки на дисплеї та місце несправності.', chips:[], tag:'Крок 5'},
+    ]
+  },
+  {
+    id:'s_conflict', ico:'😡', icos:'background:linear-gradient(135deg,#9B78E0,#7B58C0)',
+    name:'Конфлікт', sub:'5 кроків', tag:'Сервіс',
+    items:[
+      {id:'sit_cf_1', title:'Зберігай спокій',           meta:'Завжди',       desc:'Не відповідай агресією — ти завжди програєш в цьому.',chips:['c-hot'], tag:'Крок 1'},
+      {id:'sit_cf_2', title:'Попередь про зупинку',      meta:'Якщо кричить', desc:'"Я зупиню авто, якщо ви продовжуєте кричати."',     chips:[], tag:'Крок 2'},
+      {id:'sit_cf_3', title:'Зупинись, попроси вийти',   meta:'За необхідності', desc:'Безпечне місце — зупинись, попроси покинути авто.', chips:[], tag:'Крок 3'},
+      {id:'sit_cf_4', title:'Зафіксуй інцидент',         meta:'Письмово',     desc:'Час, маршрут, опис — запиши та повідом керівника.',  chips:[], tag:'Крок 4'},
+      {id:'sit_cf_5', title:'Постав низький рейтинг',    meta:'В додатку',    desc:'Захищаєш колег від цього пасажира.',                chips:[], tag:'Крок 5'},
+    ]
+  },
+  {
+    id:'s_sick', ico:'🤒', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
+    name:'Пасажиру погано', sub:'5 кроків', tag:'Медицина',
+    items:[
+      {id:'sit_sk_1', title:'Зупинись, відкрий вікна',   meta:'Одразу',       desc:'Свіже повітря — перша допомога при нудоті.',        chips:[], tag:'Крок 1'},
+      {id:'sit_sk_2', title:'Запитай чи потрібна допомога',meta:'Завжди',     desc:'"Вам потрібна швидка? Можу зупинитись поруч з лікарнею."', chips:[], tag:'Крок 2'},
+      {id:'sit_sk_3', title:'103 при непритомності',     meta:'Не чекай',     desc:'Непритомність = одразу 103, точна адреса обов\'язково.', chips:['c-imp'], tag:'Екстрено'},
+      {id:'sit_sk_4', title:'Залишись поруч',            meta:'До приїзду',   desc:'Не залишай пасажира одного до приїзду допомоги.',   chips:[], tag:'Крок 4'},
+      {id:'sit_sk_5', title:'Повідом керівника',         meta:'Після',        desc:'Запиши час та адресу інциденту, повідом філію.',    chips:[], tag:'Крок 5'},
+    ]
+  },
+];
+
+const TIPS = [
+  {badge:'tb-rating', btext:'Рейтинг',   text:'<strong>Вітай пасажира на ім\'я</strong> — додаток показує ім\'я замовника. "Добрий день, Олексію!" — це вже +0.1 до середньої оцінки.'},
+  {badge:'tb-earn',   btext:'Заробіток', text:'<strong>Знай топ-5 точок свого міста:</strong> аеропорт, вокзал, ТЦ, лікарні, університети. Попит завжди є, поїздки довші = вищий чек.'},
+  {badge:'tb-safety', btext:'Безпека',   text:'<strong>Перед нічною поїздкою</strong> в незнайоме місце — перевір маршрут заздалегідь. Щось насторожує — маєш право відмовити.'},
+  {badge:'tb-client', btext:'Сервіс',    text:'<strong>Зарядний кабель у авто</strong> — коштує 100 грн, окупається сотнями зірок і чайовими за місяць.'},
+  {badge:'tb-rating', btext:'Рейтинг',   text:'<strong>Не скасовуй поїздки</strong> без крайньої потреби. Система штрафує рейтинг і знижує пріоритет показу твого авто замовникам.'},
+  {badge:'tb-earn',   btext:'Заробіток', text:'<strong>П\'ятниця вечір + дощ = золотий час.</strong> Попит зростає вдвічі, більшість водіїв їде додому — виїжди навіть якщо не планував.'},
+  {badge:'tb-earn',   btext:'Заробіток', text:'<strong>Ранковий прайм 7:00–9:00</strong> і вечірній 17:00–20:00 — найвищий попит. Виїжди заздалегідь у центр міста.'},
+  {badge:'tb-safety', btext:'Безпека',   text:'<strong>Після кожного ТО</strong> проси механіка показати що зробили. Ти маєш право знати стан свого авто.'},
+  {badge:'tb-client', btext:'Сервіс',    text:'<strong>Тихий режим</strong> — якщо пасажир мовчить, не вмикай гучно музику. Частина людей хоче просто тишу і спокій.'},
+  {badge:'tb-earn',   btext:'Заробіток', text:'<strong>Відстежуй свою статистику щодня:</strong> поїздки, середній чек, години. Водій що знає свої цифри заробляє на 15–25% більше.'},
+  {badge:'tb-rating', btext:'Рейтинг',   text:'<strong>Одна зірка не вбиває рейтинг.</strong> 10 наступних поїздок з відмінним сервісом — і всe компенсується.'},
+  {badge:'tb-client', btext:'Сервіс',    text:'<strong>Комфортна температура</strong> — запитай пасажира чи підходить кліматизація. Маленький жест, великий ефект на оцінку.'},
+];
+
+const DETAIL_DATA = {
+  onboard_start:{ico:'🎯', bg:'background:linear-gradient(135deg,#F5C030,#F09820)', title:'Перший тиждень роботи', sub:'HR DriveMe', body:`
+    <h3>День 1 — Старт</h3><ul><li>Підписання договору та інструктаж</li><li>Отримання авто від механіка, чеклист прийому</li><li>Налаштування додатку Uklon</li><li>Знайомство з керівником і командою</li></ul>
+    <h3>Дні 2–3 — Перші поїздки</h3><ul><li>Куратор на зв\'язку — питай будь-що</li><li>Рекомендовані маршрути та точки в місті</li><li>Перші 10 поїздок — не бійся, всі питання нормальні</li></ul>
+    <h3>Дні 4–7 — Самостійний режим</h3><ul><li>Вихід на звичайний графік</li><li>Перший звіт по показниках</li><li>Зустріч з керівником: перші враження</li></ul>`,steps:[]},
+  sit_dtp:{ico:'🚨', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'ДТП — покрокова інструкція', sub:'Служба безпеки DriveMe', body:``, steps:[
+    {t:'<strong>Стоп і аварійка.</strong> Не рухай авто. Увімкни аварійну сигналізацію одразу.'},
+    {t:'<strong>Перевір постраждалих.</strong> Якщо є поранені — одразу телефонуй 103.'},
+    {t:'<strong>Зателефонуй керівнику філії</strong> — ще до поліції. Він допоможе з діями.'},
+    {t:'<strong>Виклич поліцію 102.</strong> Не погоджуйся вирішити без протоколу — це ризик.'},
+    {t:'<strong>Фотографуй все:</strong> місце, авто, номерні знаки, пошкодження з усіх ракурсів.'},
+    {t:'<strong>Візьми дані іншого учасника:</strong> страховку, телефон, ПІБ.'},
+    {t:'<strong>Нічого не підписуй</strong> без дозволу керівника — жодних угод на місці.'},
+  ]},
+  sit_conflict:{ico:'😡', bg:'background:linear-gradient(135deg,#9B78E0,#7B58C0)', title:'Конфліктний пасажир', sub:'Operations DriveMe', body:``, steps:[
+    {t:'<strong>Зберігай спокій.</strong> Агресія у відповідь завжди програшна стратегія.'},
+    {t:'Скажи спокійно: <strong>"Я зупиню авто, якщо ви продовжуєте кричати."</strong>'},
+    {t:'Якщо загроза — <strong>зупинись у безпечному місці</strong> та попроси вийти.'},
+    {t:'<strong>Зафіксуй:</strong> час, маршрут, опис пасажира. Напиши керівнику.'},
+    {t:'Постав <strong>низький рейтинг пасажиру</strong> — захищаєш колег.'},
+  ]},
+  sit_sick:{ico:'🤒', bg:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)', title:'Пасажиру стало погано', sub:'Медична служба', body:``, steps:[
+    {t:'<strong>Зупинись.</strong> Опусти вікна — свіже повітря.'},
+    {t:'Запитай: <strong>"Вам потрібна допомога? Викликати швидку?"</strong>'},
+    {t:'Якщо непритомний — <strong>одразу 103</strong>, повідом точну адресу.'},
+    {t:'<strong>Не залишай</strong> пасажира до приїзду допомоги.'},
+    {t:'Повідом керівника — зафіксуй час та адресу.'},
+  ]},
+  rules_ban:{ico:'⛔', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'Нульова толерантність', sub:'Директор DriveMe', body:`
+    <p>Наступні порушення ведуть до <strong>негайного розірвання договору</strong> без попередження:</p>
+    <ul>
+      <li>🍺 <strong>Алкоголь або наркотики</strong> за кермом</li>
+      <li>📵 <strong>Телефон без гарнітури</strong> під час руху</li>
+      <li>🔑 <strong>Передача авто</strong> третім особам</li>
+      <li>💸 <strong>Шахрайство</strong> з платежами або агрегаторами</li>
+      <li>😡 <strong>Фізична або вербальна агресія</strong> до пасажирів чи колег</li>
+    </ul>
+    <p style="margin-top:12px;color:var(--t3);font-size:13px">Якщо ти бачиш порушення у колег — повідом керівнику. Це захищає всю команду.</p>`,steps:[]},
+  rules_car:{ico:'🚗', bg:'background:linear-gradient(135deg,#E8732A,#F5894A)', title:'Утримання автомобіля', sub:'Технічний відділ', body:`
+    <ul>
+      <li>Авто завжди <strong>чисте зовні та всередині</strong> — миття перед виїздом</li>
+      <li>Запас пального — не менше <strong>1/4 бака</strong> на початку зміни</li>
+      <li>Тиск у шинах перевіряй <strong>щотижня</strong></li>
+      <li>Будь-яке пошкодження — <strong>повідом механіку</strong> в той же день</li>
+      <li>Заборонено курити в авто, <strong>їсти за кермом</strong></li>
+      <li>Авто не можна передавати <strong>стороннім особам</strong></li>
+      <li>ТО — тільки за графіком, <strong>через компанію</strong></li>
+    </ul>`,steps:[]},
+  calc_hint:{ico:'💰', bg:'background:linear-gradient(135deg,#2CC88A,#1A9E68)', title:'Як рахується твій заробіток', sub:'Фінансовий відділ', body:`
+    <h3>Формула</h3>
+    <p><strong>Валовий дохід</strong> (гроші з агрегатора) ÷ 100% = тверда сума</p>
+    <p>Твоя частина: <strong>~62–65%</strong> від валу залежно від міста і тарифу</p>
+    <p>Частина компанії: ~35–38% (оренда, страхування, обслуговування)</p>
+    <h3>Тарифи та бонуси</h3>
+    <ul>
+      <li>Стандарт — базова ставка</li>
+      <li>Комфорт — <strong>+35%</strong> до середнього чеку</li>
+      <li>Бізнес — <strong>+70%</strong> до середнього чеку</li>
+    </ul>
+    <p style="margin-top:10px">Для точного розрахунку використовуй <strong>Калькулятор заробітку</strong> → вкладка вгорі.</p>`,steps:[]},
+};
+
+// ──────────────────────────────────────────
+// STATE
+// ──────────────────────────────────────────
+let currentCity = 'lviv';
+let currentShelf = 'all';
+let currentCat = 'all';
+
+// ──────────────────────────────────────────
+// RENDER
+// ──────────────────────────────────────────
+function renderShelf(){
+  const el = document.getElementById('shelfRow');
+  const items = SHELF_ITEMS.filter(i=>{
+    if(currentShelf==='new') return i.new;
+    if(currentShelf==='imp') return i.imp;
+    return true;
+  }).slice(0,10);
+  const catMap = {rules:'rules',safety:'safety',finance:'finance',tips:'tips',onboard:'onboard'};
+  el.innerHTML = items.map(i=>`
+    <div class="sc" onclick="openDetail('${i.id}')">
+      <div style="font-size:26px">${i.emoji}</div>
+      <div class="sc-t">${i.title}</div>
+      <div class="sc-a">${i.author}</div>
+      <span class="sc-cat ${catMap[i.cat]||'rules'}">${i.cat.charAt(0).toUpperCase()+i.cat.slice(1)}</span>
+    </div>`).join('');
+}
+
+function renderKanban(el, cols){
+  el.innerHTML = cols.map(col=>`
+    <div class="col">
+      <div class="col-head">
+        <div class="col-head-left">
+          <div class="col-head-ico" style="${col.icos}">${col.ico}</div>
+          <div><div class="col-head-name">${col.name}</div><div class="col-head-sub">${col.sub}</div></div>
+        </div>
+        <div class="col-count">${col.tag}</div>
+      </div>
+      <div class="col-body">
+        ${col.items.map(item=>`
+          <div class="bi" onclick="openDetail('${item.id}')">
+            <div class="bi-title">${item.title}</div>
+            <div class="bi-meta">${item.meta}</div>
+            <div class="bi-desc">${item.desc}</div>
+            ${item.tag?`<div class="bi-tag">${item.tag}</div>`:''}
+            ${item.chips.length?`<div class="bi-chips">${item.chips.map(c=>`<span class="chip ${c}">${c==='c-new'?'НОВЕ':c==='c-hot'?'ВАЖЛИВО':c==='c-imp'?'КРИТИЧНО':'УВАГА'}</span>`).join('')}</div>`:''}
+          </div>`).join('<div class="sep"></div>')}
+      </div>
+    </div>`).join('');
+}
+
+function renderContacts(){
+  const city = CITIES[currentCity];
+  document.getElementById('contactCityLbl').textContent = city.name;
+  document.getElementById('contactsGrid').innerHTML = city.contacts.map(c=>`
+    <div class="contact-card">
+      <div class="cc-ava">${c.i}</div>
+      <div>
+        <div class="cc-name">${c.n}</div>
+        <div class="cc-role">${c.r}</div>
+        <div class="cc-phone"><a href="tel:${c.p}">${c.p}</a></div>
+      </div>
+    </div>`).join('');
+}
+
+function renderTips(){
+  document.getElementById('tipsList').innerHTML = TIPS.map(t=>`
+    <div class="tip-item">
+      <span class="tip-badge ${t.badge}">${t.btext}</span>
+      <div class="tip-text">${t.text}</div>
+    </div>`).join('');
+}
+
+function renderCalcTips(){
+  const tips = [
+    {ico:'🌅', t:'Ранковий прайм', d:'7:00–9:00 +20–40% до тарифу'},
+    {ico:'🌆', t:'Вечірній прайм', d:'17:00–20:00 — другий пік'},
+    {ico:'⬆️', t:'Вищий тариф',   d:'Комфорт/Бізнес +30–70% чеку'},
+    {ico:'⭐', t:'Рейтинг 4.9+',  d:'Пріоритет у видачі замовлень'},
+  ];
+  document.getElementById('calcTips').innerHTML = tips.map(t=>`
+    <div class="tip-card">
+      <div class="tip-card-ico">${t.ico}</div>
+      <div class="tip-card-t">${t.t}</div>
+      <div class="tip-card-d">${t.d}</div>
+    </div>`).join('');
+}
+
+function renderCityGrid(){
+  document.getElementById('cityGrid').innerHTML = Object.entries(CITIES).map(([k,v])=>`
+    <button class="city-btn ${k===currentCity?'on':''}" onclick="setCity('${k}')">${v.name}</button>`).join('');
+}
+
+// ──────────────────────────────────────────
+// CALC
+// ──────────────────────────────────────────
+const CITY_MAP = {lviv:'Львів',kharkiv:'Харків',zaporizhzhia:'Запоріжжя',dnipro:'Дніпро',vinnytsia:'Вінниця',kropyvnytskyi:'Кропивницький',mykolaiv:'Миколаїв'};
+const TARIFF_NAMES = {'1.0':'Стандарт','1.35':'Комфорт','1.7':'Бізнес'};
+function updateCalc(){
+  const city = document.getElementById('calcCity').value;
+  const tariff = parseFloat(document.getElementById('calcTariff').value);
+  const trips = parseInt(document.getElementById('calcTrips').value);
+  const days  = parseInt(document.getElementById('calcDays').value);
+  const check = parseInt(document.getElementById('calcCheck').value);
+  document.getElementById('calcCityLbl').textContent = CITY_MAP[city]||city;
+  document.getElementById('calcTariffLbl').textContent = TARIFF_NAMES[String(parseFloat(document.getElementById('calcTariff').value).toFixed(2))]||'';
+  const share = CITIES[city]?.share || 0.62;
+  const adjCheck = Math.round(check * tariff);
+  const dailyGross = trips * adjCheck;
+  const monthGross = dailyGross * days;
+  const monthNet = Math.round(monthGross * share);
+  const dayNet   = Math.round(dailyGross * share);
+  document.getElementById('resMonth').textContent = fmt(monthNet)+' грн';
+  document.getElementById('resDay').textContent = fmt(dayNet);
+  document.getElementById('resGross').textContent = fmt(monthGross)+' грн';
+  document.getElementById('resShare').textContent = Math.round(share*100)+'%';
+  // weeks
+  const weeks = Math.ceil(days/7);
+  const colors = ['var(--accent)','var(--green)','var(--blue)','var(--purple)'];
+  document.getElementById('weekList').innerHTML = Array.from({length:weeks},(_,i)=>{
+    const wd = Math.min(7, days-i*7);
+    const we = Math.round(dayNet*wd);
+    const pct = Math.round(we/monthNet*100);
+    return `<div>
+      <div class="week-row-lbl"><span>${i+1}-й тиждень (${wd} дн.)</span><span style="color:${colors[i%4]}">${fmt(we)} грн</span></div>
+      <div class="week-bar"><div class="week-bar-fill" style="width:${pct}%;background:${colors[i%4]}"></div></div>
+    </div>`;
+  }).join('');
+}
+function fmt(n){return n.toLocaleString('uk')}
+
+// ──────────────────────────────────────────
+// NAVIGATION
+// ──────────────────────────────────────────
+const PAGE_IDS = ['home','rules','sit','calc','tips','contacts'];
+function showPage(id, el){
+  PAGE_IDS.forEach(p=>{
+    const pg = document.getElementById('p-'+p); if(pg) pg.classList.remove('on');
+  });
+  const target = document.getElementById('p-'+id); if(target) target.classList.add('on');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.mob-nav-btn').forEach(b=>b.classList.remove('on'));
+  if(el){ el.classList.add('on'); }
+  window.scrollTo(0,0);
+}
+
+// ──────────────────────────────────────────
+// DETAIL MODAL
+// ──────────────────────────────────────────
+function openDetail(id){
+  const d = DETAIL_DATA[id];
+  if(!d){ showToast('Деталі скоро з\'являться'); return; }
+  const steps = d.steps&&d.steps.length ? `<div class="dm-steps">${d.steps.map((s,i)=>`<div class="dm-step"><div class="dm-step-n">${i+1}</div><div class="dm-step-t">${s.t}</div></div>`).join('')}</div>` : '';
+  document.getElementById('detailContent').innerHTML = `
+    <div class="dm-head">
+      <div class="dm-ico" style="${d.bg}">${d.ico}</div>
+      <div><div class="dm-title">${d.title}</div><div class="dm-sub">${d.sub}</div></div>
+    </div>
+    <div class="dm-body">${d.body||''}${steps}</div>
+    <div class="modal-btns"><button class="btn-sec" onclick="closeOverlay('detailOverlay')">Закрити</button></div>`;
+  openOverlay('detailOverlay');
+}
+
+// ──────────────────────────────────────────
+// CITY
+// ──────────────────────────────────────────
+function setCity(key){
+  currentCity = key;
+  const name = CITIES[key].name;
+  document.getElementById('cityLabel').textContent = name;
+  document.getElementById('hCity').textContent = name;
+  document.getElementById('calcCity').value = key;
+  updateCalc();
+  renderContacts();
+  renderCityGrid();
+  closeOverlay('cityOverlay');
+  // sync calc
+  document.getElementById('calcCityLbl').textContent = name;
+  showToast('📍 Місто змінено на '+name);
+}
+
+// ──────────────────────────────────────────
+// OVERLAYS
+// ──────────────────────────────────────────
+function openOverlay(id){ document.getElementById(id).classList.add('open') }
+function closeOverlay(id){ document.getElementById(id).classList.remove('open') }
+document.addEventListener('click', e=>{
+  ['cityOverlay','detailOverlay'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && e.target===el) closeOverlay(id);
+  });
+});
+
+// ──────────────────────────────────────────
+// THEME
+// ──────────────────────────────────────────
+let dark = true;
+function toggleTheme(){
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark?'':'light');
+  document.getElementById('themeBtn').textContent = dark?'🌙':'☀️';
+}
+
+// ──────────────────────────────────────────
+// SHELF FILTER
+// ──────────────────────────────────────────
+function filterShelf(val, el){
+  currentShelf = val;
+  document.querySelectorAll('.shelf-tab').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  renderShelf();
+}
+
+// ──────────────────────────────────────────
+// SEARCH (stub)
+// ──────────────────────────────────────────
+function handleSearch(v){ if(v.length>1) showToast('🔍 Пошук: "'+v+'" — скоро буде'); }
+function filterCat(v, el){ currentCat=v; document.querySelectorAll('.cats .cat').forEach(b=>b.classList.remove('on')); el.classList.add('on'); }
+
+// ──────────────────────────────────────────
+// TOAST
+// ──────────────────────────────────────────
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+
+// ──────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────
+renderShelf();
+renderKanban(document.getElementById('kanban'), KANBAN_COLS);
+renderKanban(document.getElementById('rulesKanban'), RULES_KANBAN);
+renderKanban(document.getElementById('sitKanban'), SIT_KANBAN);
+renderTips();
+renderCalcTips();
+renderContacts();
+renderCityGrid();
+updateCalc();
+</script>
+</body>
+</html>
