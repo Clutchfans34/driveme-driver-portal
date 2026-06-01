@@ -127,9 +127,7 @@ body{
 .page-sub span{color:var(--t2)}
 
 /* ── SEARCH ROW ── */
-.search-row{display:flex;align-items:center;gap:10px;padding:0 0 16px;flex-wrap:wrap}
-.home-top-right .search-row{padding-top:0}
-.home-top-right .shelf-row{margin-bottom:0}
+.search-row{display:flex;align-items:center;gap:10px;padding:20px 0 16px;flex-wrap:wrap}
 .search-wrap{flex:1;position:relative;max-width:480px}
 .search-wrap input{
   width:100%;
@@ -275,8 +273,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* ── HOME QUICK CONTACTS ── */
 /* ── HOME TWO-COL LAYOUT ── */
-.home-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;margin-bottom:20px;align-items:stretch}
-.home-top-right{display:flex;flex-direction:column;gap:0;background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-sizing:border-box}
+.home-top{margin-top:24px;margin-bottom:0}
 .qc-block{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-sizing:border-box}
 .qc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .qc-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
@@ -423,8 +420,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .calc-page{grid-template-columns:1fr}
   .result-grid{grid-template-columns:1fr 1fr}
   .contacts-grid{grid-template-columns:1fr}
-  .home-top{grid-template-columns:1fr}
-  .qc-block{height:auto}
 }
 </style>
 </head>
@@ -519,34 +514,30 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div>
     </div><!-- /qc-block -->
 
-    <!-- RIGHT: SEARCH + SHELF -->
-    <div class="home-top-right">
-      <div class="search-row">
-        <div class="search-wrap">
-          <span class="search-ico ico ico-16"><i data-lucide="search"></i></span>
-          <input type="text" id="searchInput" placeholder="Пошук по порталу..." oninput="handleSearch(this.value)">
-        </div>
-        <div class="cats">
-          <button class="cat on" onclick="filterCat('all',this)">Все</button>
-          <button class="cat" onclick="filterCat('rules',this)">Правила</button>
-          <button class="cat" onclick="filterCat('situations',this)">Ситуації</button>
-          <button class="cat" onclick="filterCat('finance',this)">Фінанси</button>
-          <button class="cat" onclick="filterCat('tech',this)">Техніка</button>
-        </div>
-      </div>
-      <div>
-        <div class="shelf-tabs-row">
-          <div class="shelf-tabs">
-            <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
-            <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
-            <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
-          </div>
-        </div>
-        <div class="shelf-row" id="shelfRow"></div>
-      </div>
-    </div><!-- /home-top-right -->
-
     </div><!-- /home-top -->
+
+    <!-- SEARCH + SHELF (full width below) -->
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-ico ico ico-16"><i data-lucide="search"></i></span>
+        <input type="text" id="searchInput" placeholder="Пошук по порталу..." oninput="handleSearch(this.value)">
+      </div>
+      <div class="cats">
+        <button class="cat on" onclick="filterCat('all',this)">Все</button>
+        <button class="cat" onclick="filterCat('rules',this)">Правила</button>
+        <button class="cat" onclick="filterCat('situations',this)">Ситуації</button>
+        <button class="cat" onclick="filterCat('finance',this)">Фінанси</button>
+        <button class="cat" onclick="filterCat('tech',this)">Техніка</button>
+      </div>
+    </div>
+    <div class="shelf-tabs-row">
+      <div class="shelf-tabs">
+        <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
+        <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
+        <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
+      </div>
+    </div>
+    <div class="shelf-row" id="shelfRow"></div>
 
     <!-- KANBAN -->
     <div class="sec-h">База знань водія</div>
