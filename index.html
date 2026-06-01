@@ -273,8 +273,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* ── HOME QUICK CONTACTS ── */
 /* ── HOME TWO-COL LAYOUT ── */
-.home-top{margin-top:24px;margin-bottom:0}
+.home-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;margin-bottom:0;align-items:start}
 .qc-block{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-sizing:border-box}
+.home-shelf-right{box-sizing:border-box}
 .qc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .qc-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
 .qc-city{font-size:12px;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:5px}
@@ -420,6 +421,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .calc-page{grid-template-columns:1fr}
   .result-grid{grid-template-columns:1fr 1fr}
   .contacts-grid{grid-template-columns:1fr}
+  .home-top{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -484,39 +486,51 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <div class="p on" id="p-home">
 
 
-    <!-- HOME TWO-COL -->
+    <!-- TOP TWO-COL: contacts left, shelf right -->
     <div class="home-top">
 
-    <!-- LEFT: QUICK CONTACTS -->
-    <div class="qc-block">
-      <div class="qc-header">
-        <span class="qc-title">Контакти філії</span>
-        <span class="qc-city"><i data-lucide="map-pin" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2"></i><span id="qcCityName">Львів</span></span>
-      </div>
-      <div class="qc-staff" id="qcStaff"></div>
-      <div class="qc-sos">
-        <a class="qc-sos-btn" href="tel:101" style="background:rgba(232,80,80,.13);color:#E85050;border-color:rgba(232,80,80,.25)">
-          <span class="ico"><i data-lucide="flame" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">101</div><div class="qc-sos-lbl">Пожежна</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:102" style="background:rgba(91,159,232,.13);color:#5B9FE8;border-color:rgba(91,159,232,.25)">
-          <span class="ico"><i data-lucide="shield" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">102</div><div class="qc-sos-lbl">Поліція</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:103" style="background:rgba(44,200,138,.13);color:#2CC88A;border-color:rgba(44,200,138,.25)">
-          <span class="ico"><i data-lucide="heart-pulse" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">103</div><div class="qc-sos-lbl">Швидка</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:112" style="background:rgba(240,112,0,.13);color:var(--accent);border-color:rgba(240,112,0,.25)">
-          <span class="ico"><i data-lucide="phone-call" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">112</div><div class="qc-sos-lbl">Єдиний</div></div>
-        </a>
-      </div>
-    </div><!-- /qc-block -->
+      <!-- LEFT: QUICK CONTACTS -->
+      <div class="qc-block">
+        <div class="qc-header">
+          <span class="qc-title">Контакти філії</span>
+          <span class="qc-city"><i data-lucide="map-pin" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2"></i><span id="qcCityName">Львів</span></span>
+        </div>
+        <div class="qc-staff" id="qcStaff"></div>
+        <div class="qc-sos">
+          <a class="qc-sos-btn" href="tel:101" style="background:rgba(232,80,80,.13);color:#E85050;border-color:rgba(232,80,80,.25)">
+            <span class="ico"><i data-lucide="flame" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+            <div><div class="qc-sos-num">101</div><div class="qc-sos-lbl">Пожежна</div></div>
+          </a>
+          <a class="qc-sos-btn" href="tel:102" style="background:rgba(91,159,232,.13);color:#5B9FE8;border-color:rgba(91,159,232,.25)">
+            <span class="ico"><i data-lucide="shield" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+            <div><div class="qc-sos-num">102</div><div class="qc-sos-lbl">Поліція</div></div>
+          </a>
+          <a class="qc-sos-btn" href="tel:103" style="background:rgba(44,200,138,.13);color:#2CC88A;border-color:rgba(44,200,138,.25)">
+            <span class="ico"><i data-lucide="heart-pulse" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+            <div><div class="qc-sos-num">103</div><div class="qc-sos-lbl">Швидка</div></div>
+          </a>
+          <a class="qc-sos-btn" href="tel:112" style="background:rgba(240,112,0,.13);color:var(--accent);border-color:rgba(240,112,0,.25)">
+            <span class="ico"><i data-lucide="phone-call" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+            <div><div class="qc-sos-num">112</div><div class="qc-sos-lbl">Єдиний</div></div>
+          </a>
+        </div>
+      </div><!-- /qc-block -->
+
+      <!-- RIGHT: SHELF CARDS -->
+      <div class="home-shelf-right">
+        <div class="shelf-tabs-row" style="margin-bottom:12px">
+          <div class="shelf-tabs">
+            <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
+            <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
+            <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
+          </div>
+        </div>
+        <div class="shelf-row" id="shelfRow"></div>
+      </div><!-- /home-shelf-right -->
 
     </div><!-- /home-top -->
 
-    <!-- SEARCH + SHELF (full width below) -->
+    <!-- BELOW: SEARCH + KANBAN -->
     <div class="search-row">
       <div class="search-wrap">
         <span class="search-ico ico ico-16"><i data-lucide="search"></i></span>
@@ -530,19 +544,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <button class="cat" onclick="filterCat('tech',this)">Техніка</button>
       </div>
     </div>
-    <div class="shelf-tabs-row">
-      <div class="shelf-tabs">
-        <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
-        <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
-        <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
-      </div>
-    </div>
-    <div class="shelf-row" id="shelfRow"></div>
 
     <!-- KANBAN -->
     <div class="sec-h">База знань водія</div>
     <div class="sec-sub">Натисни на будь-який пункт щоб відкрити детальну інформацію</div>
-
     <div class="cols" id="kanban"></div>
 
   </div>
