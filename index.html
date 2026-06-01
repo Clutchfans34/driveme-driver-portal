@@ -271,6 +271,26 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .tip-card-t{font-size:13px;font-weight:700;margin-bottom:4px}
 .tip-card-d{font-size:12px;color:var(--t2);line-height:1.55}
 
+/* ── HOME QUICK CONTACTS ── */
+.qc-block{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:20px}
+.qc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.qc-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
+.qc-city{font-size:12px;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:5px}
+.qc-staff{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.qc-staff::-webkit-scrollbar{display:none}
+.qc-person{flex-shrink:0;display:flex;align-items:center;gap:9px;background:var(--item);border:1px solid var(--border);border-radius:12px;padding:9px 13px;text-decoration:none;color:var(--text);transition:.14s;cursor:pointer}
+.qc-person:hover{background:var(--item-h);border-color:var(--border2)}
+.qc-ava{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qc-info{min-width:0}
+.qc-role{font-size:11px;font-weight:700;color:var(--t2);white-space:nowrap;line-height:1.2}
+.qc-name{font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:110px;line-height:1.3}
+.qc-divider{width:1px;background:var(--border);margin:8px 0;flex-shrink:0;align-self:stretch}
+.qc-sos{display:flex;gap:8px;margin-top:12px}
+.qc-sos-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:10px;padding:9px 6px;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:.3px;transition:.14s;border:1px solid transparent}
+.qc-sos-btn:hover{filter:brightness(1.12)}
+.qc-sos-num{font-size:16px;font-weight:900;letter-spacing:-0.5px}
+.qc-sos-lbl{font-size:10.5px;font-weight:600;opacity:.85}
+
 /* ── CONTACT PAGE ── */
 .contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
 .contact-card{background:var(--col);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;transition:.14s}
@@ -466,6 +486,33 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <div class="p on" id="p-home">
 
 
+    <!-- QUICK CONTACTS -->
+    <div class="qc-block">
+      <div class="qc-header">
+        <span class="qc-title">Контакти філії</span>
+        <span class="qc-city"><i data-lucide="map-pin" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2"></i><span id="qcCityName">Львів</span></span>
+      </div>
+      <div class="qc-staff" id="qcStaff"></div>
+      <div class="qc-sos">
+        <a class="qc-sos-btn" href="tel:101" style="background:rgba(232,80,80,.13);color:#E85050;border-color:rgba(232,80,80,.25)">
+          <span class="ico"><i data-lucide="flame" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">101</div><div class="qc-sos-lbl">Пожежна</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:102" style="background:rgba(91,159,232,.13);color:#5B9FE8;border-color:rgba(91,159,232,.25)">
+          <span class="ico"><i data-lucide="shield" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">102</div><div class="qc-sos-lbl">Поліція</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:103" style="background:rgba(44,200,138,.13);color:#2CC88A;border-color:rgba(44,200,138,.25)">
+          <span class="ico"><i data-lucide="heart-pulse" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">103</div><div class="qc-sos-lbl">Швидка</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:112" style="background:rgba(240,112,0,.13);color:var(--accent);border-color:rgba(240,112,0,.25)">
+          <span class="ico"><i data-lucide="phone-call" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">112</div><div class="qc-sos-lbl">Єдиний</div></div>
+        </a>
+      </div>
+    </div>
+
     <!-- SEARCH -->
     <div class="search-row">
       <div class="search-wrap">
@@ -607,14 +654,65 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 // ──────────────────────────────────────────
 // DATA
 // ──────────────────────────────────────────
+// contacts: n=ПІБ, r=роль, p=телефон, i=код іконки
+// i: К=Керівник, З=Заступник керівника, М=Механік, Т=Заст.технічний, Р=Рекрутер, Г=HR менеджер
 const CITIES = {
-  lviv:         {name:'Львів',   share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
-  kharkiv:      {name:'Харків',  share:.63, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
-  zaporizhzhia: {name:'Запоріжжя',share:.63,contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
-  dnipro:       {name:'Дніпро',  share:.63, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
-  vinnytsia:    {name:'Вінниця', share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
-  kropyvnytskyi:{name:'Кропивницький',share:.63,contacts:[{n:'Керівник філії',r:'Управляючий',p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік',r:'Технічний відділ',p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',r:'Набір водіїв',p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',r:'Підтримка 24/7',p:'+380 XX XXX XXXX',i:'Д'}]},
-  mykolaiv:     {name:'Миколаїв',share:.62, contacts:[{n:'Керівник філії',  r:'Управляючий',     p:'+380 XX XXX XXXX',i:'К'},{n:'Головний механік', r:'Технічний відділ', p:'+380 XX XXX XXXX',i:'М'},{n:'HR / Рекрутер',    r:'Набір водіїв',     p:'+380 XX XXX XXXX',i:'Р'},{n:'Диспетчер',        r:'Підтримка 24/7',   p:'+380 XX XXX XXXX',i:'Д'}]},
+  lviv:         {name:'Львів',   share:.62, contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  kharkiv:      {name:'Харків',  share:.63, contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  zaporizhzhia: {name:'Запоріжжя',share:.63,contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  dnipro:       {name:'Дніпро',  share:.63, contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  vinnytsia:    {name:'Вінниця', share:.62, contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  kropyvnytskyi:{name:'Кропивницький',share:.63,contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
+  mykolaiv:     {name:'Миколаїв',share:.62, contacts:[
+    {n:'— уточнити —', r:'Керівник філії',         p:'+380 XX XXX XXXX', i:'К'},
+    {n:'— уточнити —', r:'Заст. керівника',         p:'+380 XX XXX XXXX', i:'З'},
+    {n:'— уточнити —', r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
+    {n:'— уточнити —', r:'Заст. з тех. частини',    p:'+380 XX XXX XXXX', i:'Т'},
+    {n:'— уточнити —', r:'Рекрутер',                p:'+380 XX XXX XXXX', i:'Р'},
+    {n:'— уточнити —', r:'HR менеджер',             p:'+380 XX XXX XXXX', i:'Г'},
+  ]},
 };
 
 const SHELF_ITEMS = [
@@ -841,7 +939,22 @@ let currentCat = 'all';
 // RENDER
 // ──────────────────────────────────────────
 const CAT_LABELS = {rules:'Правила',safety:'Безпека',finance:'Фінанси',tips:'Поради',onboard:'Онбординг'};
-const CONTACT_ICONS = {К:'user',М:'wrench',Р:'user-plus',Д:'headphones'};
+const CONTACT_ICONS = {К:'user',З:'user-check',М:'wrench',Т:'settings',Р:'user-plus',Г:'heart-handshake',Д:'headphones'};
+const CONTACT_COLORS = {К:'var(--accent)',З:'var(--blue)',М:'var(--green)',Т:'var(--purple)',Р:'var(--yellow)',Г:'#F07080',Д:'var(--t2)'};
+
+function renderHomeContacts(){
+  const city = CITIES[currentCity];
+  document.getElementById('qcCityName').textContent = city.name;
+  document.getElementById('qcStaff').innerHTML = city.contacts.map(c=>`
+    <a class="qc-person" href="tel:${c.p}">
+      <div class="qc-ava" style="background:${CONTACT_COLORS[c.i]}22;color:${CONTACT_COLORS[c.i]}">${ico(CONTACT_ICONS[c.i]||'user',16)}</div>
+      <div class="qc-info">
+        <div class="qc-role">${c.r}</div>
+        <div class="qc-name" style="color:${c.p.includes('XX')?'var(--t3)':'var(--text)'}">${c.p.includes('XX')?'Незабаром':c.p}</div>
+      </div>
+    </a>`).join('');
+  lucide.createIcons();
+}
 
 function ico(name,size=20){
   return `<span class="ico" style="display:inline-flex;align-items:center;justify-content:center"><i data-lucide="${name}" style="width:${size}px;height:${size}px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>`;
@@ -1017,6 +1130,7 @@ function setCity(key){
   document.getElementById('calcCity').value = key;
   updateCalc();
   renderContacts();
+  renderHomeContacts();
   renderCityGrid();
   closeOverlay('cityOverlay');
   // sync calc
@@ -1085,6 +1199,7 @@ renderKanban(document.getElementById('sitKanban'), SIT_KANBAN);
 renderTips();
 renderCalcTips();
 renderContacts();
+renderHomeContacts();
 renderCityGrid();
 updateCalc();
 lucide.createIcons();
