@@ -279,15 +279,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .qc-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
 .qc-city{font-size:12px;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:5px}
 .qc-staff{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;flex:1}
-.qc-person{display:flex;flex-direction:row;align-items:stretch;gap:0;background:var(--item);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:.14s;cursor:pointer;overflow:hidden}
+.qc-person{display:flex;flex-direction:row;align-items:center;gap:0;background:var(--item);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);transition:.14s;cursor:pointer;overflow:hidden}
 .qc-person:hover{background:var(--item-h);border-color:var(--border2)}
 .qc-info{min-width:0;flex:1;padding:14px 14px;display:flex;flex-direction:column;justify-content:center}
 .qc-role{font-size:10.5px;font-weight:700;color:var(--t2);line-height:1.3;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .qc-name{font-size:14px;font-weight:800;line-height:1.3;margin-bottom:6px}
 .qc-phone-lbl{font-size:12px;font-weight:600;margin-top:0}
-.qc-photo{width:130px;flex-shrink:0;position:relative;overflow:hidden;border-radius:0 14px 14px 0;margin-left:auto}
-.qc-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.qc-photo-placeholder{width:100%;height:100%;min-height:110px;display:flex;align-items:center;justify-content:center}
+.qc-photo{width:110px;flex-shrink:0;position:relative;overflow:hidden;border-radius:10px;margin:10px 10px 10px 0}
+.qc-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:10px}
+.qc-photo-placeholder{width:100%;height:100%;min-height:110px;display:flex;align-items:center;justify-content:center;border-radius:10px}
 .qc-sos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
 .qc-sos-btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;padding:13px 8px;text-decoration:none;font-weight:800;transition:.14s;border:1px solid transparent}
 .qc-sos-btn:hover{filter:brightness(1.12)}
@@ -424,6 +424,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .result-grid{grid-template-columns:1fr 1fr}
   .contacts-grid{grid-template-columns:1fr}
   .home-top{grid-template-columns:1fr}
+  .qc-photo{display:none}
 }
 </style>
 </head>
