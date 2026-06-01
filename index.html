@@ -412,10 +412,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .header{margin:0 -16px;padding:0 16px;position:sticky;top:58px;z-index:200}
   .header-inner{height:52px}
   .header-nav{display:none}
-  .page{padding-top:58px}
-  .header{margin:0 -16px;padding:0 16px}
-  .header-inner{height:60px}
-  .header-nav{display:none}
+  .page{padding-top:112px}
+  .header{display:none}
   .logo-sub{display:none}
   .logo-ico{width:36px;height:36px}
   .logo-name{font-size:16px}
@@ -444,6 +442,33 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .mqb-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .mqb-arr{margin-left:auto;opacity:.3}
 .mqb-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ── THEME TOGGLE ── */
+.mob-header-bar{display:none;align-items:center;justify-content:space-between;padding:10px 16px 8px;background:var(--bg);position:fixed;top:58px;left:0;right:0;z-index:199;border-bottom:1px solid var(--border)}
+@media(max-width:600px){.mob-header-bar{display:flex}}
+.mob-logo-row{display:flex;align-items:center;gap:10px}
+.mob-logo-img{width:34px;height:34px}
+.mob-logo-txt{font-size:15px;font-weight:900;letter-spacing:-.3px}
+.mob-logo-txt span{color:var(--t3);font-weight:500;font-size:12px}
+.theme-toggle{position:relative;width:46px;height:26px;flex-shrink:0}
+.theme-toggle input{opacity:0;width:0;height:0;position:absolute}
+.theme-track{
+  position:absolute;inset:0;border-radius:13px;cursor:pointer;
+  background:var(--item);border:1px solid var(--border2);
+  transition:.22s;
+}
+.theme-track::before{
+  content:'';position:absolute;
+  width:20px;height:20px;border-radius:50%;
+  top:2px;left:2px;
+  background:var(--t3);
+  transition:.22s;
+  display:flex;align-items:center;justify-content:center;
+}
+.theme-toggle input:checked + .theme-track{background:rgba(240,112,0,.2);border-color:var(--accent)}
+.theme-toggle input:checked + .theme-track::before{transform:translateX(20px);background:var(--accent)}
+.theme-icons{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 5px;pointer-events:none}
+.theme-icons svg{width:12px;height:12px;stroke:var(--t3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:.22s}
 </style>
 </head>
 <body>
@@ -457,6 +482,22 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <button class="mob-nav-btn" onclick="showPage('tips',this)"><span class="mn-ico ico"><i data-lucide="zap"></i></span><span class="mn-lbl">Поради</span></button>
   <button class="mob-nav-btn" onclick="showPage('contacts',this)"><span class="mn-ico ico"><i data-lucide="phone"></i></span><span class="mn-lbl">Контакти</span></button>
 </nav>
+
+<!-- MOBILE HEADER BAR (logo + theme toggle) -->
+<div class="mob-header-bar">
+  <div class="mob-logo-row">
+    <img class="mob-logo-img" src="img/dm-logo.svg" alt="DriveMe">
+    <div class="mob-logo-txt">DriveMe <span>— Портал водія</span></div>
+  </div>
+  <label class="theme-toggle" title="Змінити тему">
+    <input type="checkbox" id="themeToggle" onchange="toggleTheme(this.checked)">
+    <div class="theme-track"></div>
+    <div class="theme-icons">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </div>
+  </label>
+</div>
 
 <!-- CITY OVERLAY -->
 <div class="overlay" id="cityOverlay">
@@ -1242,11 +1283,16 @@ document.addEventListener('click', e=>{
 // THEME
 // ──────────────────────────────────────────
 let dark = true;
-function toggleTheme(){
-  dark = !dark;
+function toggleTheme(isLight){
+  if(typeof isLight === 'boolean') dark = !isLight;
+  else dark = !dark;
   document.documentElement.setAttribute('data-theme', dark?'':'light');
   const btn = document.getElementById('themeBtn');
-  btn.innerHTML = `<span class="ico"><i data-lucide="${dark?'moon':'sun'}" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>`;
+  if(btn){
+    btn.innerHTML = `<span class="ico"><i data-lucide="${dark?'moon':'sun'}" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>`;
+  }
+  const tog = document.getElementById('themeToggle');
+  if(tog) tog.checked = !dark;
   lucide.createIcons();
 }
 
