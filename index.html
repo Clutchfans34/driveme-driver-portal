@@ -6,6 +6,7 @@
 <title>Портал Водія — DriveMe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -344,6 +345,45 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 @media(max-width:1100px){.cols{grid-template-columns:repeat(2,1fr)}.cols4{grid-template-columns:repeat(2,1fr)}.shelf-row{grid-template-columns:repeat(4,1fr)}.calc-page{grid-template-columns:1fr}.tip-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.cols,.cols4{grid-template-columns:1fr}.shelf-row{grid-template-columns:repeat(2,1fr)}.emergency-grid{grid-template-columns:repeat(2,1fr)}}
+/* ── LUCIDE ICONS ── */
+.ico{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ico-16 svg{width:16px;height:16px}
+.ico-18 svg{width:18px;height:18px}
+.ico-20 svg{width:20px;height:20px}
+.ico-22 svg{width:22px;height:22px}
+.ico-24 svg{width:24px;height:24px}
+.ico-28 svg{width:28px;height:28px}
+/* logo icon box */
+.logo-ico .ico svg{stroke:#fff;stroke-width:2}
+/* nav icons */
+.nav-ico{display:inline-flex;align-items:center;margin-right:5px;vertical-align:middle}
+.nav-ico svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+/* mob nav icons */
+.mn-ico .ico svg{width:20px;height:20px;stroke:currentColor}
+/* col head icons */
+.col-head-ico .ico svg{width:20px;height:20px;stroke:#fff}
+/* shelf card icons */
+.sc-ico{font-size:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.sc-ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+/* search icon */
+.search-ico .ico svg{width:16px;height:16px;stroke:currentColor}
+/* hero stat icon */
+.hs-ico svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* contact avatar icon */
+.cc-ava .ico svg{width:20px;height:20px;stroke:#fff}
+/* emergency icon */
+.em-ico .ico svg{width:28px;height:28px}
+/* tip badge icon */
+.tip-bdg-ico svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;vertical-align:middle;margin-right:3px}
+/* detail modal icon */
+.dm-ico .ico svg{width:26px;height:26px;stroke:#fff}
+/* dm step number */
+.dm-step-n .ico svg{width:13px;height:13px;stroke:#fff;stroke-width:2.5}
+/* section heading icon */
+.sh-ico{display:inline-flex;align-items:center;margin-right:8px;vertical-align:middle;color:var(--accent)}
+.sh-ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+
 @media(max-width:600px){
   .page{padding:0 16px}
   .p{padding-bottom:80px}
@@ -351,7 +391,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .header-inner{height:60px}
   .header-nav{display:none}
   .logo-sub{display:none}
-  .logo-ico{width:36px;height:36px;font-size:18px}
+  .logo-ico{width:36px;height:36px}
   .logo-name{font-size:16px}
   .mob-nav{display:grid}
   .shelf-row{grid-template-columns:repeat(2,1fr)}
@@ -369,19 +409,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 <!-- MOBILE NAV -->
 <nav class="mob-nav" id="mobNav">
-  <button class="mob-nav-btn on" onclick="showPage('home',this)"><span class="mn-ico">🏠</span><span class="mn-lbl">Головна</span></button>
-  <button class="mob-nav-btn" onclick="showPage('rules',this)"><span class="mn-ico">📋</span><span class="mn-lbl">Правила</span></button>
-  <button class="mob-nav-btn" onclick="showPage('sit',this)"><span class="mn-ico">🆘</span><span class="mn-lbl">Ситуації</span></button>
-  <button class="mob-nav-btn" onclick="showPage('calc',this)"><span class="mn-ico">💰</span><span class="mn-lbl">Калькулятор</span></button>
-  <button class="mob-nav-btn" onclick="showPage('tips',this)"><span class="mn-ico">💡</span><span class="mn-lbl">Поради</span></button>
-  <button class="mob-nav-btn" onclick="showPage('contacts',this)"><span class="mn-ico">📞</span><span class="mn-lbl">Контакти</span></button>
+  <button class="mob-nav-btn on" onclick="showPage('home',this)"><span class="mn-ico ico"><i data-lucide="home"></i></span><span class="mn-lbl">Головна</span></button>
+  <button class="mob-nav-btn" onclick="showPage('rules',this)"><span class="mn-ico ico"><i data-lucide="shield-check"></i></span><span class="mn-lbl">Правила</span></button>
+  <button class="mob-nav-btn" onclick="showPage('sit',this)"><span class="mn-ico ico"><i data-lucide="alert-triangle"></i></span><span class="mn-lbl">Ситуації</span></button>
+  <button class="mob-nav-btn" onclick="showPage('calc',this)"><span class="mn-ico ico"><i data-lucide="calculator"></i></span><span class="mn-lbl">Калькулятор</span></button>
+  <button class="mob-nav-btn" onclick="showPage('tips',this)"><span class="mn-ico ico"><i data-lucide="zap"></i></span><span class="mn-lbl">Поради</span></button>
+  <button class="mob-nav-btn" onclick="showPage('contacts',this)"><span class="mn-ico ico"><i data-lucide="phone"></i></span><span class="mn-lbl">Контакти</span></button>
 </nav>
 
 <!-- CITY OVERLAY -->
 <div class="overlay" id="cityOverlay">
   <div class="modal" style="max-width:400px">
-    <button class="modal-x" onclick="closeOverlay('cityOverlay')">✕</button>
-    <div style="font-size:18px;font-weight:800;margin-bottom:4px">🏙️ Оберіть місто</div>
+    <button class="modal-x" onclick="closeOverlay('cityOverlay')"><i data-lucide="x"></i></button>
+    <div style="display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin-bottom:4px"><span class="ico" style="color:var(--accent)"><i data-lucide="map-pin"></i></span> Оберіть місто</div>
     <div style="font-size:13px;color:var(--t2);margin-bottom:4px">Контакти та деталі будуть для вашої філії</div>
     <div class="city-grid" id="cityGrid"></div>
   </div>
@@ -390,7 +430,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <!-- DETAIL OVERLAY -->
 <div class="overlay" id="detailOverlay">
   <div class="modal" id="detailModal">
-    <button class="modal-x" onclick="closeOverlay('detailOverlay')">✕</button>
+    <button class="modal-x" onclick="closeOverlay('detailOverlay')"><i data-lucide="x"></i></button>
     <div id="detailContent"></div>
   </div>
 </div>
@@ -402,7 +442,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <header class="header">
     <div class="header-inner">
       <div class="logo" onclick="showPage('home', document.querySelector('.nav-btn'))">
-        <div class="logo-ico">🚗</div>
+        <div class="logo-ico ico"><i data-lucide="car"></i></div>
         <div>
           <div class="logo-name">DriveMe</div>
           <div class="logo-sub">Портал Водія</div>
@@ -416,8 +456,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <button class="nav-btn" onclick="showPage('tips',this)">Поради</button>
         <button class="nav-btn" onclick="showPage('contacts',this)">Контакти</button>
         <div style="width:1px;height:20px;background:var(--border2);margin:0 6px"></div>
-        <div class="city-chip" onclick="openOverlay('cityOverlay')">📍 <span id="cityLabel">Львів</span> ▾</div>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        <div class="city-chip" onclick="openOverlay('cityOverlay')"><span class="ico ico-16"><i data-lucide="map-pin"></i></span> <span id="cityLabel">Львів</span> <span class="ico ico-16"><i data-lucide="chevron-down"></i></span></div>
+        <button class="theme-btn ico" onclick="toggleTheme()" id="themeBtn"><i data-lucide="moon"></i></button>
       </div>
     </div>
   </header>
@@ -432,16 +472,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <div class="hero-title">Все що потрібно<br>для роботи — <span>тут</span></div>
       <div class="hero-desc">Правила, інструкції, поради і контакти твоєї філії. В одному місці, завжди під рукою.</div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-val" style="color:var(--accent)">344</div><div class="hero-stat-lbl">авто у флоті</div></div>
-        <div class="hero-stat"><div class="hero-stat-val">7</div><div class="hero-stat-lbl">міст України</div></div>
-        <div class="hero-stat"><div class="hero-stat-val">4.8+</div><div class="hero-stat-lbl">ціль рейтингу</div></div>
+        <div class="hero-stat"><span class="hs-ico ico"><i data-lucide="car"></i></span><div><div class="hero-stat-val" style="color:var(--accent)">344</div><div class="hero-stat-lbl">авто у флоті</div></div></div>
+        <div class="hero-stat"><span class="hs-ico ico"><i data-lucide="map"></i></span><div><div class="hero-stat-val">7</div><div class="hero-stat-lbl">міст України</div></div></div>
+        <div class="hero-stat"><span class="hs-ico ico"><i data-lucide="star"></i></span><div><div class="hero-stat-val">4.8+</div><div class="hero-stat-lbl">ціль рейтингу</div></div></div>
       </div>
     </div>
 
     <!-- SEARCH -->
     <div class="search-row">
       <div class="search-wrap">
-        <span class="search-ico">🔍</span>
+        <span class="search-ico ico ico-16"><i data-lucide="search"></i></span>
         <input type="text" id="searchInput" placeholder="Пошук по порталу..." oninput="handleSearch(this.value)">
       </div>
       <div class="cats">
@@ -458,8 +498,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <div class="shelf-tabs-row">
         <div class="shelf-tabs">
           <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
-          <button class="shelf-tab" onclick="filterShelf('new',this)">⭐ Нові</button>
-          <button class="shelf-tab" onclick="filterShelf('imp',this)">🔴 Важливі</button>
+          <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
+          <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
         </div>
       </div>
       <div class="shelf-row" id="shelfRow"></div>
@@ -476,7 +516,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <!-- ════ RULES PAGE ════ -->
   <div class="p" id="p-rules">
     <div style="padding:6px 0 28px">
-      <div class="sec-h">📋 Правила та протоколи</div>
+      <div class="sec-h"><span class="ico" style="color:var(--accent);margin-right:10px"><i data-lucide="shield-check" style="width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>Правила та протоколи</div>
       <div class="sec-sub">Внутрішні стандарти DriveMe — обов'язково знати кожному водію</div>
       <div class="cols" id="rulesKanban"></div>
     </div>
@@ -493,7 +533,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
   <!-- ════ CALC PAGE ════ -->
   <div class="p p-pad" id="p-calc">
-    <div class="sec-h">💰 Калькулятор заробітку</div>
+    <div class="sec-h"><span class="ico" style="color:var(--accent);margin-right:10px"><i data-lucide="calculator" style="width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>Калькулятор заробітку</div>
     <div class="sec-sub">Розрахуй свій дохід і знайди способи заробляти більше</div>
     <div class="calc-page">
       <div class="calc-box">
@@ -532,7 +572,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div>
       <div>
         <div class="result-box">
-          <div class="result-label">💵 Твій заробіток на місяць</div>
+          <div class="result-label">Твій заробіток на місяць</div>
           <div class="result-amount" id="resMonth">0 грн</div>
           <div class="result-grid">
             <div class="rg-item"><div class="rg-val" id="resDay">0</div><div class="rg-lbl">грн / день</div></div>
@@ -542,7 +582,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           <div class="week-list" id="weekList"></div>
         </div>
         <div style="margin-top:16px">
-          <div class="sec-h" style="font-size:15px;margin-bottom:12px">📈 Як заробляти більше</div>
+          <div class="sec-h" style="font-size:15px;margin-bottom:12px"><span class="sh-ico ico"><i data-lucide="trending-up"></i></span>Як заробляти більше</div>
           <div class="tip-row" id="calcTips"></div>
         </div>
       </div>
@@ -551,22 +591,22 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
   <!-- ════ TIPS PAGE ════ -->
   <div class="p p-pad" id="p-tips">
-    <div class="sec-h">💡 Поради та лайфхаки</div>
+    <div class="sec-h"><span class="sh-ico ico"><i data-lucide="zap"></i></span>Поради та лайфхаки</div>
     <div class="sec-sub">Практичні рекомендації від досвідчених водіїв DriveMe</div>
     <div class="tips-list" id="tipsList"></div>
   </div>
 
   <!-- ════ CONTACTS PAGE ════ -->
   <div class="p p-pad" id="p-contacts">
-    <div class="sec-h">📞 Контакти <span id="contactCityLbl" style="color:var(--accent)">Львів</span></div>
+    <div class="sec-h"><span class="sh-ico ico"><i data-lucide="phone"></i></span>Контакти <span id="contactCityLbl" style="color:var(--accent)">Львів</span></div>
     <div class="sec-sub">Хто відповідає за що у твоїй філії</div>
     <div class="contacts-grid" id="contactsGrid"></div>
-    <div class="sec-h" style="font-size:16px;margin-bottom:16px">🚨 Екстрені номери</div>
+    <div class="sec-h" style="font-size:16px;margin-bottom:16px"><span class="sh-ico ico" style="color:var(--red)"><i data-lucide="siren"></i></span>Екстрені номери</div>
     <div class="emergency-grid">
-      <div class="em-card"><div class="em-ico">🚑</div><div class="em-num" style="color:var(--red)">103</div><div class="em-lbl">Швидка допомога</div></div>
-      <div class="em-card"><div class="em-ico">🚔</div><div class="em-num" style="color:var(--blue)">102</div><div class="em-lbl">Поліція</div></div>
-      <div class="em-card"><div class="em-ico">🚒</div><div class="em-num" style="color:var(--accent)">101</div><div class="em-lbl">Пожежна</div></div>
-      <div class="em-card"><div class="em-ico">📞</div><div class="em-num" style="color:var(--green)">112</div><div class="em-lbl">Єдиний екстрений</div></div>
+      <div class="em-card"><div class="em-ico ico" style="color:var(--red)"><i data-lucide="ambulance"></i></div><div class="em-num" style="color:var(--red)">103</div><div class="em-lbl">Швидка допомога</div></div>
+      <div class="em-card"><div class="em-ico ico" style="color:var(--blue)"><i data-lucide="shield"></i></div><div class="em-num" style="color:var(--blue)">102</div><div class="em-lbl">Поліція</div></div>
+      <div class="em-card"><div class="em-ico ico" style="color:var(--accent)"><i data-lucide="flame"></i></div><div class="em-num" style="color:var(--accent)">101</div><div class="em-lbl">Пожежна</div></div>
+      <div class="em-card"><div class="em-ico ico" style="color:var(--green)"><i data-lucide="phone-call"></i></div><div class="em-num" style="color:var(--green)">112</div><div class="em-lbl">Єдиний екстрений</div></div>
     </div>
   </div>
 
@@ -590,21 +630,21 @@ const CITIES = {
 };
 
 const SHELF_ITEMS = [
-  {id:'rules_car',    cat:'rules',   new:true,  imp:false, emoji:'🚗', title:'Утримання авто',      author:'Технічний відділ'},
-  {id:'rules_svc',    cat:'rules',   new:false, imp:true,  emoji:'⏰', title:'Графік та зміни',     author:'HR DriveMe'},
-  {id:'rules_pass',   cat:'rules',   new:false, imp:false, emoji:'🤝', title:'Стандарт сервісу',    author:'Operations'},
-  {id:'sit_dtp',      cat:'safety',  new:false, imp:true,  emoji:'🚨', title:'ДТП: покрокова дія',  author:'Служба безпеки'},
-  {id:'sit_break',    cat:'safety',  new:false, imp:false, emoji:'🔧', title:'Поломка авто',        author:'Технічний відділ'},
-  {id:'calc_hint',    cat:'finance', new:true,  imp:false, emoji:'💰', title:'Як рахується зарплата',author:'Фінансовий відділ'},
-  {id:'tips_rating',  cat:'tips',    new:false, imp:false, emoji:'⭐', title:'Як підняти рейтинг',  author:'Зіночка, DriveMe'},
-  {id:'onboard_start',cat:'onboard', new:true,  imp:false, emoji:'🎯', title:'Перший тиждень',      author:'HR DriveMe'},
-  {id:'tips_earn',    cat:'tips',    new:true,  imp:false, emoji:'📈', title:'Заробляй більше',     author:'Кращі водії'},
-  {id:'rules_ban',    cat:'safety',  new:false, imp:true,  emoji:'⛔', title:'Нульова толерантність',author:'Директор DriveMe'},
+  {id:'rules_car',    cat:'rules',   new:true,  imp:false, icon:'car',           title:'Утримання авто',       author:'Технічний відділ'},
+  {id:'rules_svc',    cat:'rules',   new:false, imp:true,  icon:'clock',         title:'Графік та зміни',      author:'HR DriveMe'},
+  {id:'rules_pass',   cat:'rules',   new:false, imp:false, icon:'handshake',     title:'Стандарт сервісу',     author:'Operations'},
+  {id:'sit_dtp',      cat:'safety',  new:false, imp:true,  icon:'alert-octagon', title:'ДТП: покрокова дія',   author:'Служба безпеки'},
+  {id:'sit_break',    cat:'safety',  new:false, imp:false, icon:'wrench',        title:'Поломка авто',         author:'Технічний відділ'},
+  {id:'calc_hint',    cat:'finance', new:true,  imp:false, icon:'banknote',      title:'Як рахується зарплата',author:'Фінансовий відділ'},
+  {id:'tips_rating',  cat:'tips',    new:false, imp:false, icon:'star',          title:'Як підняти рейтинг',   author:'Зіночка, DriveMe'},
+  {id:'onboard_start',cat:'onboard', new:true,  imp:false, icon:'target',        title:'Перший тиждень',       author:'HR DriveMe'},
+  {id:'tips_earn',    cat:'tips',    new:true,  imp:false, icon:'trending-up',   title:'Заробляй більше',      author:'Кращі водії'},
+  {id:'rules_ban',    cat:'safety',  new:false, imp:true,  icon:'ban',           title:'Нульова толерантність',author:'Директор DriveMe'},
 ];
 
 const KANBAN_COLS = [
   {
-    id:'onboarding', ico:'🎯', icos:'background:linear-gradient(135deg,#F5C030,#F09820)',
+    id:'onboarding', icon:'target', icos:'background:linear-gradient(135deg,#F5C030,#F09820)',
     name:'Початок роботи', sub:'Новачку обов\'язково', tag:'5 тем',
     items:[
       {id:'onboard_start', title:'Перший тиждень роботи', meta:'HR DriveMe', desc:'Що відбувається в дні 1–7, кого питати і як не помилитись', chips:['c-new'], tag:'Новачок'},
@@ -615,7 +655,7 @@ const KANBAN_COLS = [
     ]
   },
   {
-    id:'rules', ico:'📋', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    id:'rules', icon:'shield-check', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
     name:'Правила роботи', sub:'Стандарти DriveMe', tag:'6 правил',
     items:[
       {id:'rules_car',  title:'Утримання автомобіля', meta:'Технічний відділ', desc:'Чистота, пальне, тиск шин, заборони', chips:[], tag:'Авто'},
@@ -627,7 +667,7 @@ const KANBAN_COLS = [
     ]
   },
   {
-    id:'situations', ico:'🆘', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
+    id:'situations', icon:'alert-triangle', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
     name:'Нестандартні ситуації', sub:'Покрокові інструкції', tag:'6 сценаріїв',
     items:[
       {id:'sit_dtp',      title:'ДТП',                    meta:'Служба безпеки', desc:'7 кроків від зупинки до отримання протоколу', chips:['c-imp'], tag:'Аварія'},
@@ -642,7 +682,7 @@ const KANBAN_COLS = [
 
 const RULES_KANBAN = [
   {
-    id:'r_car', ico:'🚗', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    id:'r_car', icon:'car', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
     name:'Автомобіль', sub:'Утримання та використання', tag:'6 пунктів',
     items:[
       {id:'rules_car_clean',title:'Чистота авто',         meta:'Обов\'язково', desc:'Зовні та всередині — миття перед кожним виїздом', chips:[], tag:'Щодня'},
@@ -654,7 +694,7 @@ const RULES_KANBAN = [
     ]
   },
   {
-    id:'r_svc', ico:'🤝', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
+    id:'r_svc', icon:'users', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
     name:'Сервіс', sub:'Стандарти обслуговування', tag:'5 пунктів',
     items:[
       {id:'rules_svc_greet',title:'Вітання',              meta:'Обов\'язково', desc:'Усмішка + привітання при посадці пасажира', chips:['c-hot'], tag:'Завжди'},
@@ -665,7 +705,7 @@ const RULES_KANBAN = [
     ]
   },
   {
-    id:'r_fin', ico:'💰', icos:'background:linear-gradient(135deg,#2CC88A,#1A9E68)',
+    id:'r_fin', icon:'banknote', icos:'background:linear-gradient(135deg,#2CC88A,#1A9E68)',
     name:'Фінанси', sub:'Гроші та звітність', tag:'4 пункти',
     items:[
       {id:'rules_fin_cash', title:'Готівка від пасажирів',meta:'Через касу',   desc:'Гроші фіксуються в агрегаторі, а не в кишеню', chips:['c-imp'], tag:'Критично'},
@@ -678,7 +718,7 @@ const RULES_KANBAN = [
 
 const SIT_KANBAN = [
   {
-    id:'s_dtp', ico:'🚨', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
+    id:'s_dtp', icon:'alert-octagon', icos:'background:linear-gradient(135deg,#E85050,#F07070)',
     name:'ДТП', sub:'7 кроків', tag:'Терміново',
     items:[
       {id:'sit_dtp_1', title:'1. Зупинись, аварійка',    meta:'Перша дія',    desc:'Не рухай авто. Увімкни аварійку одразу.',          chips:['c-imp'], tag:'Крок 1'},
@@ -691,7 +731,7 @@ const SIT_KANBAN = [
     ]
   },
   {
-    id:'s_break', ico:'🔧', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
+    id:'s_break', icon:'wrench', icos:'background:linear-gradient(135deg,#E8732A,#F5894A)',
     name:'Поломка авто', sub:'5 кроків', tag:'Техніка',
     items:[
       {id:'sit_br_1', title:'Узбіччя + аварійка',       meta:'Безпека перш за все', desc:'Якщо можливо — з\'їдь з проїжджої частини.',  chips:[], tag:'Крок 1'},
@@ -702,7 +742,7 @@ const SIT_KANBAN = [
     ]
   },
   {
-    id:'s_conflict', ico:'😡', icos:'background:linear-gradient(135deg,#9B78E0,#7B58C0)',
+    id:'s_conflict', icon:'message-circle-warning', icos:'background:linear-gradient(135deg,#9B78E0,#7B58C0)',
     name:'Конфлікт', sub:'5 кроків', tag:'Сервіс',
     items:[
       {id:'sit_cf_1', title:'Зберігай спокій',           meta:'Завжди',       desc:'Не відповідай агресією — ти завжди програєш в цьому.',chips:['c-hot'], tag:'Крок 1'},
@@ -713,7 +753,7 @@ const SIT_KANBAN = [
     ]
   },
   {
-    id:'s_sick', ico:'🤒', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
+    id:'s_sick', icon:'heart-pulse', icos:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)',
     name:'Пасажиру погано', sub:'5 кроків', tag:'Медицина',
     items:[
       {id:'sit_sk_1', title:'Зупинись, відкрий вікна',   meta:'Одразу',       desc:'Свіже повітря — перша допомога при нудоті.',        chips:[], tag:'Крок 1'},
@@ -741,11 +781,11 @@ const TIPS = [
 ];
 
 const DETAIL_DATA = {
-  onboard_start:{ico:'🎯', bg:'background:linear-gradient(135deg,#F5C030,#F09820)', title:'Перший тиждень роботи', sub:'HR DriveMe', body:`
+  onboard_start:{icon:'target', bg:'background:linear-gradient(135deg,#F5C030,#F09820)', title:'Перший тиждень роботи', sub:'HR DriveMe', body:`
     <h3>День 1 — Старт</h3><ul><li>Підписання договору та інструктаж</li><li>Отримання авто від механіка, чеклист прийому</li><li>Налаштування додатку Uklon</li><li>Знайомство з керівником і командою</li></ul>
     <h3>Дні 2–3 — Перші поїздки</h3><ul><li>Куратор на зв\'язку — питай будь-що</li><li>Рекомендовані маршрути та точки в місті</li><li>Перші 10 поїздок — не бійся, всі питання нормальні</li></ul>
     <h3>Дні 4–7 — Самостійний режим</h3><ul><li>Вихід на звичайний графік</li><li>Перший звіт по показниках</li><li>Зустріч з керівником: перші враження</li></ul>`,steps:[]},
-  sit_dtp:{ico:'🚨', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'ДТП — покрокова інструкція', sub:'Служба безпеки DriveMe', body:``, steps:[
+  sit_dtp:{icon:'alert-octagon', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'ДТП — покрокова інструкція', sub:'Служба безпеки DriveMe', body:``, steps:[
     {t:'<strong>Стоп і аварійка.</strong> Не рухай авто. Увімкни аварійну сигналізацію одразу.'},
     {t:'<strong>Перевір постраждалих.</strong> Якщо є поранені — одразу телефонуй 103.'},
     {t:'<strong>Зателефонуй керівнику філії</strong> — ще до поліції. Він допоможе з діями.'},
@@ -754,31 +794,31 @@ const DETAIL_DATA = {
     {t:'<strong>Візьми дані іншого учасника:</strong> страховку, телефон, ПІБ.'},
     {t:'<strong>Нічого не підписуй</strong> без дозволу керівника — жодних угод на місці.'},
   ]},
-  sit_conflict:{ico:'😡', bg:'background:linear-gradient(135deg,#9B78E0,#7B58C0)', title:'Конфліктний пасажир', sub:'Operations DriveMe', body:``, steps:[
+  sit_conflict:{icon:'message-circle-warning', bg:'background:linear-gradient(135deg,#9B78E0,#7B58C0)', title:'Конфліктний пасажир', sub:'Operations DriveMe', body:``, steps:[
     {t:'<strong>Зберігай спокій.</strong> Агресія у відповідь завжди програшна стратегія.'},
     {t:'Скажи спокійно: <strong>"Я зупиню авто, якщо ви продовжуєте кричати."</strong>'},
     {t:'Якщо загроза — <strong>зупинись у безпечному місці</strong> та попроси вийти.'},
     {t:'<strong>Зафіксуй:</strong> час, маршрут, опис пасажира. Напиши керівнику.'},
     {t:'Постав <strong>низький рейтинг пасажиру</strong> — захищаєш колег.'},
   ]},
-  sit_sick:{ico:'🤒', bg:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)', title:'Пасажиру стало погано', sub:'Медична служба', body:``, steps:[
+  sit_sick:{icon:'heart-pulse', bg:'background:linear-gradient(135deg,#5B9FE8,#3A7FD8)', title:'Пасажиру стало погано', sub:'Медична служба', body:``, steps:[
     {t:'<strong>Зупинись.</strong> Опусти вікна — свіже повітря.'},
     {t:'Запитай: <strong>"Вам потрібна допомога? Викликати швидку?"</strong>'},
     {t:'Якщо непритомний — <strong>одразу 103</strong>, повідом точну адресу.'},
     {t:'<strong>Не залишай</strong> пасажира до приїзду допомоги.'},
     {t:'Повідом керівника — зафіксуй час та адресу.'},
   ]},
-  rules_ban:{ico:'⛔', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'Нульова толерантність', sub:'Директор DriveMe', body:`
+  rules_ban:{icon:'ban', bg:'background:linear-gradient(135deg,#E85050,#F07070)', title:'Нульова толерантність', sub:'Директор DriveMe', body:`
     <p>Наступні порушення ведуть до <strong>негайного розірвання договору</strong> без попередження:</p>
     <ul>
-      <li>🍺 <strong>Алкоголь або наркотики</strong> за кермом</li>
-      <li>📵 <strong>Телефон без гарнітури</strong> під час руху</li>
-      <li>🔑 <strong>Передача авто</strong> третім особам</li>
-      <li>💸 <strong>Шахрайство</strong> з платежами або агрегаторами</li>
-      <li>😡 <strong>Фізична або вербальна агресія</strong> до пасажирів чи колег</li>
+      <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="wine-off" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Алкоголь або наркотики</strong> за кермом</li>
+      <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="smartphone" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Телефон без гарнітури</strong> під час руху</li>
+      <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="key" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Передача авто</strong> третім особам</li>
+      <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="circle-dollar-sign" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Шахрайство</strong> з платежами або агрегаторами</li>
+      <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="ban" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Фізична або вербальна агресія</strong> до пасажирів чи колег</li>
     </ul>
     <p style="margin-top:12px;color:var(--t3);font-size:13px">Якщо ти бачиш порушення у колег — повідом керівнику. Це захищає всю команду.</p>`,steps:[]},
-  rules_car:{ico:'🚗', bg:'background:linear-gradient(135deg,#E8732A,#F5894A)', title:'Утримання автомобіля', sub:'Технічний відділ', body:`
+  rules_car:{icon:'car', bg:'background:linear-gradient(135deg,#E8732A,#F5894A)', title:'Утримання автомобіля', sub:'Технічний відділ', body:`
     <ul>
       <li>Авто завжди <strong>чисте зовні та всередині</strong> — миття перед виїздом</li>
       <li>Запас пального — не менше <strong>1/4 бака</strong> на початку зміни</li>
@@ -788,7 +828,7 @@ const DETAIL_DATA = {
       <li>Авто не можна передавати <strong>стороннім особам</strong></li>
       <li>ТО — тільки за графіком, <strong>через компанію</strong></li>
     </ul>`,steps:[]},
-  calc_hint:{ico:'💰', bg:'background:linear-gradient(135deg,#2CC88A,#1A9E68)', title:'Як рахується твій заробіток', sub:'Фінансовий відділ', body:`
+  calc_hint:{icon:'banknote', bg:'background:linear-gradient(135deg,#2CC88A,#1A9E68)', title:'Як рахується твій заробіток', sub:'Фінансовий відділ', body:`
     <h3>Формула</h3>
     <p><strong>Валовий дохід</strong> (гроші з агрегатора) ÷ 100% = тверда сума</p>
     <p>Твоя частина: <strong>~62–65%</strong> від валу залежно від міста і тарифу</p>
@@ -812,6 +852,13 @@ let currentCat = 'all';
 // ──────────────────────────────────────────
 // RENDER
 // ──────────────────────────────────────────
+const CAT_LABELS = {rules:'Правила',safety:'Безпека',finance:'Фінанси',tips:'Поради',onboard:'Онбординг'};
+const CONTACT_ICONS = {К:'user',М:'wrench',Р:'user-plus',Д:'headphones'};
+
+function ico(name,size=20){
+  return `<span class="ico" style="display:inline-flex;align-items:center;justify-content:center"><i data-lucide="${name}" style="width:${size}px;height:${size}px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>`;
+}
+
 function renderShelf(){
   const el = document.getElementById('shelfRow');
   const items = SHELF_ITEMS.filter(i=>{
@@ -819,14 +866,14 @@ function renderShelf(){
     if(currentShelf==='imp') return i.imp;
     return true;
   }).slice(0,10);
-  const catMap = {rules:'rules',safety:'safety',finance:'finance',tips:'tips',onboard:'onboard'};
   el.innerHTML = items.map(i=>`
     <div class="sc" onclick="openDetail('${i.id}')">
-      <div style="font-size:26px">${i.emoji}</div>
+      <div class="sc-ico" style="color:var(--accent)">${ico(i.icon,22)}</div>
       <div class="sc-t">${i.title}</div>
       <div class="sc-a">${i.author}</div>
-      <span class="sc-cat ${catMap[i.cat]||'rules'}">${i.cat.charAt(0).toUpperCase()+i.cat.slice(1)}</span>
+      <span class="sc-cat ${i.cat}">${CAT_LABELS[i.cat]||i.cat}</span>
     </div>`).join('');
+  lucide.createIcons();
 }
 
 function renderKanban(el, cols){
@@ -834,7 +881,7 @@ function renderKanban(el, cols){
     <div class="col">
       <div class="col-head">
         <div class="col-head-left">
-          <div class="col-head-ico" style="${col.icos}">${col.ico}</div>
+          <div class="col-head-ico" style="${col.icos}">${ico(col.icon,20)}</div>
           <div><div class="col-head-name">${col.name}</div><div class="col-head-sub">${col.sub}</div></div>
         </div>
         <div class="col-count">${col.tag}</div>
@@ -850,6 +897,7 @@ function renderKanban(el, cols){
           </div>`).join('<div class="sep"></div>')}
       </div>
     </div>`).join('');
+  lucide.createIcons();
 }
 
 function renderContacts(){
@@ -857,33 +905,38 @@ function renderContacts(){
   document.getElementById('contactCityLbl').textContent = city.name;
   document.getElementById('contactsGrid').innerHTML = city.contacts.map(c=>`
     <div class="contact-card">
-      <div class="cc-ava">${c.i}</div>
+      <div class="cc-ava ico" style="color:#fff">${ico(CONTACT_ICONS[c.i]||'user',20)}</div>
       <div>
         <div class="cc-name">${c.n}</div>
         <div class="cc-role">${c.r}</div>
         <div class="cc-phone"><a href="tel:${c.p}">${c.p}</a></div>
       </div>
     </div>`).join('');
+  lucide.createIcons();
 }
 
 function renderTips(){
+  const BADGE_ICONS = {
+    'tb-rating':'star','tb-earn':'trending-up','tb-safety':'shield','tb-client':'smile'
+  };
   document.getElementById('tipsList').innerHTML = TIPS.map(t=>`
     <div class="tip-item">
-      <span class="tip-badge ${t.badge}">${t.btext}</span>
+      <span class="tip-badge ${t.badge}">${ico(BADGE_ICONS[t.badge]||'circle',11)} ${t.btext}</span>
       <div class="tip-text">${t.text}</div>
     </div>`).join('');
+  lucide.createIcons();
 }
 
 function renderCalcTips(){
   const tips = [
-    {ico:'🌅', t:'Ранковий прайм', d:'7:00–9:00 +20–40% до тарифу'},
-    {ico:'🌆', t:'Вечірній прайм', d:'17:00–20:00 — другий пік'},
-    {ico:'⬆️', t:'Вищий тариф',   d:'Комфорт/Бізнес +30–70% чеку'},
-    {ico:'⭐', t:'Рейтинг 4.9+',  d:'Пріоритет у видачі замовлень'},
+    {icon:'sunrise',  t:'Ранковий прайм', d:'7:00–9:00 +20–40% до тарифу'},
+    {icon:'sunset',   t:'Вечірній прайм', d:'17:00–20:00 — другий пік'},
+    {icon:'arrow-up', t:'Вищий тариф',    d:'Комфорт/Бізнес +30–70% чеку'},
+    {icon:'star',     t:'Рейтинг 4.9+',   d:'Пріоритет у видачі замовлень'},
   ];
   document.getElementById('calcTips').innerHTML = tips.map(t=>`
     <div class="tip-card">
-      <div class="tip-card-ico">${t.ico}</div>
+      <div class="tip-card-ico" style="color:var(--accent)">${ico(t.icon,22)}</div>
       <div class="tip-card-t">${t.t}</div>
       <div class="tip-card-d">${t.d}</div>
     </div>`).join('');
@@ -956,11 +1009,12 @@ function openDetail(id){
   const steps = d.steps&&d.steps.length ? `<div class="dm-steps">${d.steps.map((s,i)=>`<div class="dm-step"><div class="dm-step-n">${i+1}</div><div class="dm-step-t">${s.t}</div></div>`).join('')}</div>` : '';
   document.getElementById('detailContent').innerHTML = `
     <div class="dm-head">
-      <div class="dm-ico" style="${d.bg}">${d.ico}</div>
+      <div class="dm-ico" style="${d.bg}">${ico(d.icon||'file-text', 26)}</div>
       <div><div class="dm-title">${d.title}</div><div class="dm-sub">${d.sub}</div></div>
     </div>
     <div class="dm-body">${d.body||''}${steps}</div>
     <div class="modal-btns"><button class="btn-sec" onclick="closeOverlay('detailOverlay')">Закрити</button></div>`;
+  lucide.createIcons();
   openOverlay('detailOverlay');
 }
 
@@ -979,7 +1033,7 @@ function setCity(key){
   closeOverlay('cityOverlay');
   // sync calc
   document.getElementById('calcCityLbl').textContent = name;
-  showToast('📍 Місто змінено на '+name);
+  showToast('Місто змінено на '+name);
 }
 
 // ──────────────────────────────────────────
@@ -1001,7 +1055,9 @@ let dark = true;
 function toggleTheme(){
   dark = !dark;
   document.documentElement.setAttribute('data-theme', dark?'':'light');
-  document.getElementById('themeBtn').textContent = dark?'🌙':'☀️';
+  const btn = document.getElementById('themeBtn');
+  btn.innerHTML = `<span class="ico"><i data-lucide="${dark?'moon':'sun'}" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>`;
+  lucide.createIcons();
 }
 
 // ──────────────────────────────────────────
@@ -1017,7 +1073,7 @@ function filterShelf(val, el){
 // ──────────────────────────────────────────
 // SEARCH (stub)
 // ──────────────────────────────────────────
-function handleSearch(v){ if(v.length>1) showToast('🔍 Пошук: "'+v+'" — скоро буде'); }
+function handleSearch(v){ if(v.length>1) showToast('Пошук: "'+v+'" — скоро буде'); }
 function filterCat(v, el){ currentCat=v; document.querySelectorAll('.cats .cat').forEach(b=>b.classList.remove('on')); el.classList.add('on'); }
 
 // ──────────────────────────────────────────
@@ -1043,6 +1099,7 @@ renderCalcTips();
 renderContacts();
 renderCityGrid();
 updateCalc();
+lucide.createIcons();
 </script>
 </body>
 </html>
