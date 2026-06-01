@@ -127,7 +127,9 @@ body{
 .page-sub span{color:var(--t2)}
 
 /* ── SEARCH ROW ── */
-.search-row{display:flex;align-items:center;gap:10px;padding:24px 0 28px;flex-wrap:wrap}
+.search-row{display:flex;align-items:center;gap:10px;padding:0 0 16px;flex-wrap:wrap}
+.home-top-right .search-row{padding-top:0}
+.home-top-right .shelf-row{margin-bottom:0}
 .search-wrap{flex:1;position:relative;max-width:480px}
 .search-wrap input{
   width:100%;
@@ -273,9 +275,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* ── HOME QUICK CONTACTS ── */
 /* ── HOME TWO-COL LAYOUT ── */
-.home-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;margin-bottom:20px;align-items:start}
-.home-top-right{display:flex;flex-direction:column;gap:0}
-.qc-block{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;height:100%;box-sizing:border-box}
+.home-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;margin-bottom:20px;align-items:stretch}
+.home-top-right{display:flex;flex-direction:column;gap:0;background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-sizing:border-box}
+.qc-block{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-sizing:border-box}
 .qc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .qc-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3)}
 .qc-city{font-size:12px;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:5px}
