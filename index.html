@@ -428,7 +428,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .contacts-grid{grid-template-columns:1fr}
   .home-top{grid-template-columns:1fr}
   .qc-photo{display:none}
-  .mob-quick-btns{display:flex !important;flex-direction:column;gap:10px;margin-top:16px}
+  .mob-quick-btns{display:flex !important;flex-direction:column;gap:10px;margin-top:0;grid-column:1}
 }
 .mob-quick-btns{display:none}
 .mqb-btn{
@@ -536,6 +536,45 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         </div>
       </div><!-- /qc-block -->
 
+      <!-- MOBILE QUICK BUTTONS (between contacts and shelf on mobile) -->
+      <div class="mob-quick-btns">
+        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+          <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="shield-check"></i></div>
+          <span>Правила</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+          <div class="mqb-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
+          <span>Графік та зміни</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+          <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
+          <span>Перезмінка</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
+          <div class="mqb-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
+          <span>Більше заробляти</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('calc',document.querySelectorAll('.mob-nav-btn')[4])">
+          <div class="mqb-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
+          <span>Підрахунок каси</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+          <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
+          <span>Заборонено</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+        <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
+          <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="hand-coins"></i></div>
+          <span>Чайові</span>
+          <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        </button>
+      </div><!-- /mob-quick-btns inside grid -->
+
       <!-- RIGHT: SHELF CARDS -->
       <div class="home-shelf-right">
         <div class="shelf-tabs-row" style="margin-bottom:12px">
@@ -549,45 +588,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div><!-- /home-shelf-right -->
 
     </div><!-- /home-top -->
-
-    <!-- MOBILE QUICK BUTTONS -->
-    <div class="mob-quick-btns">
-      <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
-        <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="shield-check"></i></div>
-        <span>Правила</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
-        <div class="mqb-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
-        <span>Графік та зміни</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
-        <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
-        <span>Перезмінка</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
-        <div class="mqb-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
-        <span>Більше заробляти</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('calc',document.querySelectorAll('.mob-nav-btn')[4])">
-        <div class="mqb-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
-        <span>Підрахунок каси</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
-        <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
-        <span>Заборонено</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
-        <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="hand-coins"></i></div>
-        <span>Чайові</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
-      </button>
-    </div><!-- /mob-quick-btns -->
 
     <!-- BELOW: SEARCH + KANBAN -->
     <div class="search-row">
