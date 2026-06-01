@@ -987,7 +987,7 @@ function renderShelf(){
     if(currentShelf==='new') return i.new;
     if(currentShelf==='imp') return i.imp;
     return true;
-  }).slice(0,10);
+  });
   el.innerHTML = items.map(i=>`
     <div class="sc" onclick="openDetail('${i.id}')">
       <div class="sc-ico" style="color:var(--accent)">${ico(i.icon,22)}</div>
