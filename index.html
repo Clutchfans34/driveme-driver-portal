@@ -716,6 +716,8 @@ const SHELF_ITEMS = [
   {id:'onboard_start',cat:'onboard', new:true,  imp:false, icon:'target',        title:'Перший тиждень',       author:'HR DriveMe'},
   {id:'tips_earn',    cat:'tips',    new:true,  imp:false, icon:'trending-up',   title:'Заробляй більше',      author:'Кращі водії'},
   {id:'rules_ban',    cat:'safety',  new:false, imp:true,  icon:'ban',           title:'Нульова толерантність',author:'Директор DriveMe'},
+  {id:'tips_conflict',cat:'tips',    new:true,  imp:false, icon:'message-circle',title:'Конфлікт з пасажиром',  author:'Служба підтримки'},
+  {id:'rules_fuel',   cat:'rules',   new:false, imp:false, icon:'fuel',          title:'Заправка та облік',     author:'Технічний відділ'},
 ];
 
 const KANBAN_COLS = [
@@ -894,6 +896,26 @@ const DETAIL_DATA = {
       <li><span class="ico" style="color:var(--red);margin-right:6px"><i data-lucide="ban" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span><strong>Фізична або вербальна агресія</strong> до пасажирів чи колег</li>
     </ul>
     <p style="margin-top:12px;color:var(--t3);font-size:13px">Якщо ти бачиш порушення у колег — повідом керівнику. Це захищає всю команду.</p>`,steps:[]},
+  tips_conflict:{icon:'message-circle', bg:'background:linear-gradient(135deg,#9B78E0,#B99CF0)', title:'Конфлікт з пасажиром', sub:'Служба підтримки', body:`
+    <p>Якщо пасажир веде себе агресивно або ситуація виходить з-під контролю — дій за цим алгоритмом:</p>`,
+    steps:[
+      {t:'Залишайся спокійним. Не підвищуй голос у відповідь — це ескалує конфлікт'},
+      {t:'Зупинись у безпечному місці. Не їдь далі з агресивним пасажиром'},
+      {t:'Ввічливо попроси пасажира вийти з автомобіля'},
+      {t:'Якщо відмовляється — зателефонуй на 102 або диспетчеру філії'},
+      {t:'Зафіксуй подію у додатку і одразу повідом керівника'},
+      {t:'Запиши час, місце, номер замовлення — це потрібно для звіту'},
+    ]},
+  rules_fuel:{icon:'fuel', bg:'background:linear-gradient(135deg,#5B9FE8,#7BBCF8)', title:'Заправка та облік пального', sub:'Технічний відділ', body:`
+    <p>Правила роботи з паливом у DriveMe:</p>
+    <ul>
+      <li>Заправляйся тільки на <strong>погоджених АЗС</strong> — список у керівника філії</li>
+      <li>Мінімальний залишок перед виїздом — <strong>¼ бака</strong></li>
+      <li>Зберігай <strong>кожен чек</strong> після заправки — здаєш разом зі звітом зміни</li>
+      <li>Фотографуй чек у Telegram-бот одразу на АЗС</li>
+      <li>Заправка за власні кошти <strong>не компенсується</strong> без чека</li>
+    </ul>
+    <p style="margin-top:12px;color:var(--t3);font-size:13px">Питання щодо ліміту пального — до головного механіка філії.</p>`,steps:[]},
   rules_car:{icon:'car', bg:'background:linear-gradient(135deg,#E8732A,#F5894A)', title:'Утримання автомобіля', sub:'Технічний відділ', body:`
     <ul>
       <li>Авто завжди <strong>чисте зовні та всередині</strong> — миття перед виїздом</li>
