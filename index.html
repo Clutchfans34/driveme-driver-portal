@@ -443,6 +443,29 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .mqb-arr{margin-left:auto;opacity:.3}
 .mqb-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 
+/* ── TOPIC PAGE ── */
+.topic-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.topic-back{display:flex;align-items:center;gap:6px;background:var(--item);border:1px solid var(--border);border-radius:10px;padding:8px 14px;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;transition:.13s;flex-shrink:0}
+.topic-back:active{background:var(--item-h)}
+.topic-back i{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.topic-title{font-size:22px;font-weight:900;letter-spacing:-.4px}
+.topic-cards{display:flex;flex-direction:column;gap:12px}
+.tc-card{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:.14s;text-align:left;width:100%}
+.tc-card:active{background:var(--item);border-color:var(--border2)}
+.tc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tc-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.tc-body{flex:1;min-width:0}
+.tc-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.tc-desc{font-size:13px;color:var(--t2);line-height:1.5}
+.tc-meta{font-size:12px;color:var(--t3);margin-top:6px}
+.tc-chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.tc-chip{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+.tc-chip.imp{background:rgba(232,80,80,.15);color:var(--red)}
+.tc-chip.hot{background:rgba(240,112,0,.15);color:var(--accent)}
+.tc-chip.new{background:rgba(44,200,138,.15);color:var(--green)}
+.tc-arr{margin-left:auto;flex-shrink:0;color:var(--t3);padding-top:2px}
+.tc-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
 /* ── THEME TOGGLE ── */
 .mob-header-bar{display:none;align-items:center;justify-content:space-between;padding:10px 16px 8px;background:var(--bg);position:fixed;top:58px;left:0;right:0;z-index:199;border-bottom:1px solid var(--border)}
 @media(max-width:600px){.mob-header-bar{display:flex}}
@@ -579,47 +602,47 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
       <!-- MOBILE QUICK BUTTONS (between contacts and shelf on mobile) -->
       <div class="mob-quick-btns">
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('rules_fleet')">
           <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="shield-check"></i></div>
           <span>Правила Автопарку</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('schedule')">
           <div class="mqb-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
           <span>Графік та робочі зміни</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('handover')">
           <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
           <span>Перезмінка та утримання авто</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
+        <button class="mqb-btn" onclick="showTopic('earn_more')">
           <div class="mqb-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
           <span>Більше заробляти</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('calc',document.querySelectorAll('.mob-nav-btn')[4])">
+        <button class="mqb-btn" onclick="showTopic('cash_calc')">
           <div class="mqb-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
           <span>Підрахунок каси</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('forbidden')">
           <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
           <span>Заборонено</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('dtp')">
           <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="alert-octagon"></i></div>
           <span>ДТП / Пошкодження</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('tips',document.querySelectorAll('.mob-nav-btn')[3])">
+        <button class="mqb-btn" onclick="showTopic('best_service')">
           <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="star"></i></div>
           <span>Найкращий сервіс</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
         </button>
-        <button class="mqb-btn" onclick="showPage('rules',document.querySelectorAll('.mob-nav-btn')[1])">
+        <button class="mqb-btn" onclick="showTopic('uklon')">
           <div class="mqb-icon" style="background:rgba(100,180,255,.15);color:#64B4FF"><i data-lucide="smartphone"></i></div>
           <span>Uklon</span>
           <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
@@ -757,6 +780,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <div class="em-card"><div class="em-ico ico" style="color:var(--accent)"><i data-lucide="flame"></i></div><div class="em-num" style="color:var(--accent)">101</div><div class="em-lbl">Пожежна</div></div>
       <div class="em-card"><div class="em-ico ico" style="color:var(--green)"><i data-lucide="phone-call"></i></div><div class="em-num" style="color:var(--green)">112</div><div class="em-lbl">Єдиний екстрений</div></div>
     </div>
+  </div>
+
+  <!-- ════ TOPIC PAGE ════ -->
+  <div class="p p-pad" id="p-topic">
+    <div class="topic-header">
+      <button class="topic-back" onclick="closeTopic()">
+        <i data-lucide="arrow-left"></i>
+        <span>Назад</span>
+      </button>
+      <div class="topic-title" id="topicTitle"></div>
+    </div>
+    <div class="topic-cards" id="topicCards"></div>
   </div>
 
 </div><!-- /page -->
@@ -1218,7 +1253,154 @@ function fmt(n){return n.toLocaleString('uk')}
 // ──────────────────────────────────────────
 // NAVIGATION
 // ──────────────────────────────────────────
-const PAGE_IDS = ['home','rules','sit','calc','tips','contacts'];
+const PAGE_IDS = ['home','rules','sit','calc','tips','contacts','topic'];
+
+// ── TOPIC DATA ──
+const TOPICS = {
+  rules_fleet:{
+    title:'Правила Автопарку',
+    icon:'shield-check', color:'var(--accent)', bg:'rgba(240,112,0,.15)',
+    cards:[
+      {id:'rules_car_clean', icon:'sparkles',   bg:'rgba(91,159,232,.15)',  color:'#5B9FE8', title:'Чистота авто',           desc:'Зовні та всередині — миття перед кожним виїздом. Бруднe авто = скарга від пасажира.', meta:'Щодня', chips:[]},
+      {id:'rules_car_fuel',  icon:'fuel',        bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Пальне та заправка',     desc:'Мінімум 1/4 бака перед виїздом. Тільки на погоджених АЗС. Зберігай кожен чек.', meta:'Щодня', chips:[]},
+      {id:'rules_car_tires', icon:'circle',      bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Тиск у шинах',           desc:'Перевіряй щотижня — норма зазначена на стійці дверей авто.', meta:'Щотижня', chips:[]},
+      {id:'rules_car_dmg',   icon:'alert-triangle',bg:'rgba(240,112,0,.15)',color:'var(--accent)',title:'Пошкодження — повідом одразу', desc:'Будь-який скол, подряпина — повідом механіку в день виявлення. Приховування = штраф.', meta:'Обов\'язково', chips:['hot']},
+      {id:'rules_car_nosmoke',icon:'ban',        bg:'rgba(232,80,80,.15)',  color:'var(--red)',title:'Заборони в авто',      desc:'Не курити, не їсти, не передавати авто стороннім особам. Порушення = звільнення.', meta:'Суворо', chips:['imp']},
+      {id:'rules_car_to',    icon:'wrench',      bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'ТО тільки через компанію', desc:'Технічне обслуговування виключно через механіка DriveMe. Самостійний ремонт — за твій рахунок.', meta:'Технічний відділ', chips:[]},
+      {id:'rules_fin_cash',  icon:'banknote',    bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Готівка — тільки через касу', desc:'Гроші фіксуються в агрегаторі, а не в кишеню. Шахрайство = негайне звільнення.', meta:'Фінанси', chips:['imp']},
+    ]
+  },
+  schedule:{
+    title:'Графік та робочі зміни',
+    icon:'calendar', color:'#5B9FE8', bg:'rgba(91,159,232,.15)',
+    cards:[
+      {id:'rules_time_shift', icon:'clock',      bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Тривалість зміни',        desc:'Максимум 12 годин за кермом. Після зміни — обов\'язковий відпочинок мінімум 8 годин.', meta:'Безпека', chips:[]},
+      {id:'rules_time_start', icon:'sun',        bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Початок зміни',           desc:'Приїжджай за 10 хвилин до старту. Перевір авто за чеклістом перед виїздом.', meta:'Щоразу', chips:[]},
+      {id:'rules_time_end',   icon:'moon',       bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Кінець зміни',            desc:'Здай авто чистим, з паливом не менше 1/4. Заповни звіт зміни в системі.', meta:'Щоразу', chips:[]},
+      {id:'rules_time_cancel',icon:'x-circle',   bg:'rgba(232,80,80,.15)', color:'var(--red)',title:'Скасування зміни',       desc:'Попередь за 24 години. Без попередження — штрафні санкції та пониження пріоритету.', meta:'Умови', chips:['hot']},
+      {id:'rules_time_swap',  icon:'refresh-cw', bg:'rgba(44,200,138,.15)',color:'#2CC88A', title:'Зміна графіку',           desc:'Хочеш поміняти зміну — домовся з колегою та повідом керівника до 18:00 попередньго дня.', meta:'Порядок', chips:[]},
+    ]
+  },
+  handover:{
+    title:'Перезмінка та утримання авто',
+    icon:'refresh-cw', color:'#2CC88A', bg:'rgba(44,200,138,.15)',
+    cards:[
+      {id:'handover_1', icon:'clipboard-check', bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Чеклист прийому авто',    desc:'Перевір кузов, скло, салон, рівень пального та мастила. Підпиши акт прийому.', meta:'Обов\'язково', chips:[]},
+      {id:'handover_2', icon:'camera',          bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Фотофіксація стану',      desc:'Зроби фото авто з 4 сторін при прийомі. Це твій захист від чужих пошкоджень.', meta:'Захисти себе', chips:['hot']},
+      {id:'handover_3', icon:'fuel',            bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Рівень пального',         desc:'Передавай авто з тим же рівнем паливо, що й отримав. Здав менше — доплачуєш різницю.', meta:'Умови', chips:[]},
+      {id:'handover_4', icon:'sparkles',        bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Чистота при здачі',       desc:'Авто має бути чистим всередині. Сміття, бруд — утримання з заробітку.', meta:'Вимога', chips:[]},
+      {id:'handover_5', icon:'message-square',  bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Передай інформацію',      desc:'Розкажи наступному водію про особливості авто, заправку, будь-яке ТО що необхідне.', meta:'Командна робота', chips:[]},
+    ]
+  },
+  earn_more:{
+    title:'Більше заробляти',
+    icon:'trending-up', color:'#F0C800', bg:'rgba(240,200,0,.15)',
+    cards:[
+      {id:'earn_1', icon:'clock',          bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Прайм-час',               desc:'7:00–9:00 і 17:00–20:00 — найвищий попит. Виїжджай у центр заздалегідь.', meta:'Заробіток', chips:['hot']},
+      {id:'earn_2', icon:'map-pin',        bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Топ-5 точок міста',       desc:'Аеропорт, вокзал, ТЦ, лікарні, університети — тут завжди є попит і довші маршрути.', meta:'Стратегія', chips:[]},
+      {id:'earn_3', icon:'cloud-rain',     bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Дощ і п\'ятниця',         desc:'Погана погода і п\'ятничний вечір — попит x2. Більшість їде додому, а ти заробляєш.', meta:'Можливість', chips:['new']},
+      {id:'earn_4', icon:'star',           bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Рейтинг = більше замовлень', desc:'Рейтинг 4.8+ дає пріоритет у показі замовникам. Кожна зірка — це конкретні гроші.', meta:'Система', chips:[]},
+      {id:'earn_5', icon:'zap',            bg:'rgba(240,112,0,.15)',  color:'var(--accent)', title:'Прийми поїздки підряд',  desc:'Алгоритм Uklon дає пріоритет активним водіям. Не "зникай" між поїздками.', meta:'Алгоритм', chips:[]},
+      {id:'earn_6', icon:'bar-chart-2',    bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Відстежуй свою статистику', desc:'Водій що знає свої цифри заробляє на 15–25% більше. Стеж за середнім чеком щодня.', meta:'Аналітика', chips:[]},
+    ]
+  },
+  cash_calc:{
+    title:'Підрахунок каси',
+    icon:'calculator', color:'#A064F0', bg:'rgba(160,100,240,.15)',
+    cards:[
+      {id:'calc_1', icon:'percent',        bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Формула твого заробітку',  desc:'Вал (всі поїздки) × твоя частка = твій заробіток. Частка залежить від тарифного плану.', meta:'Основа', chips:[]},
+      {id:'calc_2', icon:'banknote',       bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Готівка vs безготівка',   desc:'Безготівкові поїздки автоматично на рахунок. Готівку здаєш за графіком — без затримок.', meta:'Важливо', chips:['hot']},
+      {id:'calc_3', icon:'calendar',       bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Дні виплат',              desc:'Виплати двічі на місяць — 5-го і 20-го числа. Строки зафіксовані у договорі.', meta:'Виплати', chips:[]},
+      {id:'calc_4', icon:'minus-circle',   bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Утримання та штрафи', desc:'Пошкодження, борги, паливо — утримуються автоматично. Дивись розрахунковий листок.', meta:'Мінуси', chips:[]},
+      {id:'calc_5', icon:'receipt',        bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Зберігай всі чеки',       desc:'АЗС, мийка, витрати по авто — все з чеком. Без чека — не компенсується.', meta:'Звітність', chips:[]},
+    ]
+  },
+  forbidden:{
+    title:'Заборонено',
+    icon:'ban', color:'var(--red)', bg:'rgba(232,80,80,.15)',
+    cards:[
+      {id:'ban_1', icon:'wine-off',        bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Алкоголь та наркотики',  desc:'Нульова толерантність. Відчуття запаху алкоголю = негайне усунення та звільнення.', meta:'Звільнення', chips:['imp']},
+      {id:'ban_2', icon:'smartphone',      bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Телефон без гарнітури', desc:'За кермом — тільки з гарнітурою або в режимі гучного зв\'язку. Тримати в руках = штраф.', meta:'ПДР + штраф', chips:['imp']},
+      {id:'ban_3', icon:'key',             bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Передача авто',          desc:'Авто не можна передавати нікому: ні другу, ні родичу. Виявлено — розірвання договору.', meta:'Звільнення', chips:['imp']},
+      {id:'ban_4', icon:'circle-dollar-sign',bg:'rgba(232,80,80,.15)',color:'var(--red)', title:'Шахрайство з оплатою', desc:'Обман агрегатора, пасажира або компанії з грошима — миттєве звільнення + юридична відповідальність.', meta:'Кримінал', chips:['imp']},
+      {id:'ban_5', icon:'user-x',          bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Агресія до пасажирів',  desc:'Будь-яка фізична або вербальна агресія = звільнення. Є запис з камери Uklon.', meta:'Звільнення', chips:['imp']},
+      {id:'ban_6', icon:'cigarette-off',   bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Куріння в авто',         desc:'Заборонено повністю — і в русі, і на стоянці. Запах = штраф за хімчистку.', meta:'Штраф', chips:['hot']},
+    ]
+  },
+  dtp:{
+    title:'ДТП / Пошкодження',
+    icon:'alert-octagon', color:'var(--red)', bg:'rgba(232,80,80,.15)',
+    cards:[
+      {id:'dtp_1', icon:'alert-octagon',   bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Зупинись і аварійка',   desc:'Не рухай авто. Увімкни аварійну сигналізацію одразу після зупинки.', meta:'Крок 1', chips:['imp']},
+      {id:'dtp_2', icon:'heart-pulse',     bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Перевір постраждалих',  desc:'Якщо є поранені — одразу 103. Не чекай, не намагайся везти сам.', meta:'Крок 2', chips:['imp']},
+      {id:'dtp_3', icon:'phone',           bg:'rgba(240,112,0,.15)',  color:'var(--accent)', title:'Зателефонуй керівнику', desc:'Спочатку керівник філії — до поліції. Він підкаже що говорити і що робити.', meta:'Крок 3', chips:['hot']},
+      {id:'dtp_4', icon:'shield',          bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Виклич поліцію 102',      desc:'Ніколи не погоджуйся "вирішити без протоколу". Це пастка — ти залишишся без страховки.', meta:'Крок 4', chips:[]},
+      {id:'dtp_5', icon:'camera',          bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Фотографуй все',          desc:'Місце, обидва авто, номерні знаки, пошкодження, дорожні знаки — якомога більше фото.', meta:'Крок 5', chips:[]},
+      {id:'dtp_6', icon:'file-text',       bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Дані іншого учасника',    desc:'Страховий поліс, телефон, ПІБ, номер авто. Все записати або сфотографувати.', meta:'Крок 6', chips:[]},
+      {id:'dtp_7', icon:'x-circle',        bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Нічого не підписуй',  desc:'Будь-які документи, угоди, розписки — тільки після консультації з керівником.', meta:'Крок 7', chips:['imp']},
+    ]
+  },
+  best_service:{
+    title:'Найкращий сервіс',
+    icon:'star', color:'#2CC88A', bg:'rgba(44,200,138,.15)',
+    cards:[
+      {id:'svc_1', icon:'smile',           bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Вітай на ім\'я',           desc:'"Добрий день, Олексію!" — додаток показує ім\'я. Персональне вітання = +0.1 до рейтингу.', meta:'Щоразу', chips:['hot']},
+      {id:'svc_2', icon:'thermometer',     bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Комфортна температура',   desc:'Запитай пасажира чи підходить клімат. Маленький жест — великий ефект на оцінку.', meta:'Сервіс', chips:[]},
+      {id:'svc_3', icon:'volume-x',        bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Тихий режим',             desc:'Якщо пасажир мовчить — не вмикай гучну музику. Частина людей хоче просто тишу.', meta:'Такт', chips:[]},
+      {id:'svc_4', icon:'zap',             bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Зарядний кабель',         desc:'Кабель у авто коштує 100 грн і окупається сотнями зірок і чайовими за місяць.', meta:'Лайфхак', chips:['new']},
+      {id:'svc_5', icon:'navigation',      bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Знай місто',              desc:'Альтернативні маршрути в час-пік, де зручно зупинитись — пасажир це цінує.', meta:'Знання', chips:[]},
+      {id:'svc_6', icon:'x-circle',        bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Не скасовуй поїздки',  desc:'Скасування без причини штрафує рейтинг і знижує пріоритет показу твого авто.', meta:'Рейтинг', chips:['imp']},
+    ]
+  },
+  uklon:{
+    title:'Uklon',
+    icon:'smartphone', color:'#64B4FF', bg:'rgba(100,180,255,.15)',
+    cards:[
+      {id:'uklon_1', icon:'download',      bg:'rgba(100,180,255,.15)',color:'#64B4FF', title:'Встановлення додатку',    desc:'Uklon Driver — завантаж з App Store або Google Play. Активацію проводить IT-відділ.', meta:'Старт', chips:[]},
+      {id:'uklon_2', icon:'toggle-right',  bg:'rgba(44,200,138,.15)', color:'#2CC88A', title:'Статуси водія',           desc:'Онлайн / Офлайн / Перерва. Будь онлайн під час зміни — алгоритм дає більше замовлень.', meta:'Активність', chips:['hot']},
+      {id:'uklon_3', icon:'star',          bg:'rgba(240,200,0,.15)',  color:'#F0C800', title:'Рейтинг у Uklon',         desc:'Підтримуй рейтинг 4.6+. Нижче 4.5 — попередження від системи. Нижче 4.3 — блокування.', meta:'Мінімум 4.6', chips:['imp']},
+      {id:'uklon_4', icon:'percent',       bg:'rgba(160,100,240,.15)',color:'#A064F0', title:'Відсоток скасувань',      desc:'Тримай нижче 5%. Кожне безпричинне скасування = мінус у пріоритеті показу.', meta:'Ціль <5%', chips:[]},
+      {id:'uklon_5', icon:'map',           bg:'rgba(91,159,232,.15)', color:'#5B9FE8', title:'Зони активності',         desc:'Центр міста і топ-точки = більше замовлень. Периферія у час-пік = менше попиту.', meta:'Стратегія', chips:[]},
+      {id:'uklon_6', icon:'alert-circle',  bg:'rgba(232,80,80,.15)',  color:'var(--red)', title:'Проблема з додатком', desc:'Замовлення не приходять? Перезапусти додаток, перевір GPS і інтернет. Не допомогло — дзвони в IT.', meta:'Підтримка', chips:[]},
+    ]
+  },
+};
+
+function showTopic(key){
+  const topic = TOPICS[key];
+  if(!topic) return;
+  // hide all pages, show topic
+  PAGE_IDS.forEach(p=>{ const pg=document.getElementById('p-'+p); if(pg) pg.classList.remove('on'); });
+  document.getElementById('p-topic').classList.add('on');
+  document.querySelectorAll('.nav-btn,.mob-nav-btn').forEach(b=>b.classList.remove('on'));
+  // render
+  document.getElementById('topicTitle').textContent = topic.title;
+  document.getElementById('topicCards').innerHTML = topic.cards.map(c=>`
+    <button class="tc-card" onclick="openDetail('${c.id}')">
+      <div class="tc-icon" style="background:${c.bg};color:${c.color}"><i data-lucide="${c.icon}"></i></div>
+      <div class="tc-body">
+        <div class="tc-title">${c.title}</div>
+        <div class="tc-desc">${c.desc}</div>
+        <div class="tc-meta">${c.meta}</div>
+        ${c.chips.length ? `<div class="tc-chips">${c.chips.map(ch=>
+          ch==='imp'?'<span class="tc-chip imp">Критично</span>':
+          ch==='hot'?'<span class="tc-chip hot">Важливо</span>':
+          ch==='new'?'<span class="tc-chip new">Нове</span>':''
+        ).join('')}</div>` : ''}
+      </div>
+      <div class="tc-arr"><i data-lucide="chevron-right"></i></div>
+    </button>`).join('');
+  lucide.createIcons();
+  window.scrollTo(0,0);
+}
+
+function closeTopic(){
+  document.getElementById('p-topic').classList.remove('on');
+  document.getElementById('p-home').classList.add('on');
+  const homeBtn = document.querySelector('.mob-nav-btn');
+  if(homeBtn) homeBtn.classList.add('on');
+  window.scrollTo(0,0);
+}
 function showPage(id, el){
   PAGE_IDS.forEach(p=>{
     const pg = document.getElementById('p-'+p); if(pg) pg.classList.remove('on');
