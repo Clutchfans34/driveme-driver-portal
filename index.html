@@ -294,15 +294,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .qc-sos-lbl{font-size:11px;font-weight:600;opacity:.85;line-height:1;margin-top:2px}
 
 /* ── CONTACT PAGE ── */
-.contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
-.contact-card{background:var(--col);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;transition:.14s}
+.contacts-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.contact-card{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;transition:.14s;text-decoration:none;color:var(--text)}
 .contact-card:hover{background:var(--item);border-color:var(--border2)}
-.cc-ava{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-l));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
-.cc-name{font-size:14px;font-weight:700;margin-bottom:3px}
-.cc-role{font-size:11.5px;color:var(--accent);font-weight:600;margin-bottom:5px}
-.cc-phone{font-size:13.5px;color:var(--t2)}
-.cc-phone a{color:var(--t2);text-decoration:none;transition:.13s}
-.cc-phone a:hover{color:var(--accent)}
+.cc-ava{width:54px;height:54px;border-radius:14px;flex-shrink:0;overflow:hidden;background:var(--item);display:flex;align-items:center;justify-content:center}
+.cc-ava img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.cc-ava-icon{width:54px;height:54px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cc-ava-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.cc-body{flex:1;min-width:0}
+.cc-name{font-size:15px;font-weight:800;margin-bottom:2px}
+.cc-role{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px}
+.cc-phone{font-size:13px;color:var(--t2);font-weight:500}
+.cc-call{width:38px;height:38px;border-radius:50%;background:rgba(44,200,138,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cc-call svg{width:18px;height:18px;stroke:#2CC88A;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .emergency-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .em-card{background:var(--col);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;transition:.14s}
 .em-card:hover{background:var(--item)}
@@ -1011,7 +1015,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 const CITIES = {
   lviv:         {name:'Львів',   share:.62, contacts:[
     {n:'Вадим Мількевич',   r:'Керівник філії',         p:'+380 67 123 4501', i:'К', photo:'img/manager.jpg'},
-    {n:'Святослав Бабій',   r:'Заст. з ефективності',   p:'+380 67 123 4502', i:'З', photo:'img/deputy.jpg'},
+    {n:'Святослав Бабій',   r:'Заст. з ефективності',  p:'+380 67 123 4502', i:'З', photo:'img/deputy.jpg'},
     {n:'— уточнити —',      r:'Головний механік',        p:'+380 XX XXX XXXX', i:'М'},
     {n:'Соломія Грицан',    r:'Рекрутер',                p:'+380 67 123 4503', i:'Р', photo:'img/recruiter.jpg'},
   ]},
@@ -1371,15 +1375,22 @@ function renderKanban(el, cols){
 function renderContacts(){
   const city = CITIES[currentCity];
   document.getElementById('contactCityLbl').textContent = city.name;
-  document.getElementById('contactsGrid').innerHTML = city.contacts.map(c=>`
-    <div class="contact-card">
-      <div class="cc-ava ico" style="color:#fff">${ico(CONTACT_ICONS[c.i]||'user',20)}</div>
-      <div>
-        <div class="cc-name">${c.n}</div>
+  const ICON_BG = {К:'rgba(240,112,0,.15)',З:'rgba(91,159,232,.15)',М:'rgba(44,200,138,.15)',Т:'rgba(160,100,240,.15)',Р:'rgba(240,200,0,.15)',Г:'rgba(232,80,80,.15)',Д:'rgba(100,180,255,.15)'};
+  document.getElementById('contactsGrid').innerHTML = city.contacts.map(c=>{
+    const noPhone = c.p.includes('XX');
+    const noName  = c.n === '— уточнити —';
+    return `<a class="contact-card" href="${noPhone?'#':'tel:'+c.p}">
+      ${c.photo
+        ? `<div class="cc-ava"><img src="${c.photo}" alt="${c.n}"></div>`
+        : `<div class="cc-ava-icon" style="background:${ICON_BG[c.i]||'var(--item)'};color:${CONTACT_COLORS[c.i]||'var(--t2)'}"><i data-lucide="${CONTACT_ICONS[c.i]||'user'}"></i></div>`}
+      <div class="cc-body">
+        <div class="cc-name">${noName ? 'Незабаром' : c.n}</div>
         <div class="cc-role">${c.r}</div>
-        <div class="cc-phone"><a href="tel:${c.p}">${c.p}</a></div>
+        <div class="cc-phone">${noPhone ? 'Номер уточнюється' : c.p}</div>
       </div>
-    </div>`).join('');
+      ${!noPhone ? `<div class="cc-call"><i data-lucide="phone-call"></i></div>` : ''}
+    </a>`;
+  }).join('');
   lucide.createIcons();
 }
 
