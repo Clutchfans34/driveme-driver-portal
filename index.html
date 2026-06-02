@@ -186,8 +186,12 @@ body{
 /* ── OVERLAYS ── */
 .overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .18s}
 .overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--col);border:1px solid var(--border2);border-radius:22px;padding:36px;max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto;transform:translateY(10px);transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.modal{background:var(--col);border:1px solid var(--border2);border-radius:22px;padding:28px 24px;max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto;transform:translateY(10px);transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
 .overlay.open .modal{transform:none}
+@media(max-width:600px){
+  .overlay{top:112px;padding:12px 12px 16px;align-items:flex-start}
+  .modal{max-height:calc(100vh - 112px - 28px);border-radius:18px;padding:22px 18px}
+}
 .modal-x{position:absolute;top:14px;right:14px;width:30px;height:30px;background:var(--item);border:none;border-radius:8px;cursor:pointer;font-size:15px;color:var(--t2);display:flex;align-items:center;justify-content:center;transition:.13s}
 .modal-x:hover{background:var(--item-h);color:var(--text)}
 
