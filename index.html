@@ -383,6 +383,41 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .nm-body p:last-child{margin-bottom:0}
 .nm-body strong{color:var(--text)}
 
+/* ─── SITUATIONS / STORIES ─── */
+.sit-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.sit-tag-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--col);color:var(--t2);cursor:pointer;font-family:'Inter',sans-serif;transition:.13s;letter-spacing:.2px}
+.sit-tag-btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sit-list{display:flex;flex-direction:column;gap:12px}
+.sit-item{background:var(--col);border:1px solid var(--border);border-radius:16px;padding:16px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.sit-item:active{opacity:.8}
+.sit-item:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:0 4px 16px var(--shadow)}
+.sit-item-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sit-emoji{font-size:28px;line-height:1;flex-shrink:0}
+.sit-meta{flex:1;min-width:0}
+.sit-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;letter-spacing:.3px;margin-bottom:4px}
+.sit-tag.funny{background:rgba(245,192,48,.15);color:#F5C030}
+.sit-tag.weird{background:rgba(91,159,232,.15);color:#5B9FE8}
+.sit-tag.lesson{background:rgba(44,200,138,.15);color:#2CC88A}
+.sit-tag.scary{background:rgba(232,80,80,.15);color:var(--red)}
+.sit-tag.touch{background:rgba(155,120,224,.15);color:#9B78E0}
+.sit-author{font-size:11px;color:var(--t3);font-weight:600}
+.sit-headline{font-size:15px;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:6px}
+.sit-preview{font-size:13px;color:var(--t2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sit-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.sit-city{font-size:11px;color:var(--t3);font-weight:600;display:flex;align-items:center;gap:4px}
+.sit-read-more{font-size:12px;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:3px}
+.sit-read-more svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
+/* story modal body */
+.sm-emoji{font-size:48px;text-align:center;margin-bottom:8px}
+.sm-body{font-size:14px;color:var(--t2);line-height:1.9}
+.sm-body p{margin-bottom:14px}
+.sm-body p:last-child{margin-bottom:0}
+.sm-body strong{color:var(--text)}
+.sm-author-row{display:flex;align-items:center;gap:10px;background:var(--item);border-radius:12px;padding:12px 14px;margin-top:16px}
+.sm-author-ico{width:36px;height:36px;border-radius:50%;background:var(--accent-bg);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.sm-author-name{font-size:13px;font-weight:700;color:var(--text)}
+.sm-author-city{font-size:11px;color:var(--t3);font-weight:500}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:80px;right:20px;z-index:400;background:var(--item);border:1px solid var(--border2);border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateY(20px);opacity:0;transition:all .24s cubic-bezier(.34,1.56,.64,1)}
 .toast.show{transform:none;opacity:1}
@@ -875,12 +910,17 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   </div>
 
   <!-- ════ SITUATIONS PAGE ════ -->
-  <div class="p" id="p-sit">
-    <div style="padding:6px 0 28px">
-      <div class="sec-h">🆘 Дії в нестандартних ситуаціях</div>
-      <div class="sec-sub">Покрокові інструкції — читай заздалегідь, а не під час інциденту</div>
-      <div class="cols cols4" id="sitKanban"></div>
+  <!-- ════ SITUATIONS PAGE ════ -->
+  <div class="p p-pad" id="p-sit">
+    <div class="news-header">
+      <div class="news-title-row">
+        <span class="news-logo-ico ico"><i data-lucide="message-circle"></i></span>
+        <span class="news-title">Ситуації</span>
+      </div>
+      <div class="news-sub">Реальні історії від водіїв — смішно, дивно, повчально</div>
     </div>
+    <div class="sit-filter-row" id="sitFilterRow"></div>
+    <div class="sit-list" id="sitList"></div>
   </div>
 
   <!-- ════ CALC PAGE ════ -->
@@ -2177,7 +2217,145 @@ renderContacts();
 renderCityGrid();
 updateCalc();
 renderMobButtons();
+const STORIES = [
+  {
+    id:'s1', tag:'funny', tagText:'😂 Смішне', emoji:'😂',
+    author:'Водій Сашко', city:'Київ',
+    headline:'Пасажир хотів їхати "через поля"',
+    preview:'Мій GPS показував одне, пасажир — інше. "А ось тут є така дорога, я точно знаю!" — сказав він. Ми застрягли в полі о 23-й ночі...',
+    full:`<p>Беру замовлення — везти чоловіка на дачу за містом. Увімкнув навігатор, маршрут побудований, все зрозуміло. Але клієнт з першої хвилини починає диригувати: "Тут поверніть", "Тут направо", "Я цю дорогу краще знаю".</p>
+<p>Спробував пояснити, що навігатор веде оптимально. "Е, молодий, я тут 30 років їжджу!" — відмахнувся він.</p>
+<p>Їдемо його маршрутом. Асфальт закінчився. Потім закінчився гравій. Потім — взагалі будь-яка дорога. Посеред поля о 23-й ночі Logan зупинився у ямі по фари.</p>
+<p><strong>Виїхали завдяки трактористу, якого розбудили в сусідньому селі.</strong> Пасажир мовчав усю дорогу назад. Чайових не дав. Але я більше ніколи не відхиляюсь від навігатора 😄</p>`
+  },
+  {
+    id:'s2', tag:'weird', tagText:'😮 Дивне', emoji:'🤔',
+    author:'Водій Вова', city:'Харків',
+    headline:'Пасажир їхав з весіллям... у коробці',
+    preview:'"Обережно, там весілля!" — сказав він, показуючи на картонну коробку. Я не зрозумів. Поки не почув музику...',
+    full:`<p>Виклик: везти чоловіка з адреси "квіткова база" додому. Сів — нормальний дядько, в руках велика картонна коробка з дірками.</p>
+<p>"Обережно, там весілля" — серйозно каже він. Я подумав — може, торт? Може, голуби?</p>
+<p>За хвилину з коробки — <strong>жива музика</strong>. Там сидів маленький оркестр з хом'яків у клітках, і якийсь хитрий механізм грав мелодію "Мендельсон - Весільний марш".</p>
+<p>З'ясувалось — чоловік робить іграшки на замовлення. Це був подарунок для племінниці на весілля. Їхали мовчки, тільки хом'ячий оркестр грав всю дорогу 😅</p>
+<p>Найдивніший рейс у моєму житті. П'ять зірок клієнту однозначно.</p>`
+  },
+  {
+    id:'s3', tag:'lesson', tagText:'🤔 Повчально', emoji:'💡',
+    author:'Водій Миха', city:'Одеса',
+    headline:'Як я заробив 400 грн на одному рейсі... і нічого не зрозумів',
+    preview:'Прайм-час, дощ, п\'ятниця — я не знав про ці фішки Uklon. Випадково потрапив у "золотий трикутник" і почав розуміти, як тут взагалі заробляти.',
+    full:`<p>Перший місяць їздив і дивувався: у сусіда в парку каса на 20% вища, хоча ми в одному місті. Як так?</p>
+<p>Одного п'ятничного вечора — злива. Я вже збирався їхати додому, але вирішив взяти ще один рейс. <strong>Сума замовлення: 412 гривень за 8 км.</strong> Я думав, що помилка в додатку.</p>
+<p>Виявляється: п'ятниця + дощ + вечірній прайм-час = коефіцієнт x2.8 на тариф. Це і є "золотий трикутник" від якого старі водії не їдуть додому до опівночі.</p>
+<p>Після цього почав уважно читати графіки прайм-часу в додатку. <strong>Різниця в місячній касі — від 15 до 25%</strong> тільки за рахунок правильного вибору часу роботи.</p>
+<p>Не їдь додому в п'ятницю о 18:00. Просто не їдь 😉</p>`
+  },
+  {
+    id:'s4', tag:'touch', tagText:'🥺 Зворушливе', emoji:'❤️',
+    author:'Водій Діма', city:'Львів',
+    headline:'Бабуся їхала на побачення вперше за 40 років',
+    preview:'Сіла, виправила пальто, попросила включити тихеньку музику. "Їду на побачення," — шепнула вона і засміялась як дівчинка...',
+    full:`<p>Беру замовлення в центрі — адреса звичайного будинку. Виходить жіночка, десь 75+. Повільно сідає, виправляє пальто з брошкою, ставить маленьку сумочку на коліна.</p>
+<p>"Можна тихеньку музику?" — питає. Включив Піаф, вона посміхнулась.</p>
+<p>Їдемо мовчки хвилин п'ять. Потім раптом: "Знаєш, я їду на побачення." Я кажу: "Чудово!" — і чую, як вона засміялась — <strong>так, як сміються дівчатка</strong>.</p>
+<p>"Ми познайомились у 1981-му на заводі. Потім він поїхав, я вийшла заміж. Чоловік помер три роки тому. А тиждень назад він написав мені у Facebook — знайшов через онучку."</p>
+<p>Привіз її до кафе. Біля входу стояв дідусь у краватці з квітами. Вони обнялись і я просто сидів у машині й не міг рухатись хвилини три.</p>
+<p><strong>Найкращий рейс у моєму житті. Не за грошима — за відчуттям.</strong></p>`
+  },
+  {
+    id:'s5', tag:'scary', tagText:'😱 Моторошне', emoji:'😱',
+    author:'Водій Олег', city:'Запоріжжя',
+    headline:'Пасажир зник. Буквально.',
+    preview:'Підтвердив замовлення, під\'їхав, відчинив двері — нікого. GPS показував, що клієнт прямо тут. Але вулиця була абсолютно порожня...',
+    full:`<p>Нічний рейс, десь о 2-й ночі. Замовлення з приватного сектора — темна вулиця, жодного ліхтаря. Підтвердив, під'їхав, зупинився точно по маркеру.</p>
+<p>Жду хвилину. Дві. Ніхто не виходить. Дзвоню — не бере. Виходжу з машини, дивлюсь навколо — <strong>абсолютна тиша і нікого</strong>.</p>
+<p>Хотів вже відміняти, і тут — стук у вікно з боку пасажира. Чоловік. Звідки він взявся — не зрозумів. Нібито з нізвідки.</p>
+<p>Сів мовчки. Всю дорогу — тиша. Довіз до адреси, він виходить, і тільки тоді каже: "Дякую. Ти хороша людина." І йде в темряву.</p>
+<p>Я ніколи не дізнаюсь, де він ховався ті 3 хвилини. Але <strong>п'ять зірок він поставив ще до того, як дійшов до дверей</strong> 👻</p>`
+  },
+  {
+    id:'s6', tag:'funny', tagText:'😂 Смішне', emoji:'🐕',
+    author:'Водійка Оля', city:'Вінниця',
+    headline:'Кіт проти навігатора: рахунок 1:0',
+    preview:'Пасажирка сіла з переноскою. "Він не любить машин," — попередила вона. Через 5 хвилин кіт вибрався і сів на торпеду, блокуючи весь огляд...',
+    full:`<p>Замовлення: везти жінку з котом до ветеринара. Вона одразу попередила: "Барсик трохи нервовий, але в переносці — все буде добре."</p>
+<p>Барсик вибрався з переноски через 4 хвилини. <strong>Прецизійно через 4 хвилини.</strong></p>
+<p>Спочатку він сів на задньому сидінні й голосно коментував мій стиль їзди. Потім переліз на переднє і влаштувався просто на торпеді — прямо перед обличчям, закривши весь огляд.</p>
+<p>Навігатор продовжував казати "через 200 метрів поверніть направо", але я бачив тільки рудий хвіст і два зелені ока, які дивились на мене з презирством.</p>
+<p>Доїхали. Ветеринар сказав, що Барсик абсолютно здоровий. Просто "трохи характерний".</p>
+<p><strong>Господиня дала чайових і вибачилась разів десять.</strong> Барсик не вибачився. 🐈</p>`
+  }
+];
+
+let sitActiveTag = 'all';
+
+function renderSituations(){
+  const filterEl = document.getElementById('sitFilterRow');
+  const listEl = document.getElementById('sitList');
+  if(!filterEl || !listEl) return;
+
+  const tags = [
+    {key:'all', label:'Всі'},
+    {key:'funny', label:'😂 Смішне'},
+    {key:'weird', label:'😮 Дивне'},
+    {key:'lesson', label:'💡 Повчально'},
+    {key:'touch', label:'🥺 Зворушливе'},
+    {key:'scary', label:'😱 Моторошне'},
+  ];
+
+  filterEl.innerHTML = tags.map(t=>`
+    <button class="sit-tag-btn${sitActiveTag===t.key?' on':''}" onclick="setSitTag('${t.key}')">${t.label}</button>
+  `).join('');
+
+  const stories = sitActiveTag==='all' ? STORIES : STORIES.filter(s=>s.tag===sitActiveTag);
+
+  listEl.innerHTML = stories.map(s=>`
+    <div class="sit-item" onclick="openStory('${s.id}')">
+      <div class="sit-item-top">
+        <div class="sit-emoji">${s.emoji}</div>
+        <div class="sit-meta">
+          <div class="sit-tag ${s.tag}">${s.tagText}</div>
+          <div class="sit-author">${s.author}</div>
+        </div>
+      </div>
+      <div class="sit-headline">${s.headline}</div>
+      <div class="sit-preview">${s.preview}</div>
+      <div class="sit-footer">
+        <div class="sit-city">${ico('map-pin',11)} ${s.city}</div>
+        <div class="sit-read-more">Читати ${ico('chevron-right',12)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setSitTag(tag){
+  sitActiveTag = tag;
+  renderSituations();
+}
+
+function openStory(id){
+  const s = STORIES.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="dm-head">
+      <div class="dm-ico" style="background:linear-gradient(135deg,#1A1A2E,#2A2A4E);font-size:26px;display:flex;align-items:center;justify-content:center">${s.emoji}</div>
+      <div><div class="dm-title">${s.headline}</div><div class="dm-sub" style="color:var(--accent)">${s.tagText}</div></div>
+    </div>
+    <div class="sm-body">${s.full}</div>
+    <div class="sm-author-row">
+      <div class="sm-author-ico">🚗</div>
+      <div>
+        <div class="sm-author-name">${s.author}</div>
+        <div class="sm-author-city">${s.city}</div>
+      </div>
+    </div>
+    <div class="modal-btns"><button class="btn-sec" onclick="closeOverlay('detailOverlay')">Закрити</button></div>`;
+  lucide.createIcons();
+  openOverlay('detailOverlay');
+}
+
 renderNews();
+renderSituations();
 lucide.createIcons();
 </script>
 </body>
