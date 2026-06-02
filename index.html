@@ -438,16 +438,32 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .mqb-btn{
   display:flex;align-items:center;gap:14px;
   width:100%;padding:15px 18px;
-  background:var(--col);border:1px solid var(--border);border-radius:14px;
+  background:transparent;
+  border:1.5px solid var(--mqb-color, var(--border));
+  border-radius:14px;
   color:var(--text);font-size:15px;font-weight:600;
-  text-align:left;cursor:pointer;transition:.13s;
+  text-align:left;cursor:pointer;transition:.15s;
   text-decoration:none;
+  box-shadow:0 0 8px -2px var(--mqb-color, transparent);
 }
-.mqb-btn:active{background:var(--item);border-color:var(--border2)}
-.mqb-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mqb-btn:active{background:rgba(255,255,255,.04)}
+.mqb-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .mqb-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-.mqb-arr{margin-left:auto;opacity:.3}
+.mqb-arr{margin-left:auto;opacity:.35}
 .mqb-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ── OFFICE CONTACTS ── */
+.office-cards{display:flex;flex-direction:column;gap:10px}
+.office-card{display:flex;align-items:center;gap:14px;background:var(--col);border:1px solid var(--border);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--text);transition:.13s}
+.office-card:hover{background:var(--item);border-color:var(--border2)}
+.oc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.oc-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.oc-body{flex:1;min-width:0}
+.oc-name{font-size:15px;font-weight:800;margin-bottom:2px}
+.oc-role{font-size:12px;color:var(--t2);margin-bottom:3px}
+.oc-phone{font-size:13px;color:var(--accent);font-weight:600}
+.oc-arr{flex-shrink:0;opacity:.4}
+.oc-arr svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── HOME GRID ── */
 .home-grid{
@@ -764,79 +780,52 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
     </div>
 
-    <!-- MOBILE ONLY: contacts + SOS -->
-    <div class="mob-contacts-block">
-      <div class="qc-header">
-        <span class="qc-title">Контакти філії</span>
-        <span class="qc-city"><i data-lucide="map-pin" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2"></i><span id="qcCityName">Львів</span></span>
-      </div>
-      <div class="qc-staff" id="qcStaff"></div>
-      <div class="qc-sos">
-        <a class="qc-sos-btn" href="tel:101" style="background:rgba(232,80,80,.13);color:#E85050;border-color:rgba(232,80,80,.25)">
-          <span class="ico"><i data-lucide="flame" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">101</div><div class="qc-sos-lbl">Пожежна</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:102" style="background:rgba(91,159,232,.13);color:#5B9FE8;border-color:rgba(91,159,232,.25)">
-          <span class="ico"><i data-lucide="shield" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">102</div><div class="qc-sos-lbl">Поліція</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:103" style="background:rgba(44,200,138,.13);color:#2CC88A;border-color:rgba(44,200,138,.25)">
-          <span class="ico"><i data-lucide="heart-pulse" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">103</div><div class="qc-sos-lbl">Швидка</div></div>
-        </a>
-        <a class="qc-sos-btn" href="tel:112" style="background:rgba(240,112,0,.13);color:var(--accent);border-color:rgba(240,112,0,.25)">
-          <span class="ico"><i data-lucide="phone-call" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
-          <div><div class="qc-sos-num">112</div><div class="qc-sos-lbl">Єдиний</div></div>
-        </a>
-      </div>
-    </div>
-
     <!-- MOBILE: кнопки-розділи -->
     <div class="mob-quick-btns">
-      <button class="mqb-btn" onclick="showTopic('rules_fleet')">
-        <div class="mqb-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="shield-check"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#F07000" onclick="showTopic('rules_fleet')">
+        <div class="mqb-icon" style="background:rgba(240,112,0,.12);color:#F07000"><i data-lucide="shield-check"></i></div>
         <span>Правила Автопарку</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#F07000"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('schedule')">
-        <div class="mqb-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#5B9FE8" onclick="showTopic('schedule')">
+        <div class="mqb-icon" style="background:rgba(91,159,232,.12);color:#5B9FE8"><i data-lucide="calendar"></i></div>
         <span>Графік та робочі зміни</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#5B9FE8"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('handover')">
-        <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#2CC88A" onclick="showTopic('handover')">
+        <div class="mqb-icon" style="background:rgba(44,200,138,.12);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
         <span>Перезмінка та утримання авто</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#2CC88A"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('earn_more')">
-        <div class="mqb-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#F0C800" onclick="showTopic('earn_more')">
+        <div class="mqb-icon" style="background:rgba(240,200,0,.12);color:#F0C800"><i data-lucide="trending-up"></i></div>
         <span>Більше заробляти</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#F0C800"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('cash_calc')">
-        <div class="mqb-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#A064F0" onclick="showTopic('cash_calc')">
+        <div class="mqb-icon" style="background:rgba(160,100,240,.12);color:#A064F0"><i data-lucide="calculator"></i></div>
         <span>Підрахунок каси</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#A064F0"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('forbidden')">
-        <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#E85050" onclick="showTopic('forbidden')">
+        <div class="mqb-icon" style="background:rgba(232,80,80,.12);color:#E85050"><i data-lucide="ban"></i></div>
         <span>Заборонено</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#E85050"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('dtp')">
-        <div class="mqb-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="alert-octagon"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#FF4466" onclick="showTopic('dtp')">
+        <div class="mqb-icon" style="background:rgba(255,68,102,.12);color:#FF4466"><i data-lucide="alert-octagon"></i></div>
         <span>ДТП / Пошкодження</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#FF4466"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('best_service')">
-        <div class="mqb-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="star"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#00E5A0" onclick="showTopic('best_service')">
+        <div class="mqb-icon" style="background:rgba(0,229,160,.12);color:#00E5A0"><i data-lucide="star"></i></div>
         <span>Найкращий сервіс</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#00E5A0"><i data-lucide="chevron-right"></i></span>
       </button>
-      <button class="mqb-btn" onclick="showTopic('uklon')">
-        <div class="mqb-icon" style="background:rgba(100,180,255,.15);color:#64B4FF"><i data-lucide="smartphone"></i></div>
+      <button class="mqb-btn" style="--mqb-color:#64B4FF" onclick="showTopic('uklon')">
+        <div class="mqb-icon" style="background:rgba(100,180,255,.12);color:#64B4FF"><i data-lucide="smartphone"></i></div>
         <span>Uklon</span>
-        <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
+        <span class="mqb-arr" style="color:#64B4FF"><i data-lucide="chevron-right"></i></span>
       </button>
     </div>
 
@@ -939,10 +928,56 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
   <!-- ════ CONTACTS PAGE ════ -->
   <div class="p p-pad" id="p-contacts">
-    <div class="sec-h"><span class="sh-ico ico"><i data-lucide="phone"></i></span>Контакти <span id="contactCityLbl" style="color:var(--accent)">Львів</span></div>
-    <div class="sec-sub">Хто відповідає за що у твоїй філії</div>
+
+    <!-- ОФІС DRIVEME -->
+    <div class="sec-h" style="margin-bottom:4px"><span class="sh-ico ico" style="color:var(--accent)"><i data-lucide="building-2"></i></span>Офіс DriveMe</div>
+    <div class="sec-sub" style="margin-bottom:16px">Головний офіс та керівництво</div>
+    <div class="office-cards">
+      <a class="office-card" href="tel:+380671234000">
+        <div class="oc-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="user"></i></div>
+        <div class="oc-body">
+          <div class="oc-name">Роман Маслов</div>
+          <div class="oc-role">Власник / CEO</div>
+          <div class="oc-phone">+380 67 123 4000</div>
+        </div>
+        <div class="oc-arr"><i data-lucide="phone"></i></div>
+      </a>
+      <a class="office-card" href="tel:+380671234001">
+        <div class="oc-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="briefcase"></i></div>
+        <div class="oc-body">
+          <div class="oc-name">— уточнити —</div>
+          <div class="oc-role">COO / Операційний директор</div>
+          <div class="oc-phone" style="color:var(--t3)">Незабаром</div>
+        </div>
+        <div class="oc-arr"><i data-lucide="phone"></i></div>
+      </a>
+      <a class="office-card" href="tel:+380671234002">
+        <div class="oc-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="banknote"></i></div>
+        <div class="oc-body">
+          <div class="oc-name">— уточнити —</div>
+          <div class="oc-role">Фінансовий директор</div>
+          <div class="oc-phone" style="color:var(--t3)">Незабаром</div>
+        </div>
+        <div class="oc-arr"><i data-lucide="phone"></i></div>
+      </a>
+      <a class="office-card" href="tel:+380671234003">
+        <div class="oc-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="headphones"></i></div>
+        <div class="oc-body">
+          <div class="oc-name">— уточнити —</div>
+          <div class="oc-role">Служба підтримки водіїв</div>
+          <div class="oc-phone" style="color:var(--t3)">Незабаром</div>
+        </div>
+        <div class="oc-arr"><i data-lucide="phone"></i></div>
+      </a>
+    </div>
+
+    <!-- ФІЛІЯ -->
+    <div class="sec-h" style="font-size:17px;margin-top:28px;margin-bottom:4px"><span class="sh-ico ico" style="color:var(--accent)"><i data-lucide="map-pin"></i></span>Керівники філії — <span id="contactCityLbl" style="color:var(--accent)">Львів</span></div>
+    <div class="sec-sub" style="margin-bottom:16px">Хто відповідає за що у твоїй філії</div>
     <div class="contacts-grid" id="contactsGrid"></div>
-    <div class="sec-h" style="font-size:16px;margin-bottom:16px"><span class="sh-ico ico" style="color:var(--red)"><i data-lucide="siren"></i></span>Екстрені номери</div>
+
+    <!-- ЕКСТРЕНІ -->
+    <div class="sec-h" style="font-size:17px;margin-top:28px;margin-bottom:16px"><span class="sh-ico ico" style="color:var(--red)"><i data-lucide="siren"></i></span>Екстрені служби</div>
     <div class="emergency-grid">
       <div class="em-card"><div class="em-ico ico" style="color:var(--red)"><i data-lucide="ambulance"></i></div><div class="em-num" style="color:var(--red)">103</div><div class="em-lbl">Швидка допомога</div></div>
       <div class="em-card"><div class="em-ico ico" style="color:var(--blue)"><i data-lucide="shield"></i></div><div class="em-num" style="color:var(--blue)">102</div><div class="em-lbl">Поліція</div></div>
