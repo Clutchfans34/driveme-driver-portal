@@ -336,6 +336,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .mob-nav-btn .mn-ico{font-size:20px;line-height:1}
 .mob-nav-btn .mn-lbl{font-size:9px;font-weight:600;letter-spacing:.1px}
 .mob-nav-btn.on{color:var(--accent)}
+@keyframes promo-glow{
+  0%,100%{color:#FF6B35;text-shadow:0 0 6px rgba(255,107,53,.6),0 0 12px rgba(255,107,53,.3)}
+  50%{color:#FFB347;text-shadow:0 0 10px rgba(255,179,71,.8),0 0 20px rgba(255,107,53,.5)}
+}
+@keyframes promo-dot{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(1.3)}
+}
+.mob-nav-btn.promo .mn-ico{animation:promo-glow 1.8s ease-in-out infinite}
+.mob-nav-btn.promo .mn-lbl{animation:promo-glow 1.8s ease-in-out infinite;font-weight:800}
+.mob-nav-btn.promo{position:relative}
+.mob-nav-btn.promo::after{content:'';position:absolute;top:4px;right:6px;width:6px;height:6px;background:#FF4400;border-radius:50%;animation:promo-dot 1.8s ease-in-out infinite;box-shadow:0 0 4px #FF4400}
+.nav-btn.promo{color:#FF6B35;font-weight:700;position:relative}
+.nav-btn.promo::before{content:'🔥';font-size:10px;margin-right:3px}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:80px;right:20px;z-index:400;background:var(--item);border:1px solid var(--border2);border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateY(20px);opacity:0;transition:all .24s cubic-bezier(.34,1.56,.64,1)}
@@ -601,10 +615,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <!-- MOBILE NAV -->
 <nav class="mob-nav" id="mobNav">
   <button class="mob-nav-btn on" onclick="showPage('home',this)"><span class="mn-ico ico"><i data-lucide="home"></i></span><span class="mn-lbl">Головна</span></button>
-  <button class="mob-nav-btn" onclick="showPage('rules',this)"><span class="mn-ico ico"><i data-lucide="shield-check"></i></span><span class="mn-lbl">Правила</span></button>
+  <button class="mob-nav-btn" onclick="showPage('rules',this)"><span class="mn-ico ico"><i data-lucide="newspaper"></i></span><span class="mn-lbl">Новини</span></button>
   <button class="mob-nav-btn" onclick="showPage('sit',this)"><span class="mn-ico ico"><i data-lucide="alert-triangle"></i></span><span class="mn-lbl">Ситуації</span></button>
   <button class="mob-nav-btn" onclick="showPage('calc',this)"><span class="mn-ico ico"><i data-lucide="calculator"></i></span><span class="mn-lbl">Калькулятор</span></button>
-  <button class="mob-nav-btn" onclick="showPage('tips',this)"><span class="mn-ico ico"><i data-lucide="zap"></i></span><span class="mn-lbl">Поради</span></button>
+  <button class="mob-nav-btn promo" onclick="showPage('tips',this)"><span class="mn-ico ico"><i data-lucide="tag"></i></span><span class="mn-lbl">Акції</span></button>
   <button class="mob-nav-btn" onclick="showPage('contacts',this)"><span class="mn-ico ico"><i data-lucide="phone"></i></span><span class="mn-lbl">Контакти</span></button>
 </nav>
 
@@ -656,10 +670,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div>
       <div class="header-nav">
         <button class="nav-btn on" onclick="showPage('home',this)">Головна</button>
-        <button class="nav-btn" onclick="showPage('rules',this)">Правила</button>
+        <button class="nav-btn" onclick="showPage('rules',this)">Новини</button>
         <button class="nav-btn" onclick="showPage('sit',this)">Ситуації</button>
         <button class="nav-btn" onclick="showPage('calc',this)">Калькулятор</button>
-        <button class="nav-btn" onclick="showPage('tips',this)">Поради</button>
+        <button class="nav-btn promo" onclick="showPage('tips',this)">Акції</button>
         <button class="nav-btn" onclick="showPage('contacts',this)">Контакти</button>
         <div style="width:1px;height:20px;background:var(--border2);margin:0 6px"></div>
         <div class="city-chip" onclick="openOverlay('cityOverlay')"><span class="ico ico-16"><i data-lucide="map-pin"></i></span> <span id="cityLabel">Львів</span> <span class="ico ico-16"><i data-lucide="chevron-down"></i></span></div>
@@ -860,16 +874,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           </select>
         </div>
         <div class="calc-row">
-          <div class="calc-label">Поїздок на день <span id="tripsLbl">12</span></div>
-          <input type="range" min="1" max="30" value="12" id="calcTrips" oninput="document.getElementById('tripsLbl').textContent=this.value;updateCalc()">
+          <div class="calc-label">Поїздок на день <span id="tripsLbl">18</span></div>
+          <input type="range" min="1" max="30" value="18" id="calcTrips" oninput="document.getElementById('tripsLbl').textContent=this.value;updateCalc()">
         </div>
         <div class="calc-row">
-          <div class="calc-label">Робочих днів на місяць <span id="daysLbl">22</span></div>
-          <input type="range" min="10" max="30" value="22" id="calcDays" oninput="document.getElementById('daysLbl').textContent=this.value;updateCalc()">
+          <div class="calc-label">Робочих днів на місяць <span id="daysLbl">25</span></div>
+          <input type="range" min="10" max="30" value="25" id="calcDays" oninput="document.getElementById('daysLbl').textContent=this.value;updateCalc()">
         </div>
         <div class="calc-row">
-          <div class="calc-label">Середній чек (грн) <span id="checkLbl">110</span></div>
-          <input type="range" min="60" max="300" value="110" step="5" id="calcCheck" oninput="document.getElementById('checkLbl').textContent=this.value;updateCalc()">
+          <div class="calc-label">Середній чек (грн) <span id="checkLbl">215</span></div>
+          <input type="range" min="60" max="300" value="215" step="5" id="calcCheck" oninput="document.getElementById('checkLbl').textContent=this.value;updateCalc()">
         </div>
       </div>
       <div>
