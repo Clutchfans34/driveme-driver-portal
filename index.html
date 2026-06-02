@@ -454,6 +454,28 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .mqb-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .mqb-arr{margin-left:auto;opacity:.35}
 .mqb-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+@keyframes mqb-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(240,200,0,.0), inset 0 0 0 1px rgba(240,200,0,.25)}
+  50%{box-shadow:0 0 18px 4px rgba(240,200,0,.18), inset 0 0 0 1px rgba(240,200,0,.55)}
+}
+@keyframes mqb-badge-pop{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.12);opacity:.85}
+}
+.mqb-featured{
+  animation:mqb-pulse 2.4s ease-in-out infinite;
+  border-color:rgba(240,200,0,.4) !important;
+  position:relative;
+}
+.mqb-featured .mqb-icon{box-shadow:0 0 10px rgba(240,200,0,.25)}
+.mqb-hot-badge{
+  position:absolute;top:-8px;right:14px;
+  background:linear-gradient(135deg,#F0C800,#FFE066);
+  color:#000;font-size:10px;font-weight:800;
+  padding:2px 8px;border-radius:20px;
+  animation:mqb-badge-pop 2.4s ease-in-out infinite;
+  letter-spacing:.3px;
+}
 
 /* ── OFFICE CONTACTS ── */
 .office-cards{display:flex;flex-direction:column;gap:10px}
@@ -1290,12 +1312,16 @@ const MOB_BTNS = [
 function renderMobButtons(){
   const el = document.getElementById('mobQuickBtns');
   if(!el) return;
-  el.innerHTML = MOB_BTNS.map(b=>`
-    <button class="mqb-btn" style="--mqb-color:${b.color}" onclick="showTopic('${b.topic}')">
+  el.innerHTML = MOB_BTNS.map(b=>{
+    const hot = b.topic === 'earn_more';
+    return `
+    <button class="mqb-btn${hot?' mqb-featured':''}" style="--mqb-color:${b.color}" onclick="showTopic('${b.topic}')">
+      ${hot ? `<span class="mqb-hot-badge">🔥 Топ порада</span>` : ''}
       <div class="mqb-icon" style="background:${b.bg};color:${b.color}">${ico(b.icon,20)}</div>
       <span>${b.label}</span>
       <span class="mqb-arr" style="color:${b.color}">${ico('chevron-right',16)}</span>
-    </button>`).join('');
+    </button>`;
+  }).join('');
 }
 
 function renderContacts(){
