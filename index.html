@@ -351,6 +351,38 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .nav-btn.promo{color:#FF6B35;font-weight:700;position:relative}
 .nav-btn.promo::before{content:'🔥';font-size:10px;margin-right:3px}
 
+/* ── NEWS ── */
+.news-header{margin-bottom:20px}
+.news-title-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.news-logo-ico{color:var(--accent);font-size:22px}
+.news-logo-ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.news-title{font-size:20px;font-weight:900;letter-spacing:-.4px}
+.news-sub{font-size:13px;color:var(--t2);margin-left:32px}
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{display:flex;gap:0;cursor:pointer;padding:14px 0;border-bottom:1px solid var(--border);transition:.13s;position:relative}
+.news-item:last-child{border-bottom:none}
+.news-item:active{opacity:.7}
+.news-date-col{width:52px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;padding-top:2px}
+.news-date-day{font-size:22px;font-weight:900;color:var(--accent);line-height:1}
+.news-date-mon{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
+.news-divider{width:1px;background:var(--border);margin:0 14px;flex-shrink:0}
+.news-body{flex:1;min-width:0}
+.news-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:6px;letter-spacing:.3px}
+.news-badge.new{background:rgba(240,112,0,.15);color:var(--accent)}
+.news-badge.info{background:rgba(91,159,232,.15);color:#5B9FE8}
+.news-badge.update{background:rgba(44,200,138,.15);color:#2CC88A}
+.news-badge.warn{background:rgba(232,80,80,.15);color:var(--red)}
+.news-headline{font-size:15px;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:4px}
+.news-preview{font-size:13px;color:var(--t2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-arr{display:flex;align-items:center;color:var(--t3);padding-left:8px;align-self:center;flex-shrink:0}
+.news-arr svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5}
+/* News modal */
+.nm-date{font-size:12px;color:var(--t3);font-weight:600;margin-bottom:12px;letter-spacing:.3px}
+.nm-body{font-size:14px;color:var(--t2);line-height:1.85}
+.nm-body p{margin-bottom:12px}
+.nm-body p:last-child{margin-bottom:0}
+.nm-body strong{color:var(--text)}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:80px;right:20px;z-index:400;background:var(--item);border:1px solid var(--border2);border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateY(20px);opacity:0;transition:all .24s cubic-bezier(.34,1.56,.64,1)}
 .toast.show{transform:none;opacity:1}
@@ -830,12 +862,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   </div>
 
   <!-- ════ RULES PAGE ════ -->
-  <div class="p" id="p-rules">
-    <div style="padding:6px 0 28px">
-      <div class="sec-h"><span class="ico" style="color:var(--accent);margin-right:10px"><i data-lucide="shield-check" style="width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>Правила та протоколи</div>
-      <div class="sec-sub">Внутрішні стандарти DriveMe — обов'язково знати кожному водію</div>
-      <div class="cols" id="rulesKanban"></div>
+  <!-- ════ NEWS PAGE ════ -->
+  <div class="p p-pad" id="p-rules">
+    <div class="news-header">
+      <div class="news-title-row">
+        <span class="news-logo-ico ico"><i data-lucide="newspaper"></i></span>
+        <span class="news-title">Новини DriveMe</span>
+      </div>
+      <div class="news-sub">Оновлення, зміни, важливе для водіїв</div>
     </div>
+    <div class="news-list" id="newsList"></div>
   </div>
 
   <!-- ════ SITUATIONS PAGE ════ -->
@@ -1677,6 +1713,82 @@ function renderKanban(el, cols){
   lucide.createIcons();
 }
 
+// ──────────────────────────────────────────
+// NEWS DATA
+// ──────────────────────────────────────────
+const NEWS = [
+  {
+    id:'n3',
+    day:'02', mon:'ЧЕР', year:'2026',
+    badge:'new', badgeText:'Нове',
+    headline:'Нові тарифи Uklon — що змінилось для водіїв',
+    preview:'З 1 червня Uklon оновив тарифну сітку по всіх містах. Базовий тариф зріс на 8%, мінімальна сума замовлення збільшена.',
+    full:`<p><strong>З 1 червня 2026 року</strong> Uklon вводить оновлену тарифну сітку. Зміни торкнулися всіх міст присутності DriveMe.</p>
+<p>Основні зміни: базовий тариф підвищено на <strong>8%</strong>, мінімальна сума замовлення збільшена з 45 до 52 грн. Тарифи Комфорт і Бізнес зростають пропорційно.</p>
+<p>Для вас це означає вищий середній чек з кожної поїздки. При тих самих 18 поїздках на день ваш заробіток зросте приблизно на <strong>1 500–2 000 грн на місяць</strong>.</p>
+<p>Деталі по вашому місту — у вкладці Калькулятор або у керівника філії.</p>`
+  },
+  {
+    id:'n2',
+    day:'28', mon:'ТРА', year:'2026',
+    badge:'update', badgeText:'Оновлення',
+    headline:'Новий чеклист перезмінки — обов\'язково ознайомтесь',
+    preview:'Технічний відділ оновив список обов\'язкових перевірок при прийомі авто. Додано пункти щодо стану гальм і рідин.',
+    full:`<p>Технічний відділ DriveMe оновив <strong>чеклист прийому автомобіля</strong> при перезмінці. Зміни набирають чинності з 1 червня 2026 року.</p>
+<p>Що додали до обов'язкової перевірки:</p>
+<p>— Рівень гальмівної рідини (щуп або борткомп'ютер)<br>— Стан гальмівних колодок (візуально через диск)<br>— Рівень рідини омивача<br>— Перевірка роботи стоп-сигналів</p>
+<p>Весь чеклист займає не більше <strong>5 хвилин</strong>. Але це ваш захист від відповідальності за чужі несправності. Підписав акт прийому без перевірки — відповідаєш за все.</p>
+<p>Оновлений бланк акту вже у керівника філії.</p>`
+  },
+  {
+    id:'n1',
+    day:'15', mon:'ТРА', year:'2026',
+    badge:'info', badgeText:'Інфо',
+    headline:'Літня програма бонусів — старт у червні',
+    preview:'DriveMe запускає літню бонусну програму. Водії з рейтингом 4.8+ і 20+ поїздками на день отримують щотижневі бонуси.',
+    full:`<p>DriveMe запускає <strong>Літню програму бонусів 2026</strong> — з 1 по 31 серпня.</p>
+<p>Умови участі прості: рейтинг Uklon <strong>4.8 і вище</strong>, середня кількість поїздок <strong>20+ на день</strong>, відсоток скасувань <strong>менше 5%</strong>.</p>
+<p>Розмір бонусів:</p>
+<p>— Тиждень виконання умов: <strong>+500 грн</strong><br>— Два тижні поспіль: <strong>+1 200 грн</strong><br>— Весь місяць: <strong>+3 000 грн</strong> + подарунок від компанії</p>
+<p>Нарахування — автоматично за даними системи. Виплата разом з основним заробітком 5 вересня.</p>
+<p>Питання — до керівника філії або в загальний чат водіїв.</p>`
+  },
+];
+
+function renderNews(){
+  const el = document.getElementById('newsList');
+  if(!el) return;
+  el.innerHTML = NEWS.map(n=>`
+    <div class="news-item" onclick="openNews('${n.id}')">
+      <div class="news-date-col">
+        <div class="news-date-day">${n.day}</div>
+        <div class="news-date-mon">${n.mon}</div>
+      </div>
+      <div class="news-divider"></div>
+      <div class="news-body">
+        <div class="news-badge ${n.badge}">${n.badgeText}</div>
+        <div class="news-headline">${n.headline}</div>
+        <div class="news-preview">${n.preview}</div>
+      </div>
+      <div class="news-arr">${ico('chevron-right',14)}</div>
+    </div>`).join('');
+}
+
+function openNews(id){
+  const n = NEWS.find(x=>x.id===id);
+  if(!n) return;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="dm-head">
+      <div class="dm-ico" style="background:linear-gradient(135deg,#1A1A2E,#2A2A4E)">${ico('newspaper',26)}</div>
+      <div><div class="dm-title">${n.headline}</div><div class="dm-sub" style="color:var(--accent)">${n.badgeText}</div></div>
+    </div>
+    <div class="nm-date">${n.day} ${n.mon} ${n.year}</div>
+    <div class="nm-body">${n.full}</div>
+    <div class="modal-btns"><button class="btn-sec" onclick="closeOverlay('detailOverlay')">Закрити</button></div>`;
+  lucide.createIcons();
+  openOverlay('detailOverlay');
+}
+
 const MOB_BTNS = [
   {topic:'rules_fleet', color:'#F07000', bg:'rgba(240,112,0,.12)',  icon:'shield-check',   label:'Правила Автопарку'},
   {topic:'schedule',    color:'#5B9FE8', bg:'rgba(91,159,232,.12)', icon:'calendar',        label:'Графік та робочі зміни'},
@@ -2065,6 +2177,7 @@ renderContacts();
 renderCityGrid();
 updateCalc();
 renderMobButtons();
+renderNews();
 lucide.createIcons();
 </script>
 </body>
