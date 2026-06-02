@@ -428,9 +428,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   .qc-photo{display:none}
 }
 .mob-quick-btns{display:none}
+.mob-contacts-block{display:none}
 @media(max-width:600px){
   .mob-quick-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .mob-contacts-block{display:block;background:var(--col);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:0}
+  .mob-shelf-block{display:block}
 }
+.mob-shelf-block{display:none}
 .mqb-btn{
   display:flex;align-items:center;gap:14px;
   width:100%;padding:15px 18px;
@@ -760,6 +764,33 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
     </div>
 
+    <!-- MOBILE ONLY: contacts + SOS -->
+    <div class="mob-contacts-block">
+      <div class="qc-header">
+        <span class="qc-title">Контакти філії</span>
+        <span class="qc-city"><i data-lucide="map-pin" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2"></i><span id="qcCityName">Львів</span></span>
+      </div>
+      <div class="qc-staff" id="qcStaff"></div>
+      <div class="qc-sos">
+        <a class="qc-sos-btn" href="tel:101" style="background:rgba(232,80,80,.13);color:#E85050;border-color:rgba(232,80,80,.25)">
+          <span class="ico"><i data-lucide="flame" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">101</div><div class="qc-sos-lbl">Пожежна</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:102" style="background:rgba(91,159,232,.13);color:#5B9FE8;border-color:rgba(91,159,232,.25)">
+          <span class="ico"><i data-lucide="shield" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">102</div><div class="qc-sos-lbl">Поліція</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:103" style="background:rgba(44,200,138,.13);color:#2CC88A;border-color:rgba(44,200,138,.25)">
+          <span class="ico"><i data-lucide="heart-pulse" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">103</div><div class="qc-sos-lbl">Швидка</div></div>
+        </a>
+        <a class="qc-sos-btn" href="tel:112" style="background:rgba(240,112,0,.13);color:var(--accent);border-color:rgba(240,112,0,.25)">
+          <span class="ico"><i data-lucide="phone-call" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"></i></span>
+          <div><div class="qc-sos-num">112</div><div class="qc-sos-lbl">Єдиний</div></div>
+        </a>
+      </div>
+    </div>
+
     <!-- MOBILE: кнопки-розділи -->
     <div class="mob-quick-btns">
       <button class="mqb-btn" onclick="showTopic('rules_fleet')">
@@ -808,6 +839,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <span class="mqb-arr"><i data-lucide="chevron-right"></i></span>
       </button>
     </div>
+
+    <!-- MOBILE ONLY: shelf cards -->
+    <div class="mob-shelf-block">
+      <div class="shelf-tabs-row" style="margin-bottom:12px;margin-top:24px">
+        <div class="shelf-tabs">
+          <button class="shelf-tab on" onclick="filterShelf('all',this)">Всі розділи</button>
+          <button class="shelf-tab" onclick="filterShelf('new',this)">Нові</button>
+          <button class="shelf-tab" onclick="filterShelf('imp',this)">Важливі</button>
+        </div>
+      </div>
+      <div class="shelf-row" id="shelfRow"></div>
+    </div>
+
   </div>
 
   <!-- ════ RULES PAGE ════ -->
