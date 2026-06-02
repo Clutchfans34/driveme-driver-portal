@@ -783,54 +783,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
     </div>
 
-    <!-- MOBILE: кнопки-розділи -->
-    <div class="mob-quick-btns">
-      <button class="mqb-btn" style="--mqb-color:#F07000" onclick="showTopic('rules_fleet')">
-        <div class="mqb-icon" style="background:rgba(240,112,0,.12);color:#F07000"><i data-lucide="shield-check"></i></div>
-        <span>Правила Автопарку</span>
-        <span class="mqb-arr" style="color:#F07000"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#5B9FE8" onclick="showTopic('schedule')">
-        <div class="mqb-icon" style="background:rgba(91,159,232,.12);color:#5B9FE8"><i data-lucide="calendar"></i></div>
-        <span>Графік та робочі зміни</span>
-        <span class="mqb-arr" style="color:#5B9FE8"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#2CC88A" onclick="showTopic('handover')">
-        <div class="mqb-icon" style="background:rgba(44,200,138,.12);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
-        <span>Перезмінка та утримання авто</span>
-        <span class="mqb-arr" style="color:#2CC88A"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#F0C800" onclick="showTopic('earn_more')">
-        <div class="mqb-icon" style="background:rgba(240,200,0,.12);color:#F0C800"><i data-lucide="trending-up"></i></div>
-        <span>Більше заробляти</span>
-        <span class="mqb-arr" style="color:#F0C800"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#A064F0" onclick="showTopic('cash_calc')">
-        <div class="mqb-icon" style="background:rgba(160,100,240,.12);color:#A064F0"><i data-lucide="calculator"></i></div>
-        <span>Підрахунок каси</span>
-        <span class="mqb-arr" style="color:#A064F0"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#E85050" onclick="showTopic('forbidden')">
-        <div class="mqb-icon" style="background:rgba(232,80,80,.12);color:#E85050"><i data-lucide="ban"></i></div>
-        <span>Заборонено</span>
-        <span class="mqb-arr" style="color:#E85050"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#FF4466" onclick="showTopic('dtp')">
-        <div class="mqb-icon" style="background:rgba(255,68,102,.12);color:#FF4466"><i data-lucide="alert-octagon"></i></div>
-        <span>ДТП / Пошкодження</span>
-        <span class="mqb-arr" style="color:#FF4466"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#00E5A0" onclick="showTopic('best_service')">
-        <div class="mqb-icon" style="background:rgba(0,229,160,.12);color:#00E5A0"><i data-lucide="star"></i></div>
-        <span>Найкращий сервіс</span>
-        <span class="mqb-arr" style="color:#00E5A0"><i data-lucide="chevron-right"></i></span>
-      </button>
-      <button class="mqb-btn" style="--mqb-color:#64B4FF" onclick="showTopic('uklon')">
-        <div class="mqb-icon" style="background:rgba(100,180,255,.12);color:#64B4FF"><i data-lucide="smartphone"></i></div>
-        <span>Uklon</span>
-        <span class="mqb-arr" style="color:#64B4FF"><i data-lucide="chevron-right"></i></span>
-      </button>
-    </div>
+    <!-- MOBILE: кнопки-розділи (рендеруються через JS) -->
+    <div class="mob-quick-btns" id="mobQuickBtns"></div>
 
 
   </div>
@@ -1280,6 +1234,7 @@ function ico(name,size=20){
 
 function renderShelf(){
   const el = document.getElementById('shelfRow');
+  if(!el) return;
   const items = SHELF_ITEMS.filter(i=>{
     if(currentShelf==='new') return i.new;
     if(currentShelf==='imp') return i.imp;
@@ -1296,6 +1251,7 @@ function renderShelf(){
 }
 
 function renderKanban(el, cols){
+  if(!el) return;
   el.innerHTML = cols.map(col=>`
     <div class="col">
       <div class="col-head">
@@ -1317,6 +1273,29 @@ function renderKanban(el, cols){
       </div>
     </div>`).join('');
   lucide.createIcons();
+}
+
+const MOB_BTNS = [
+  {topic:'rules_fleet', color:'#F07000', bg:'rgba(240,112,0,.12)',  icon:'shield-check',   label:'Правила Автопарку'},
+  {topic:'schedule',    color:'#5B9FE8', bg:'rgba(91,159,232,.12)', icon:'calendar',        label:'Графік та робочі зміни'},
+  {topic:'handover',    color:'#2CC88A', bg:'rgba(44,200,138,.12)', icon:'refresh-cw',      label:'Перезмінка та утримання авто'},
+  {topic:'earn_more',   color:'#F0C800', bg:'rgba(240,200,0,.12)',  icon:'trending-up',     label:'Більше заробляти'},
+  {topic:'cash_calc',   color:'#A064F0', bg:'rgba(160,100,240,.12)',icon:'calculator',      label:'Підрахунок каси'},
+  {topic:'forbidden',   color:'#E85050', bg:'rgba(232,80,80,.12)',  icon:'ban',             label:'Заборонено'},
+  {topic:'dtp',         color:'#FF4466', bg:'rgba(255,68,102,.12)', icon:'alert-octagon',   label:'ДТП / Пошкодження'},
+  {topic:'best_service',color:'#00E5A0', bg:'rgba(0,229,160,.12)',  icon:'star',            label:'Найкращий сервіс'},
+  {topic:'uklon',       color:'#64B4FF', bg:'rgba(100,180,255,.12)',icon:'smartphone',      label:'Uklon'},
+];
+
+function renderMobButtons(){
+  const el = document.getElementById('mobQuickBtns');
+  if(!el) return;
+  el.innerHTML = MOB_BTNS.map(b=>`
+    <button class="mqb-btn" style="--mqb-color:${b.color}" onclick="showTopic('${b.topic}')">
+      <div class="mqb-icon" style="background:${b.bg};color:${b.color}">${ico(b.icon,20)}</div>
+      <span>${b.label}</span>
+      <span class="mqb-arr" style="color:${b.color}">${ico('chevron-right',16)}</span>
+    </button>`).join('');
 }
 
 function renderContacts(){
@@ -1369,7 +1348,9 @@ function renderCalcTips(){
 }
 
 function renderCityGrid(){
-  document.getElementById('cityGrid').innerHTML = Object.entries(CITIES).map(([k,v])=>`
+  const cg = document.getElementById('cityGrid');
+  if(!cg) return;
+  cg.innerHTML = Object.entries(CITIES).map(([k,v])=>`
     <button class="city-btn ${k===currentCity?'on':''}" onclick="setCity('${k}')">${v.name}</button>`).join('');
 }
 
@@ -1379,6 +1360,7 @@ function renderCityGrid(){
 const CITY_MAP = {lviv:'Львів',kharkiv:'Харків',zaporizhzhia:'Запоріжжя',dnipro:'Дніпро',vinnytsia:'Вінниця',kropyvnytskyi:'Кропивницький',mykolaiv:'Миколаїв'};
 const TARIFF_NAMES = {'1.0':'Стандарт','1.35':'Комфорт','1.7':'Бізнес'};
 function updateCalc(){
+  if(!document.getElementById('calcCity')) return;
   const city = document.getElementById('calcCity').value;
   const tariff = parseFloat(document.getElementById('calcTariff').value);
   const trips = parseInt(document.getElementById('calcTrips').value);
@@ -1602,7 +1584,6 @@ function setCity(key){
   document.getElementById('calcCity').value = key;
   updateCalc();
   renderContacts();
-  renderHomeContacts();
   renderCityGrid();
   closeOverlay('cityOverlay');
   // sync calc
@@ -1676,9 +1657,9 @@ renderKanban(document.getElementById('sitKanban'), SIT_KANBAN);
 renderTips();
 renderCalcTips();
 renderContacts();
-renderHomeContacts();
 renderCityGrid();
 updateCalc();
+renderMobButtons();
 lucide.createIcons();
 </script>
 </body>
