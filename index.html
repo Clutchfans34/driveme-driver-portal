@@ -447,27 +447,33 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .home-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  padding:24px 0;
+  gap:12px;
+  padding:20px 0 0;
 }
 .hg-card{
-  background:var(--col);border:1px solid var(--border);border-radius:20px;
-  padding:28px 20px 24px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:14px;cursor:pointer;transition:.15s;
-  text-align:center;color:var(--text);
-  aspect-ratio:1/1;
+  background:var(--col);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px 18px 18px;
+  display:flex;flex-direction:column;align-items:flex-start;
+  gap:0;cursor:pointer;transition:.15s;
+  text-align:left;color:var(--text);
+  position:relative;overflow:hidden;
+  border-top-width:2px;
 }
-.hg-card:hover{background:var(--item);border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.hg-card:hover{background:var(--item);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.22)}
 .hg-card:active{transform:translateY(0);box-shadow:none}
-.hg-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.hg-icon svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-.hg-title{font-size:15px;font-weight:800;line-height:1.3;letter-spacing:-.2px}
-.hg-sub{font-size:12px;color:var(--t3);font-weight:500}
-@media(max-width:900px){.home-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){
-  .home-grid{display:none}
-}
+.hg-card-top{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:14px}
+.hg-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hg-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.hg-count{font-size:13px;font-weight:700;color:var(--t3)}
+.hg-title{font-size:16px;font-weight:800;line-height:1.3;letter-spacing:-.3px;margin-bottom:6px}
+.hg-sub{font-size:12px;color:var(--t3);font-weight:500;line-height:1.4}
+.hg-arrow{position:absolute;bottom:16px;right:16px;opacity:.25}
+.hg-arrow svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1100px){.home-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.home-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.home-grid{display:none}}
 
 /* ── TOPIC PAGE ── */
 .topic-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
@@ -595,51 +601,97 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <!-- ════ HOME PAGE ════ -->
   <div class="p on" id="p-home">
     <div class="home-grid">
-      <button class="hg-card" onclick="showTopic('rules_fleet')">
-        <div class="hg-icon" style="background:rgba(240,112,0,.15);color:var(--accent)"><i data-lucide="shield-check"></i></div>
+
+      <button class="hg-card" style="border-top-color:#F07000" onclick="showTopic('rules_fleet')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(240,112,0,.15);color:#F07000"><i data-lucide="shield-check"></i></div>
+          <span class="hg-count">7 карток</span>
+        </div>
         <div class="hg-title">Правила Автопарку</div>
-        <div class="hg-sub">7 розділів</div>
+        <div class="hg-sub">Чистота, пальне, заборони, ТО</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('schedule')">
-        <div class="hg-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
-        <div class="hg-title">Графік та зміни</div>
-        <div class="hg-sub">5 розділів</div>
+
+      <button class="hg-card" style="border-top-color:#5B9FE8" onclick="showTopic('schedule')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
+          <span class="hg-count">5 карток</span>
+        </div>
+        <div class="hg-title">Графік та робочі зміни</div>
+        <div class="hg-sub">Тривалість, старт, кінець, заміна</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('handover')">
-        <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
+
+      <button class="hg-card" style="border-top-color:#2CC88A" onclick="showTopic('handover')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
+          <span class="hg-count">5 карток</span>
+        </div>
         <div class="hg-title">Перезмінка та утримання</div>
-        <div class="hg-sub">5 розділів</div>
+        <div class="hg-sub">Чеклист прийому, фото, пальне</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('earn_more')">
-        <div class="hg-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
+
+      <button class="hg-card" style="border-top-color:#F0C800" onclick="showTopic('earn_more')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
+          <span class="hg-count">6 карток</span>
+        </div>
         <div class="hg-title">Більше заробляти</div>
-        <div class="hg-sub">6 розділів</div>
+        <div class="hg-sub">Прайм-час, точки, рейтинг</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('cash_calc')">
-        <div class="hg-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
+
+      <button class="hg-card" style="border-top-color:#A064F0" onclick="showTopic('cash_calc')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
+          <span class="hg-count">5 карток</span>
+        </div>
         <div class="hg-title">Підрахунок каси</div>
-        <div class="hg-sub">5 розділів</div>
+        <div class="hg-sub">Формула, виплати, штрафи, чеки</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('forbidden')">
-        <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
+
+      <button class="hg-card" style="border-top-color:#E85050" onclick="showTopic('forbidden')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
+          <span class="hg-count">6 карток</span>
+        </div>
         <div class="hg-title">Заборонено</div>
-        <div class="hg-sub">6 розділів</div>
+        <div class="hg-sub">Алкоголь, телефон, передача авто</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('dtp')">
-        <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="alert-octagon"></i></div>
+
+      <button class="hg-card" style="border-top-color:#E85050" onclick="showTopic('dtp')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="alert-octagon"></i></div>
+          <span class="hg-count">7 кроків</span>
+        </div>
         <div class="hg-title">ДТП / Пошкодження</div>
-        <div class="hg-sub">7 кроків</div>
+        <div class="hg-sub">Покрокова інструкція дій</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('best_service')">
-        <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="star"></i></div>
+
+      <button class="hg-card" style="border-top-color:#2CC88A" onclick="showTopic('best_service')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="star"></i></div>
+          <span class="hg-count">6 карток</span>
+        </div>
         <div class="hg-title">Найкращий сервіс</div>
-        <div class="hg-sub">6 розділів</div>
+        <div class="hg-sub">Рейтинг 4.8+, сервіс, чайові</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
-      <button class="hg-card" onclick="showTopic('uklon')">
-        <div class="hg-icon" style="background:rgba(100,180,255,.15);color:#64B4FF"><i data-lucide="smartphone"></i></div>
+
+      <button class="hg-card" style="border-top-color:#64B4FF" onclick="showTopic('uklon')">
+        <div class="hg-card-top">
+          <div class="hg-icon" style="background:rgba(100,180,255,.15);color:#64B4FF"><i data-lucide="smartphone"></i></div>
+          <span class="hg-count">6 карток</span>
+        </div>
         <div class="hg-title">Uklon</div>
-        <div class="hg-sub">6 розділів</div>
+        <div class="hg-sub">Статуси, рейтинг, зони, підтримка</div>
+        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
       </button>
+
     </div>
 
     <!-- MOBILE: кнопки-розділи -->
