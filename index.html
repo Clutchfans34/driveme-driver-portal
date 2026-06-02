@@ -449,30 +449,49 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .home-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:14px;
   padding:20px 0 0;
 }
 .hg-card{
   background:var(--col);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px 18px 18px;
-  display:flex;flex-direction:column;align-items:flex-start;
-  gap:0;cursor:pointer;transition:.15s;
+  border-radius:20px;
+  display:flex;flex-direction:column;
+  cursor:pointer;transition:.18s;
   text-align:left;color:var(--text);
   position:relative;overflow:hidden;
-  border-top-width:2px;
+  min-height:200px;
 }
-.hg-card:hover{background:var(--item);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.22)}
-.hg-card:active{transform:translateY(0);box-shadow:none}
-.hg-card-top{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:14px}
-.hg-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.hg-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-.hg-count{font-size:13px;font-weight:700;color:var(--t3)}
-.hg-title{font-size:16px;font-weight:800;line-height:1.3;letter-spacing:-.3px;margin-bottom:6px}
-.hg-sub{font-size:12px;color:var(--t3);font-weight:500;line-height:1.4}
-.hg-arrow{position:absolute;bottom:16px;right:16px;opacity:.25}
-.hg-arrow svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hg-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.3);border-color:var(--border2)}
+.hg-card:active{transform:translateY(-1px)}
+
+/* верхній кольоровий банер */
+.hg-banner{
+  width:100%;padding:22px 22px 16px;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  position:relative;
+  border-radius:20px 20px 0 0;
+}
+.hg-emoji{font-size:38px;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3))}
+.hg-badge{
+  font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  background:rgba(255,255,255,.18);color:#fff;
+  backdrop-filter:blur(6px);flex-shrink:0;margin-top:3px;
+}
+
+/* нижня частина картки */
+.hg-body{padding:14px 20px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
+.hg-title{font-size:16px;font-weight:900;line-height:1.25;letter-spacing:-.3px}
+.hg-sub{font-size:12px;color:var(--t2);font-weight:500;line-height:1.5}
+.hg-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px}
+.hg-tags{display:flex;gap:6px;flex-wrap:wrap}
+.hg-tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--item);color:var(--t2)}
+.hg-arr{width:28px;height:28px;border-radius:50%;background:var(--item);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
+.hg-arr svg{width:14px;height:14px;stroke:var(--t2);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.hg-card:hover .hg-arr{background:var(--accent);border-color:transparent}
+.hg-card:hover .hg-arr svg{stroke:#fff}
+
 @media(max-width:1100px){.home-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.home-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.home-grid{display:none}}
@@ -604,94 +623,139 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
   <div class="p on" id="p-home">
     <div class="home-grid">
 
-      <button class="hg-card" style="border-top-color:#F07000" onclick="showTopic('rules_fleet')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(240,112,0,.15);color:#F07000"><i data-lucide="shield-check"></i></div>
-          <span class="hg-count">7 карток</span>
+      <button class="hg-card" onclick="showTopic('rules_fleet')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#E8580A,#FF8C40)">
+          <div class="hg-emoji">🛡️</div>
+          <span class="hg-badge">7 карток</span>
         </div>
-        <div class="hg-title">Правила Автопарку</div>
-        <div class="hg-sub">Чистота, пальне, заборони, ТО</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Правила Автопарку</div>
+          <div class="hg-sub">Чистота авто, пальне, заборони в салоні, ТО тільки через компанію</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Авто</span><span class="hg-tag">Обов'язково</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#5B9FE8" onclick="showTopic('schedule')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(91,159,232,.15);color:#5B9FE8"><i data-lucide="calendar"></i></div>
-          <span class="hg-count">5 карток</span>
+      <button class="hg-card" onclick="showTopic('schedule')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#2468D8,#5BA8F8)">
+          <div class="hg-emoji">🗓️</div>
+          <span class="hg-badge">5 карток</span>
         </div>
-        <div class="hg-title">Графік та робочі зміни</div>
-        <div class="hg-sub">Тривалість, старт, кінець, заміна</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Графік та робочі зміни</div>
+          <div class="hg-sub">Тривалість зміни, старт, кінець, як змінити або скасувати</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Графік</span><span class="hg-tag">HR</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#2CC88A" onclick="showTopic('handover')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="refresh-cw"></i></div>
-          <span class="hg-count">5 карток</span>
+      <button class="hg-card" onclick="showTopic('handover')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#0E9E6A,#34E0A0)">
+          <div class="hg-emoji">🔄</div>
+          <span class="hg-badge">5 карток</span>
         </div>
-        <div class="hg-title">Перезмінка та утримання</div>
-        <div class="hg-sub">Чеклист прийому, фото, пальне</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Перезмінка та утримання</div>
+          <div class="hg-sub">Чеклист прийому авто, фотофіксація, пальне при здачі</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Чеклист</span><span class="hg-tag">Авто</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#F0C800" onclick="showTopic('earn_more')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(240,200,0,.15);color:#F0C800"><i data-lucide="trending-up"></i></div>
-          <span class="hg-count">6 карток</span>
+      <button class="hg-card" onclick="showTopic('earn_more')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#C89000,#F5C830)">
+          <div class="hg-emoji">💰</div>
+          <span class="hg-badge">6 карток</span>
         </div>
-        <div class="hg-title">Більше заробляти</div>
-        <div class="hg-sub">Прайм-час, точки, рейтинг</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Більше заробляти</div>
+          <div class="hg-sub">Прайм-час 7–9 і 17–20, топ-точки міста, стратегія рейтингу</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Гроші</span><span class="hg-tag">Стратегія</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#A064F0" onclick="showTopic('cash_calc')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(160,100,240,.15);color:#A064F0"><i data-lucide="calculator"></i></div>
-          <span class="hg-count">5 карток</span>
+      <button class="hg-card" onclick="showTopic('cash_calc')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#7030C0,#B070F8)">
+          <div class="hg-emoji">🧮</div>
+          <span class="hg-badge">5 карток</span>
         </div>
-        <div class="hg-title">Підрахунок каси</div>
-        <div class="hg-sub">Формула, виплати, штрафи, чеки</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Підрахунок каси</div>
+          <div class="hg-sub">Формула заробітку, дні виплат, утримання, зберігай чеки</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Виплати</span><span class="hg-tag">Фінанси</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#E85050" onclick="showTopic('forbidden')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="ban"></i></div>
-          <span class="hg-count">6 карток</span>
+      <button class="hg-card" onclick="showTopic('forbidden')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#B81C1C,#F04444)">
+          <div class="hg-emoji">🚫</div>
+          <span class="hg-badge">6 карток</span>
         </div>
-        <div class="hg-title">Заборонено</div>
-        <div class="hg-sub">Алкоголь, телефон, передача авто</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Заборонено</div>
+          <div class="hg-sub">Алкоголь, телефон без гарнітури, передача авто — звільнення</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Критично</span><span class="hg-tag">Звільнення</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#E85050" onclick="showTopic('dtp')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(232,80,80,.15);color:#E85050"><i data-lucide="alert-octagon"></i></div>
-          <span class="hg-count">7 кроків</span>
+      <button class="hg-card" onclick="showTopic('dtp')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#C02020,#F06060)">
+          <div class="hg-emoji">🚨</div>
+          <span class="hg-badge">7 кроків</span>
         </div>
-        <div class="hg-title">ДТП / Пошкодження</div>
-        <div class="hg-sub">Покрокова інструкція дій</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">ДТП / Пошкодження</div>
+          <div class="hg-sub">Аварійка → керівник → 102 → фото → дані учасника → не підписуй</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Покроково</span><span class="hg-tag">Терміново</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#2CC88A" onclick="showTopic('best_service')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(44,200,138,.15);color:#2CC88A"><i data-lucide="star"></i></div>
-          <span class="hg-count">6 карток</span>
+      <button class="hg-card" onclick="showTopic('best_service')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#007A50,#00C880)">
+          <div class="hg-emoji">⭐</div>
+          <span class="hg-badge">6 карток</span>
         </div>
-        <div class="hg-title">Найкращий сервіс</div>
-        <div class="hg-sub">Рейтинг 4.8+, сервіс, чайові</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Найкращий сервіс</div>
+          <div class="hg-sub">Вітай на ім'я, тихий режим, кабель для зарядки, рейтинг 4.8+</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Рейтинг</span><span class="hg-tag">Сервіс</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
-      <button class="hg-card" style="border-top-color:#64B4FF" onclick="showTopic('uklon')">
-        <div class="hg-card-top">
-          <div class="hg-icon" style="background:rgba(100,180,255,.15);color:#64B4FF"><i data-lucide="smartphone"></i></div>
-          <span class="hg-count">6 карток</span>
+      <button class="hg-card" onclick="showTopic('uklon')">
+        <div class="hg-banner" style="background:linear-gradient(135deg,#1858C8,#4898FF)">
+          <div class="hg-emoji">📱</div>
+          <span class="hg-badge">6 карток</span>
         </div>
-        <div class="hg-title">Uklon</div>
-        <div class="hg-sub">Статуси, рейтинг, зони, підтримка</div>
-        <div class="hg-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="hg-body">
+          <div class="hg-title">Uklon</div>
+          <div class="hg-sub">Статуси, рейтинг 4.6+, відсоток скасувань, зони активності</div>
+          <div class="hg-footer">
+            <div class="hg-tags"><span class="hg-tag">Додаток</span><span class="hg-tag">Алгоритм</span></div>
+            <div class="hg-arr"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </div>
       </button>
 
     </div>
